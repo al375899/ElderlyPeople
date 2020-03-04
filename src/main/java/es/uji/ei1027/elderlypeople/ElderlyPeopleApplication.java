@@ -2,7 +2,6 @@ package es.uji.ei1027.elderlypeople;
 
 import java.util.List;
 import java.util.logging.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
