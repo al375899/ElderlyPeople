@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Crear nova empresa</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nova empresa</h2>
+    <form action="#" th:action="@{/company/add}" 
+                     th:object="${company}" method="post"> 
+      <table>
+        <tr>
+            <td><label>Nom</label></td>
+            <td><input type="text" th:field="*{name}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Pesona de contacte</label></td>
+            <td><input type="text" th:field="*{contactPerson}" /></td>
+        </tr>
+        <tr>
+            <td><label>Numero fiscal</label></td>
+            <td><input type="text" th:field="*{fiscalNumber}" /></td>
+        </tr>
+        
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix empresa" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

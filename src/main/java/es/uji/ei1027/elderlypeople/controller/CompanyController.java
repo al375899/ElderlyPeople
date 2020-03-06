@@ -26,7 +26,7 @@ public class CompanyController {
 	@RequestMapping("/list")
 	public String listCompanies(Model model) {
 		model.addAttribute("companies", companyDao.getCompanies());
-		return "companies/list";
+		return "company/list";
 	}
 
 	@RequestMapping(value = "/add")
@@ -40,7 +40,7 @@ public class CompanyController {
 		if (bindingResult.hasErrors())
 			return "company/add";
 		companyDao.addCompany(company);
-		return "redirect:list.html";
+		return "redirect:list";
 	}
 
 	@RequestMapping(value = "/update/{fiscalNumber}", method = RequestMethod.GET)

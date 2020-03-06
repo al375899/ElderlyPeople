@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar Empreses</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+   <h1>Llista d'empreses</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Nom</th>
+         <th>Persona de contacte</th>
+         <th>Numero fiscal</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="company: ${companies}"> 
+         <td th:text="${company.name}"></td> 
+         <td th:text=${company.contactPerson}></td>
+         <td th:text="${company.fiscalNumber}"></td>
+         <td><a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">Esborra</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Afegeix empresa</a> 
+</body>
+</html>
