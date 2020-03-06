@@ -8,7 +8,7 @@ public class ElderlyPeople {
 	String name;
 	String surname;
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	private LocalDate birthDate;
+	LocalDate birthDate;
 	String diseases;
 	String dni;
 	String address;
