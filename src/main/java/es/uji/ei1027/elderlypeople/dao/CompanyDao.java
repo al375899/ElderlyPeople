@@ -29,7 +29,7 @@ public class CompanyDao {
 	}
 
 	/* Esborra el company de la base de dades */
-	void deleteCompany(Company company) {
+	public void deleteCompany(Company company) {
 		jdbcTemplate.update("DELETE FROM Company WHERE fiscalNumber=?", company.getFiscalNumber());
 	}
 
