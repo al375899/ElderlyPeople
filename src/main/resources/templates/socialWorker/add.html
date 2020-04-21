@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Crear nou/nova treballador/a social</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nou/nova treballador/a social</h2>
+    <form action="#" th:action="@{/socialWorker/add}" 
+                     th:object="${socialWorker}" method="post"> 
+      <table>
+        <tr>
+            <td><label>Nom</label></td>
+            <td><input type="text" th:field="*{name}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Cognoms</label></td>
+            <td><input type="text" th:field="*{surnames}" /></td>
+        </tr>
+        <tr>
+            <td><label>Telèfon</label></td>
+            <td><input type="text" th:field="*{phoneNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Dni</label></td>
+            <td><input type="text" th:field="*{dni}" /></td>
+        </tr>
+        <tr>
+            <td><label>E-mail</label></td>
+            <td><input type="text" th:field="*{email}" /></td>
+        </tr>
+        
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix treballador/a social" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
