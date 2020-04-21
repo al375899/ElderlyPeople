@@ -32,12 +32,12 @@ public class ElderlyPeopleDao {
 	}
 
 	/* Esborra el elderly de la base de dades */
-	void deleteElderlyPeople(ElderlyPeople elderlyPeople) {
+	public void deleteElderlyPeople(ElderlyPeople elderlyPeople) {
 		jdbcTemplate.update("DELETE FROM Company WHERE fiscalNumber=?", elderlyPeople.getDni());
 	}
 
 	// Esborra el elderly per el dni
-	void deleteElderlyPeople(String dni) {
+	public void deleteElderlyPeople(String dni) {
 		jdbcTemplate.update("DELETE FROM ElderlyPeople WHERE dni=?", dni);
 	}
 

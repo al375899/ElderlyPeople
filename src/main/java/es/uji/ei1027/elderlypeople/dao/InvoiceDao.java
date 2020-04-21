@@ -29,7 +29,7 @@ public class InvoiceDao {
 	}
 
 	/* Esborra el invoice de la base de dades */
-	void deleteInvoice(Invoice invoice) {
+	public void deleteInvoice(Invoice invoice) {
 		jdbcTemplate.update("DELETE FROM Invoice WHERE invoiceCode=?", invoice.getInvoiceCode());
 	}
 

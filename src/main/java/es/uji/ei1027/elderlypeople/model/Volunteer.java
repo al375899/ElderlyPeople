@@ -6,14 +6,22 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class Volunteer {
 	String dni;
+	
 	@DateTimeFormat (pattern = "dd-MM-yyyy")
 	LocalDate requestDate;
+	
+	@DateTimeFormat (pattern = "dd-MM-yyyy")
 	LocalDate acceptationDate;
+	
+	@DateTimeFormat (pattern = "dd-MM-yyyy")
 	LocalDate endDate;
+	
 	String name;
 	String phoneNumber;
 	String gender;
-	Integer age;
+	
+	@DateTimeFormat (pattern = "dd-MM-yyyy")
+	LocalDate birthDate;
 
 	public Volunteer() {
 		super();
@@ -75,19 +83,19 @@ public class Volunteer {
 		this.gender = gender;
 	}
 
-	public Integer getAge() {
-		return age;
+	public LocalDate getBirthDate() {
+		return birthDate;
 	}
 
-	public void setAge(Integer age) {
-		this.age = age;
+	public void setBirthDate(LocalDate birthDate) {
+		this.birthDate = birthDate;
 	}
 
 	@Override
 	public String toString() {
 		return "Volunteer [dni=" + dni + ", requestDate=" + requestDate + ", acceptationDate=" + acceptationDate
 				+ ", endDate=" + endDate + ", name=" + name + ", phoneNumber=" + phoneNumber + ", gender=" + gender
-				+ ", age=" + age + "]";
+				+ ", birthDate=" + birthDate + "]";
 	}
 
 }

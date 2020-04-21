@@ -26,11 +26,11 @@ public class VolunteerDao {
 	public void addVolunteer(Volunteer volunteer) {
 		jdbcTemplate.update("INSERT INTO Volunteer VALUES(?,?,?,?,?,?,?,?)", volunteer.getDni(),
 				volunteer.getRequestDate(), volunteer.getAcceptationDate(), volunteer.getEndDate(), volunteer.getName(),
-				volunteer.getPhoneNumber(), volunteer.getGender(), volunteer.getAge());
+				volunteer.getPhoneNumber(), volunteer.getGender(), volunteer.getBirthDate());
 	}
 
 	/* Esborra el volunteer de la base de dades */
-	void deleteVolunteer(Volunteer volunteer) {
+	public void deleteVolunteer(Volunteer volunteer) {
 		jdbcTemplate.update("DELETE FROM Volunteer WHERE dni=?", volunteer.getDni());
 	}
 
@@ -44,7 +44,7 @@ public class VolunteerDao {
 	public void updateVolunteer(Volunteer volunteer) {
 		jdbcTemplate.update("UPDATE Volunteer SET requestDate = ?, acceptationDate = ?, endDate = ?, name = ?, phoneNumber = ?, gender = ?, age = ? WHERE dni = ?",
 				volunteer.getRequestDate(), volunteer.getAcceptationDate(), volunteer.getEndDate(), volunteer.getName(),
-				volunteer.getPhoneNumber(), volunteer.getGender(), volunteer.getAge(), volunteer.getDni());
+				volunteer.getPhoneNumber(), volunteer.getGender(), volunteer.getBirthDate(), volunteer.getDni());
 	}
 
 	/* Obté el volunteer */

@@ -30,7 +30,7 @@ public class HourVolunteerDao {
 	}
 
 	/* Esborra el hourvolunteer de la base de dades */
-	void deleteHourVolunteer(HourVolunteer hourVolunteer) {
+	public void deleteHourVolunteer(HourVolunteer hourVolunteer) {
 		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=? AND dniVolunteer = ?",
 				hourVolunteer.getDniElderly(), hourVolunteer.getDniVolunteer());
 	}

@@ -30,7 +30,7 @@ public class ContractDao {
 	}
 
 	/* Esborra el contract de la base de dades */
-	void deleteContract(Contract contract) {
+	public void deleteContract(Contract contract) {
 		jdbcTemplate.update("DELETE FROM Contract WHERE idContract=?", contract.getIdContract());
 	}
 

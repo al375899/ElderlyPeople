@@ -29,7 +29,7 @@ public class LineDao {
 	}
 
 	/* Esborra el line de la base de dades */
-	void deleteLine(Line line) {
+	public void deleteLine(Line line) {
 		jdbcTemplate.update("DELETE FROM Line WHERE invoiceCode=? AND idRequest=?", line.getInvoiceCode(), line.getIdRequest());
 	}
 

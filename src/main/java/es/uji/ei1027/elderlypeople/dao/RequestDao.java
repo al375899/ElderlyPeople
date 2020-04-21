@@ -38,7 +38,7 @@ public class RequestDao {
 	}
 
 	/* Esborra el Request de la base de dades */
-	void deleteRequest(Request request) {
+	public void deleteRequest(Request request) {
 		jdbcTemplate.update("DELETE FROM Request WHERE idRequest=? AND idContract=? AND dniElderly=? ", 
 				request.getIdRequest(),
 				request.getIdContract(),
@@ -47,7 +47,7 @@ public class RequestDao {
 	}
 
 	// Esborra el Request per el id
-	void deleteRequest(Integer idRequest, Integer idContract, String dniElderly) {
+	public void deleteRequest(Integer idRequest, Integer idContract, String dniElderly) {
 		jdbcTemplate.update("DELETE FROM Request WHERE idRequest=? AND idContract=? AND dniElderly=?", 
 				idRequest, 
 				idContract, 

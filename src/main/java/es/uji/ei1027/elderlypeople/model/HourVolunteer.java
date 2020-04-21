@@ -12,6 +12,7 @@ public class HourVolunteer {
 	LocalDate date;
 	@DateTimeFormat(pattern = "HH:mm")
 	LocalTime startHour;
+	@DateTimeFormat(pattern = "HH:mm")
 	LocalTime endHour;
 	Boolean taken;
 
