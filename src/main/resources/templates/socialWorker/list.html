@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar treballadors/es socials</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+   <h1>Llista de treballadors/es socials</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Nom</th>
+         <th>Cognoms</th>
+         <th>Telèfon</th>
+         <th>Dni</th>
+         <th>E-mail</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="socialWorker: ${socialWorkers}"> 
+         <td th:text="${socialWorker.name}"></td> 
+         <td th:text=${socialWorker.surnames}></td>
+         <td th:text="${socialWorker.phoneNumber}"></td>
+         <td th:text="${socialWorker.dni}"></td>
+         <td th:text="${socialWorker.email}"></td>
+         <td><a th:href="@{/socialWorker/update/{dni}(dni=${socialWorker.dni})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/socialWorker/delete/{dni}(dni=${socialWorker.dni})}">Esborra</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Afegeix treballador/a social</a> 
+</body>
+</html>
