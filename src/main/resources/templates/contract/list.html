@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar de contractes</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+   <h1>Llista de contractes</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>id</th>
+         <th>Empresa</th>
+         <th>Tipus de servei</th>
+         <th>Cantitat</th>
+         <th>Data inici</th>
+         <th>Data fi</th>
+         <th>Preu</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="contract: ${contracts}"> 
+         <td th:text="${contract.idContract}"></td> 
+         <td th:text="${contract.fnCompany}"></td>
+         <td th:text="${contract.serviceType}"></td>
+         <td th:text="${contract.quantity}"></td>
+         <td th:text="${contract.startDate}"></td>
+         <td th:text="${contract.endDate}"></td>
+         <td th:text="${contract.price}"></td>         
+         <td><a th:href="@{/contract/update/{idContract}(idContract=${contract.idContract})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/contract/delete/{idContract}(idContract=${contract.idContract})}">Esborra</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Afegeix contracte</a> 
+</body>
+</html>

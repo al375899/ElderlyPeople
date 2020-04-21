@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Crear nou contracte</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nou contracte</h2>
+    <form action="#" th:action="@{/contract/add}" 
+                     th:object="${contract}" method="post"> 
+      <table>
+        <tr>
+            <td><label>id</label></td>
+            <td><input type="number" th:field="*{idContract}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Empresa</label></td>
+            <td><input type="text" th:field="*{fnCompany}" /></td>
+        </tr>
+        <tr>
+            <td><label>Tipus de servei</label></td>
+            <td><input type="text" th:field="*{serviceType}" /></td>
+        </tr>
+         <tr>
+            <td><label>Quantitat</label></td>
+            <td><input type="number" th:field="*{quantity}" /></td>
+        </tr>
+         <tr>
+            <td><label>Data d'inici</label></td>
+            <td><input type="date" th:field="*{startDate}" /></td>
+        </tr>
+         <tr>
+            <td><label>Data de fi</label></td>
+            <td><input type="date" th:field="*{endDate}" /></td>
+        </tr>
+         <tr>
+            <td><label>Preu</label></td>
+            <td><input type="number" th:field="*{price}" /></td>
+        </tr>
+        
+        
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix contracte" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
