@@ -6,7 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class ElderlyPeople {
 	String alergies;
 	String name;
-	String surname;
+	String surnames;
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	LocalDate birthDate;
 	String diseases;
@@ -14,7 +14,7 @@ public class ElderlyPeople {
 	String address;
 	String phoneNumber;
 	String email;
-	String banckAccountNumber;
+	String bankAccountNumber;
 	String socialWorker;
 
 	// Constructor
@@ -38,12 +38,12 @@ public class ElderlyPeople {
 		this.name = name;
 	}
 
-	public String getSurname() {
-		return surname;
+	public String getSurnames() {
+		return surnames;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setSurnames(String surnames) {
+		this.surnames = surnames;
 	}
 
 	public LocalDate getBirthDate() {
@@ -94,12 +94,12 @@ public class ElderlyPeople {
 		this.email = email;
 	}
 
-	public String getBanckAccountNumber() {
-		return banckAccountNumber;
+	public String getBankAccountNumber() {
+		return bankAccountNumber;
 	}
 
-	public void setBanckAccountNumber(String banckAccountNumber) {
-		this.banckAccountNumber = banckAccountNumber;
+	public void setBankAccountNumber(String bankAccountNumber) {
+		this.bankAccountNumber = bankAccountNumber;
 	}
 
 	public String getSocialWorker() {
@@ -112,9 +112,9 @@ public class ElderlyPeople {
 
 	@Override
 	public String toString() {
-		return "ElderlyPeople [alergies=" + alergies + ", name=" + name + ", surname=" + surname + ", birthDate="
+		return "ElderlyPeople [alergies=" + alergies + ", name=" + name + ", surnames=" + surnames + ", birthDate="
 				+ birthDate + ", disease=" + diseases + ", dni=" + dni + ", address=" + address + ", phoneNumber="
-				+ phoneNumber + ", email=" + email + ", banckAccountNumber=" + banckAccountNumber + ", socialWorker="
+				+ phoneNumber + ", email=" + email + ", bankAccountNumber=" + bankAccountNumber + ", socialWorker="
 				+ socialWorker + "]";
 	}
 
