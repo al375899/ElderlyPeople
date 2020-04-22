@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Modificar solicitud</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Modificar solicitud</h2>
+    <form action="#" th:action="@{/request/update}" 
+                     th:object="${request}" method="post"> 
+      <table>
+        <tr>
+            <td><label>idRequest</label></td>
+            <td><input type="number" th:field="*{idRequest}" /></td> 
+        </tr>
+        <tr>
+            <td><label>serviceType</label></td>
+            <td><input type="text" th:field="*{serviceType}" /></td>
+        </tr>
+        <tr>
+            <td><label>state</label></td>
+            <td><input type="text" th:field="*{state}" /></td>
+        </tr>
+        <tr>
+            <td><label>beginDate</label></td>
+            <td><input type="date" th:field="*{beginDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>endDate</label></td>
+            <td><input type="date" th:field="*{endDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>endDate</label></td>
+            <td><input type="date" th:field="*{endDate}" /></td>
+        </tr>
+        <tr>
+            <td><label>dateApprobation</label></td>
+            <td><input type="date" th:field="*{dateApprobation}" /></td>
+        </tr>
+        <tr>
+            <td><label>comments</label></td>
+            <td><input type="text" th:field="*{comments}" /></td>
+        </tr>
+        <tr>
+            <td><label>idContract</label></td>
+            <td><input type="number" th:field="*{idContract}" /></td>
+        </tr>
+        <tr>
+            <td><label>dniElderly</label></td>
+            <td><input type="text" th:field="*{dniElderly}" /></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="Modifica solicitud" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
