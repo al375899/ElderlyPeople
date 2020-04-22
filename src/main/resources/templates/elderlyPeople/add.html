@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Crear nova persona major</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Nou/nova treballador/a social</h2>
+    <form action="#" th:action="@{/elderlyPeople/add}" 
+                     th:object="${elderlyPeople}" method="post"> 
+      <table>
+        <tr>
+            <td><label>Nom</label></td>
+            <td><input type="text" th:field="*{name}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Cognoms</label></td>
+            <td><input type="text" th:field="*{surnames}" /></td>
+        </tr>
+        <tr>
+            <td><label>Dni</label></td>
+            <td><input type="text" th:field="*{dni}" /></td>
+        </tr>
+      	<tr>
+			<td><label>Data de naixement</label></td>
+			<td><input type="date" th:field="*{birthDate}" placeholder="dd-MM-yyyy"/></td>
+		</tr>
+        <tr>
+            <td><label>Telèfon</label></td>
+            <td><input type="text" th:field="*{phoneNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>E-mail</label></td>
+            <td><input type="text" th:field="*{email}" /></td>
+        </tr>
+        <tr>
+            <td><label>Adreça</label></td>
+            <td><input type="text" th:field="*{address}" /></td>
+        </tr>
+        <tr>
+            <td><label>Alergies</label></td>
+            <td><input type="text" th:field="*{alergies}" /></td>
+        </tr>
+        <tr>
+            <td><label>Discapacitats</label></td>
+            <td><input type="text" th:field="*{diseases}" /></td>
+        </tr>
+        <tr>
+            <td><label>Treballador Social</label></td>
+            <td><input type="text" th:field="*{socialWorker}" /></td>
+        </tr>
+        <tr>
+            <td><label>Numero bancari</label></td>
+            <td><input type="text" th:field="*{bankAccountNumber}" /></td>
+        </tr>
+        
+        <tr>
+            <td colspan="2"><input type="submit" value="Afegeix persona major" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>

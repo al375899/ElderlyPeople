@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar persones majors</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+   <h1>Llista de persones majors</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Nom</th>
+         <th>Cognoms</th>
+         <th>Dni</th>
+         <th>Data Naixement</th>
+         <th>Telèfon</th>
+         <th>E-mail</th>
+         <th>Adreça</th>
+         <th>Alergies</th>
+         <th>Discapacitats</th>
+         <th>Treballador social</th>
+         <th>Compte bancari</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="elderlyPeople: ${elderlysPeoples}"> 
+         <td th:text="${elderlyPeople.name}"></td> 
+         <td th:text=${elderlyPeople.surnames}></td>
+         <td th:text="${elderlyPeople.dni}"></td>
+		 <td th:text="${#temporals.format(elderlyPeople.birthDate,'dd-MM-yyyy')}"></td>
+         <td th:text="${elderlyPeople.phoneNumber}"></td>
+         <td th:text="${elderlyPeople.email}"></td>
+         <td th:text="${elderlyPeople.address}"></td>
+         <td th:text="${elderlyPeople.alergies}"></td>
+         <td th:text="${elderlyPeople.diseases}"></td>
+         <td th:text="${elderlyPeople.socialWorker}"></td>
+         <td th:text="${elderlyPeople.bankAccountNumber}"></td>
+         
+         <td><a th:href="@{/elderlyPeople/update/{dni}(dni=${elderlyPeople.dni})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/elderlyPeople/delete/{dni}(dni=${elderlyPeople.dni})}">Esborra</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Afegeix persona major</a> 
+</body>
+</html>

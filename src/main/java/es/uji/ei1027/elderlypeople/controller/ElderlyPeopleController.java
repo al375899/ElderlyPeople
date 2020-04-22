@@ -13,7 +13,7 @@ import es.uji.ei1027.elderlypeople.dao.ElderlyPeopleDao;
 import es.uji.ei1027.elderlypeople.model.ElderlyPeople;
 
 @Controller
-@RequestMapping("/elderly")
+@RequestMapping("/elderlyPeople")
 public class ElderlyPeopleController {
 
 	private ElderlyPeopleDao elderlyPeopleDao;
@@ -27,7 +27,7 @@ public class ElderlyPeopleController {
 	@RequestMapping("/list")
 	public String listElderlyPeople(Model model) {
 		model.addAttribute("elderlysPeoples", elderlyPeopleDao.getElderlysPeoples());
-		return "elderlysPeoples/list";
+		return "elderlyPeople/list";
 	}
 	
 	@RequestMapping(value = "/add")
