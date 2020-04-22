@@ -19,7 +19,7 @@ public class ContractController {
 	private ContractDao contractDao;
 
 	@Autowired
-	public void seContractDao(ContractDao contractDao) {
+	public void setContractDao(ContractDao contractDao) {
 		this.contractDao = contractDao;
 	}
 

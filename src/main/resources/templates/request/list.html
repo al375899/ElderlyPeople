@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar solicituds</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+   <h1>Llista de solicituds</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>idRequest</th>
+         <th>serviceType</th>
+         <th>state</th>
+         <th>beginDate</th>
+         <th>endDate</th>
+         <th>dateApprobation</th>
+         <th>comments</th>
+         <th>idContract</th>
+         <th>dniElderly</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="request: ${requests}"> 
+         <td th:text="${request.idRequest}"></td>
+         <td th:text="${request.serviceType}"></td> 
+         <td th:text="${request.state}"></td>
+         <td th:text="${request.beginDate}"></td>
+         <td th:text="${request.endDate}"></td>
+         <td th:text="${request.dateApprobation}"></td>
+         <td th:text="${request.comments}"></td>
+         <td th:text="${request.idContract}"></td>
+         <td th:text="${request.dniElderly}"></td>
+         
+         <td><a th:href="@{/request/update/{idRequest}(idRequest=${request.idRequest})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/request/delete/{idRequest}(idRequest=${request.idRequest}
+         								   {idContract}(idContract=${request.idContract}
+         								   {dniElderly}(dniElderly=${request.dniElderly})}">Esborra</a>
+         </td>
+         
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Afegeix solicitud</a> 
+</body>
+</html>
