@@ -57,7 +57,7 @@ public class RequestController {
 		return "redirect:list";
 	}
 
-	@RequestMapping(value = "/delete/{idRequest}{idContract}{dniElderly}")
+	@RequestMapping(value = "/delete/{idRequest}/{idContract}/{dniElderly}")
 	public String processDelete(
 			@PathVariable Integer idRequest, 
 			@PathVariable Integer idContract,
