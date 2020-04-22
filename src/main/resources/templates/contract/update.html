@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"> 
 <head>
-   <title>Modificar empresa</title>
+   <title>Modificar contracte</title>
    <meta charset="UTF-8" />
    <link rel="stylesheet"       
      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
 </head>
 <body>
     <h2>Modificar contracte</h2>
-    <form action="#" th:action="@{/contract/add}" 
+    <form action="#" th:action="@{/contract/update}" 
                      th:object="${contract}" method="post"> 
       <table>
         <tr>
