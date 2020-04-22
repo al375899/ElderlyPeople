@@ -6,10 +6,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-import es.uji.ei1027.elderlypeople.categoria.Categoria;
-import es.uji.ei1027.elderlypeople.categoria.CategoriaFederacio;
-import es.uji.ei1027.elderlypeople.categoria.CategoriaWorldCup;
-
 import javax.sql.DataSource;
  
 @Configuration
@@ -23,11 +19,6 @@ public class ElderlyPeopleConfiguration {
    public DataSource dataSource() {
        return DataSourceBuilder.create().build();
    }
-   
-   @Bean
-   public Categoria categoria(){        // Convenció de nom
-       return new CategoriaWorldCup();
-   }
-
+  
 }
 
