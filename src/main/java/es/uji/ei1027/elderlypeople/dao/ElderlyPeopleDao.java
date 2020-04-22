@@ -25,9 +25,9 @@ public class ElderlyPeopleDao {
 	/* Afegeix el elderly people a la base de dades */
 	public void addElderlyPeople(ElderlyPeople elderlyPeople) {
 		jdbcTemplate.update("INSERT INTO ElderlyPeople VALUES(?,?,?,?,?,?,?,?,?,?,?)", elderlyPeople.getAlergies(),
-				elderlyPeople.getName(), elderlyPeople.getSurname(), elderlyPeople.getBirthDate(),
+				elderlyPeople.getName(), elderlyPeople.getSurnames(), elderlyPeople.getBirthDate(),
 				elderlyPeople.getDiseases(), elderlyPeople.getDni(), elderlyPeople.getAddress(),
-				elderlyPeople.getPhoneNumber(), elderlyPeople.getEmail(), elderlyPeople.getBanckAccountNumber(),
+				elderlyPeople.getPhoneNumber(), elderlyPeople.getEmail(), elderlyPeople.getBankAccountNumber(),
 				elderlyPeople.getSocialWorker());
 	}
 
@@ -47,7 +47,7 @@ public class ElderlyPeopleDao {
 				+ "address = ?, phoneNumber = ?, email = ?, bankAccountNumber= ?, socialWorker = ?  WHERE dni = ?",
 				elderlyPeople.getAlergies(), elderlyPeople.getName(), elderlyPeople.getBirthDate(),
 				elderlyPeople.getDiseases(), elderlyPeople.getAddress(), elderlyPeople.getPhoneNumber(),
-				elderlyPeople.getEmail(), elderlyPeople.getBanckAccountNumber(), elderlyPeople.getSocialWorker(),
+				elderlyPeople.getEmail(), elderlyPeople.getBankAccountNumber(), elderlyPeople.getSocialWorker(),
 				elderlyPeople.getDni());
 	}
 

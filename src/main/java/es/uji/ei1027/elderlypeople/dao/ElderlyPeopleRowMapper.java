@@ -14,14 +14,14 @@ public final class ElderlyPeopleRowMapper implements RowMapper<ElderlyPeople> {
 		
 		elderlyPeople.setAlergies(rs.getString("alergies"));
 		elderlyPeople.setName(rs.getString("name"));
-		elderlyPeople.setSurname(rs.getString("surname"));
+		elderlyPeople.setSurnames(rs.getString("surnames"));
 		elderlyPeople.setBirthDate(rs.getObject("birthDate", LocalDate.class)); // localdate y date
 		elderlyPeople.setDiseases(rs.getString("diseases"));
 		elderlyPeople.setDni(rs.getString("dni"));
 		elderlyPeople.setAddress(rs.getString("address"));
 		elderlyPeople.setPhoneNumber(rs.getString("phoneNumber"));
 		elderlyPeople.setEmail(rs.getString("email"));
-		elderlyPeople.setBanckAccountNumber(rs.getString("bankAccountNumber"));
+		elderlyPeople.setBankAccountNumber(rs.getString("bankAccountNumber"));
 		elderlyPeople.setSocialWorker(rs.getString("socialWorker"));
 
 		return elderlyPeople;
