@@ -24,11 +24,10 @@ public class ElderlyPeopleDao {
 
 	/* Afegeix el elderly people a la base de dades */
 	public void addElderlyPeople(ElderlyPeople elderlyPeople) {
-		jdbcTemplate.update("INSERT INTO ElderlyPeople VALUES(?,?,?,?,?,?,?,?,?,?,?)", elderlyPeople.getAlergies(),
-				elderlyPeople.getName(), elderlyPeople.getSurnames(), elderlyPeople.getBirthDate(),
-				elderlyPeople.getDiseases(), elderlyPeople.getDni(), elderlyPeople.getAddress(),
-				elderlyPeople.getPhoneNumber(), elderlyPeople.getEmail(), elderlyPeople.getBankAccountNumber(),
-				elderlyPeople.getSocialWorker());
+		jdbcTemplate.update("INSERT INTO ElderlyPeople VALUES(?,?,?,?,?,?,?,?,?,?,?)", elderlyPeople.getDni(),
+				elderlyPeople.getAlergies(), elderlyPeople.getName(), elderlyPeople.getSurnames(), elderlyPeople.getBirthDate(),
+				elderlyPeople.getDiseases(),  elderlyPeople.getAddress(), elderlyPeople.getPhoneNumber(), 
+				elderlyPeople.getEmail(), elderlyPeople.getBankAccountNumber(), elderlyPeople.getSocialWorker());
 	}
 
 	/* Esborra el elderly de la base de dades */

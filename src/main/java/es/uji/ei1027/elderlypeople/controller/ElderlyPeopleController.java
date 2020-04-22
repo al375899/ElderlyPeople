@@ -40,7 +40,6 @@ public class ElderlyPeopleController {
 	public String processAddSubmit(@ModelAttribute("elderlyPeople") ElderlyPeople elderlyPeople, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "elderlyPeople/add";
-		System.out.println("Eldery: "+elderlyPeople);
 		elderlyPeopleDao.addElderlyPeople(elderlyPeople);
 		return "redirect:list";
 	}
