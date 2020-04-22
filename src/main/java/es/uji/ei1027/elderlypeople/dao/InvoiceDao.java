@@ -33,7 +33,7 @@ public class InvoiceDao {
 		jdbcTemplate.update("DELETE FROM Invoice WHERE invoiceCode=?", invoice.getInvoiceCode());
 	}
 
-	public void deleteInvoice(String invoiceCode) {
+	public void deleteInvoice(Integer invoiceCode) {
 		jdbcTemplate.update("DELETE FROM Invoice WHERE invoiceCode=?", invoiceCode);
 	}
 
@@ -46,7 +46,7 @@ public class InvoiceDao {
 	}
 
 	/* Obté el invoice */
-	public Invoice getInvoice(String invoiceCode) {
+	public Invoice getInvoice(Integer invoiceCode) {
 		try {
 			return jdbcTemplate.queryForObject("SELECT * FROM Invoice WHERE invoiceCode =?", new InvoiceRowMapper(),
 					invoiceCode);
