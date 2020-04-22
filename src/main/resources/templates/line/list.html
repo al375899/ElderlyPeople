@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar linies de factura</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+   <h1>Llista de linies de factura</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Codi de factura</th>
+         <th>Codi de solicitud</th>
+         <th>Concepte</th>
+         <th>Import</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="line: ${lines}"> 
+         <td th:text="${line.invoiceCode}"></td> 
+         <td th:text="${line.idRequest}"></td>
+         <td th:text="${line.concept}"></td>
+         <td th:text="${line.importe}"></td>       
+         <td><a th:href="@{/line/update/{invoiceCode}/{idRequest}(invoiceCode=${line.invoiceCode},idRequest=${line.idRequest})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/line/delete/{invoiceCode}/{idRequest}(invoiceCode=${line.invoiceCode},idRequest=${line.idRequest})}">Esborra</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Afegeix linia de factura</a> 
+</body>
+</html>

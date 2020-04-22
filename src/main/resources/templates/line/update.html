@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Modificar linia de factura</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Modificar linia de factura</h2>
+    <form action="#" th:action="@{/line/update}" 
+                     th:object="${line}" method="post"> 
+      <table>
+        <tr>
+            <td><label>Codi de factura</label></td>
+            <td><input type="number" th:field="*{invoiceCode}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Codi de solicitud</label></td>
+            <td><input type="number" th:field="*{idRequest}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Concepte</label></td>
+            <td><input type="text" th:field="*{concept}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Import</label></td>
+            <td><input type="number" th:field="*{importe}" /></td>
+        </tr>
+        
+        <tr>
+            <td colspan="2"><input type="submit" value="Modificar linia de factura" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
