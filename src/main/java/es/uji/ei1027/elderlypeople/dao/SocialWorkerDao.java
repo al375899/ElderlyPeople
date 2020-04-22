@@ -49,7 +49,7 @@ public class SocialWorkerDao {
 
 	// Actualitza els atributs del socialWorker
 	public void updateSocialWorker(SocialWorker socialWorker) {
-		jdbcTemplate.update("UPDATE Request SET name = ?, surnames = ?, phoneNumber = ?, email = ? WHERE dni = ?",
+		jdbcTemplate.update("UPDATE SocialWorker SET name = ?, surnames = ?, phoneNumber = ?, email = ? WHERE dni = ?",
 				socialWorker.getName(),
 				socialWorker.getSurnames(),
 				socialWorker.getPhoneNumber(),
