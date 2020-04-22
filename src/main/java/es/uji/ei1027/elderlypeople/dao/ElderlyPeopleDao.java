@@ -43,7 +43,7 @@ public class ElderlyPeopleDao {
 
 	// Actualitza els atributs del elderly
 	public void updateEldely(ElderlyPeople elderlyPeople) {
-		jdbcTemplate.update("UPDATE Elderly SET alergies = ?, name = ?, surname = ?, birthDate = ?, diseases = ?, "
+		jdbcTemplate.update("UPDATE Elderly SET alergies = ?, name = ?, surnames = ?, birthDate = ?, diseases = ?, "
 				+ "address = ?, phoneNumber = ?, email = ?, bankAccountNumber= ?, socialWorker = ?  WHERE dni = ?",
 				elderlyPeople.getAlergies(), elderlyPeople.getName(), elderlyPeople.getBirthDate(),
 				elderlyPeople.getDiseases(), elderlyPeople.getAddress(), elderlyPeople.getPhoneNumber(),
