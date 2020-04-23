@@ -19,16 +19,16 @@
        </tr>
      </thead>
      <tbody>
-       <tr th:each="hourVolunteer: ${hourVolunters}"> 
+       <tr th:each="hourVolunteer: ${hourVolunteers}"> 
          <td th:text="${hourVolunteer.dniElderly}"></td> 
          <td th:text=${hourVolunteer.dniVolunteer}></td>
          <td th:text="${hourVolunteer.date}"></td>
-         <td th:text="${hourVolunteer.time}"></td>
-         <td th:text="${hourVolunteer.time}"></td>
-         <td th:text="${hourVolunteer.boolean}"></td>
-         <td><a th:href="@{/hourVolunteer/update/{dniElderly, dniVolunteer}(dniElderly=${hourVolunteer.dniElderly}, dniVolunteer=${hourVolunteer.dniVolunteer})}">Edita</a> 
+         <td th:text="${hourVolunteer.startHour}"></td>
+         <td th:text="${hourVolunteer.endHour}"></td>
+         <td th:text="${hourVolunteer.taken}"></td>
+         <td><a th:href="@{/hourVolunteer/update/{dniElderly}/{dniVolunteer}/{date}(dniElderly=${hourVolunteer.dniElderly}, dniVolunteer=${hourVolunteer.dniVolunteer}, date=${hourVolunteer.date})}">Edita</a> 
          </td>
-         <td><a th:href="@{/hourVolunteer/delete/{dniElderly, dniVolunteer}(dniElderly=${hourVolunteer.dniElderly}, dniVolunteer=${hourVolunteer.dniVolunteer})}">Esborra</a>
+         <td><a th:href="@{/hourVolunteer/update/{dniElderly}/{dniVolunteer}/{date}(dniElderly=${hourVolunteer.dniElderly}, dniVolunteer=${hourVolunteer.dniVolunteer}, date=${hourVolunteer.date})}">Esborra</a>
          </td>
        </tr>
      </tbody>

@@ -61,7 +61,7 @@ public class HourVolunteerController {
 	// y la fecha? taibién forma parte de la clave primaria
 	@RequestMapping(value = "/delete/{dni}")
 	public String processDelete(@PathVariable String dniElderly, String dniVolunteer) {
-		hourVolunteerDao.deleteHourVolunteer(dniElderly, dniVolunteer);;
+		hourVolunteerDao.deleteHourVolunteer(dniElderly, dniVolunteer);
 		return "redirect:../list";
 	}
 }
