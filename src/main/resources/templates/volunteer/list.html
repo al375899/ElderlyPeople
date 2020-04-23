@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar voluntaris</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+   <h1>Llista de voluntaris</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>Nom</th>
+         <th>Gènere</th>
+         <th>Data naixement</th>
+         <th>Telèfon</th>
+         <th>DNI</th>
+         <th>Data de sol·licitud</th>
+         <th>Data d'acceptació</th>
+         <th>Data de finalització</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="volunteer: ${volunteers}"> 
+         <td th:text="${volunteer.name}"></td> 
+         <td th:text=${volunteer.gender}></td>
+         <td th:text="${#temporals.format(volunteer.birthDate,'dd-MM-yyyy')}"></td>
+         <td th:text="${volunteer.phoneNumber}"></td>
+         <td th:text="${volunteer.dni}"></td>
+         <td th:text="${#temporals.format(volunteer.requestDate,'dd-MM-yyyy')}"></td>
+         <td th:text="${#temporals.format(volunteer.acceptationDate,'dd-MM-yyyy')}"></td>
+         <td th:text="${#temporals.format(volunteer.endDate,'dd-MM-yyyy')}"></td>
+         
+         <td><a th:href="@{/volunteer/update/{dni}(dni=${volunteer.dni})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/volunteer/delete/{dni}(dni=${volunteer.dni})}">Esborra</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Afegeix voluntari/a</a> 
+</body>
+</html>

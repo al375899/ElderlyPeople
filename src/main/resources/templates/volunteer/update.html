@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Modifica voluntari/a</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Modificar voluntari/a</h2>
+    <form action="#" th:action="@{/volunteer/update}" 
+                     th:object="${volunteer}" method="post"> 
+      <table>
+
+        <tr>
+            <td><label>DNI</label></td>
+            <td><input type="text" th:field="*{dni}" /></td> 
+        </tr>
+        <tr>
+            <td><label>Data de sol·licitud</label></td>
+            <td><input type="date" th:field="*{requestDate}" placeholder="dd-MM-yyyy"/></td>
+        </tr>
+        <tr>
+            <td><label>Data d'acceptació</label></td>
+            <td><input type="date" th:field="*{acceptationDate}" placeholder="dd-MM-yyyy"/></td>
+        </tr>
+        <tr>
+            <td><label>Data de finalització</label></td>
+            <td><input type="date" th:field="*{endDate}" placeholder="dd-MM-yyyy"/></td>
+        </tr>
+        <tr>
+            <td><label>Nom</label></td>
+            <td><input type="text" th:field="*{name}" /></td>
+        </tr>
+        <tr>
+            <td><label>Telèfon</label></td>
+            <td><input type="text" th:field="*{phoneNumber}" /></td>
+        </tr>
+        <tr>
+            <td><label>Gènere</label></td>
+            <td><input type="text" th:field="*{gender}" /></td>
+        </tr>
+        <tr>
+            <td><label>Data de naixement</label></td>
+            <td><input type="date" th:field="*{birthDate}" placeholder="dd-MM-yyyy"/></td>
+        </tr>
+        
+        <tr>
+            <td colspan="2"><input type="submit" value="Modifica voluntari/a" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
