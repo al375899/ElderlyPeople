@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Gestionar hores de voluntaris</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+</head>
+<body>
+   <h1>Gestionar hores de voluntaris</h1>
+   <table>
+     <thead>
+       <tr>
+         <th>DNI persona major</th>
+         <th>DNI voluntari</th>
+         <th>Data</th>
+         <th>Data d'inici</th>
+         <th>Data de finalització</th>
+         <th>Agafat</th>
+       </tr>
+     </thead>
+     <tbody>
+       <tr th:each="hourVolunteer: ${hourVolunters}"> 
+         <td th:text="${hourVolunteer.dniElderly}"></td> 
+         <td th:text=${hourVolunteer.dniVolunteer}></td>
+         <td th:text="${hourVolunteer.date}"></td>
+         <td th:text="${hourVolunteer.time}"></td>
+         <td th:text="${hourVolunteer.time}"></td>
+         <td th:text="${hourVolunteer.boolean}"></td>
+         <td><a th:href="@{/hourVolunteer/update/{dniElderly, dniVolunteer}(dniElderly=${hourVolunteer.dniElderly}, dniVolunteer=${hourVolunteer.dniVolunteer})}">Edita</a> 
+         </td>
+         <td><a th:href="@{/hourVolunteer/delete/{dniElderly, dniVolunteer}(dniElderly=${hourVolunteer.dniElderly}, dniVolunteer=${hourVolunteer.dniVolunteer})}">Esborra</a>
+         </td>
+       </tr>
+     </tbody>
+   </table>
+   <a href="add">Afegeix hores de voluntaris</a> 
+</body>
+</html>

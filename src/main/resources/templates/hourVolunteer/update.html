@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"> 
+<head>
+   <title>Modifica hora de voluntari</title>
+   <meta charset="UTF-8" />
+   <link rel="stylesheet"       
+     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+</head>
+<body>
+    <h2>Modificar hora de voluntari</h2>
+    <form action="#" th:action="@{/hourVolunteer/update}" 
+                     th:object="${hourVolunteer}" method="post"> 
+      <table>
+
+        <tr>
+            <td><label>DNI persona major</label></td>
+            <td><input type="text" th:field="*{dniElderly}" /></td> 
+        </tr>
+        <tr>
+            <td><label>DNI voluntari</label></td>
+            <td><input type="text" th:field="*{dniVolunteer}" /></td>
+        </tr>
+        <tr>
+            <td><label>Data</label></td>
+            <td><input type="date" th:field="*{date}" placeholder="dd-MM-yyyy"/></td>
+        </tr>
+        <tr>
+            <td><label>Hoda d'inici</label></td>
+            <td><input type="time" th:field="*{startHour}" placeholder="hh"/></td>
+        </tr>
+        <tr>
+            <td><label>Hoda de final</label></td>
+            <td><input type="time" th:field="*{endHour}" placeholder="hh"/></td>
+        </tr>
+        <tr>
+            <td><label>Agafat</label></td>
+            <td><input type="boolean" th:field="*{taken}" /></td>
+        </tr>
+        
+        <tr>
+            <td colspan="2"><input type="submit" value="Modifica hora de voluntari" /></td>
+        </tr>
+      </table>
+    </form>
+</body>
+</html>
