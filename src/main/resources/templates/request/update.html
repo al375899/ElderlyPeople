@@ -16,28 +16,38 @@
             <td><input type="number" th:field="*{idRequest}" readonly/></td> 
         </tr>
         <tr>
-            <td><label>serviceType</label></td>
-            <td><input type="text" th:field="*{serviceType}" /></td>
+            <td> <label th:field="*{serviceType}">Tipus de servei:</label> </td>
+            <td> 
+            	
+            	<select th:field="*{serviceType}">
+			    	<option value="Catering">Catering</option>
+			    	<option value="Cleaning">Cleaning</option>
+			    	<option value="Sanity">Sanity</option>
+			    	<option value="Others">Others</option>
+			  	</select>
+            </td>
         </tr>
         <tr>
-            <td><label>state</label></td>
-            <td><input type="text" th:field="*{state}" /></td>
+            <td> <label th:field="*{state}">state:</label> </td>
+            <td> 
+            	<select th:field="*{serviceType}">
+			    	<option value="Waiting">Waiting</option>
+			    	<option value="Approved">Approved</option>
+			    	<option value="Rejected">Rejected</option>
+			  	</select>
+            </td>
         </tr>
         <tr>
             <td><label>beginDate</label></td>
-            <td><input type="date" th:field="*{beginDate}" /></td>
+            <td><input type="text" th:field="*{beginDate}" placeholder="dd-MM-yyyy"/></td>
         </tr>
-        <tr>
+      	<tr>
             <td><label>endDate</label></td>
-            <td><input type="date" th:field="*{endDate}" /></td>
-        </tr>
-        <tr>
-            <td><label>endDate</label></td>
-            <td><input type="date" th:field="*{endDate}" /></td>
+            <td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy"/></td>
         </tr>
         <tr>
             <td><label>dateApprobation</label></td>
-            <td><input type="date" th:field="*{dateApprobation}" /></td>
+            <td><input type="text" th:field="*{dateApprobation}" placeholder="dd-MM-yyyy"/></td>
         </tr>
         <tr>
             <td><label>comments</label></td>

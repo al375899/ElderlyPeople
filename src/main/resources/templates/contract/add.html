@@ -20,8 +20,19 @@
             <td><input type="text" th:field="*{fnCompany}" /></td>
         </tr>
         <tr>
-            <td><label>Tipus de servei</label></td>
+            <!--  <td><label>Tipus de servei</label></td>
             <td><input type="text" th:field="*{serviceType}" /></td>
+            -->
+            <td> <label th:field="*{serviceType}">Tipus de servei:</label> </td>
+            <td> 
+            	
+            	<select th:field="*{serviceType}">
+			    	<option value="Catering">Catering</option>
+			    	<option value="Cleaning">Cleaning</option>
+			    	<option value="Sanity">Sanity</option>
+			    	<option value="Others">Others</option>
+			  	</select>
+            </td>
         </tr>
          <tr>
             <td><label>Quantitat</label></td>
@@ -29,11 +40,11 @@
         </tr>
          <tr>
             <td><label>Data d'inici</label></td>
-            <td><input type="date" th:field="*{startDate}" /></td>
+            <td><input type="text" th:field="*{startDate}" placeholder="dd-MM-yyyy"/></td>
         </tr>
          <tr>
             <td><label>Data de fi</label></td>
-            <td><input type="date" th:field="*{endDate}" /></td>
+            <td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy"/></td>
         </tr>
          <tr>
             <td><label>Preu</label></td>
