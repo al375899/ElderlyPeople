@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 import es.uji.ei1027.elderlypeople.model.HourVolunteer;
 
 import javax.sql.DataSource;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,13 +33,13 @@ public class HourVolunteerDao {
 
 	/* Esborra el hourvolunteer de la base de dades */
 	public void deleteHourVolunteer(HourVolunteer hourVolunteer) {
-		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=? AND dniVolunteer = ?",
-				hourVolunteer.getDniElderly(), hourVolunteer.getDniVolunteer());
+		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=?, dniVolunteer = ? AND date = ?",
+				hourVolunteer.getDniElderly(), hourVolunteer.getDniVolunteer(), hourVolunteer.getDate());
 	}
 
-	public void deleteHourVolunteer(String dniElderly, String dniVolunteer) {
-		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=? AND dniVolunteer=?", dniElderly,
-				dniVolunteer);
+	public void deleteHourVolunteer(String dniElderly, String dniVolunteer, LocalDate date) {
+		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=?, dniVolunteer=? AND date = ?", dniElderly,
+				dniVolunteer, date);
 	}
 
 	/*
@@ -51,10 +53,10 @@ public class HourVolunteerDao {
 	}
 
 	/* Obté el hourvolunteer */
-	public HourVolunteer getHourVolunteer(String dniElderly, String dniVolunteer) {
+	public HourVolunteer getHourVolunteer(String dniElderly, String dniVolunteer, LocalDate date) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniElderly =? AND dniVolunteer=?", new HourVolunteerRowMapper(),
-					dniElderly, dniVolunteer);
+			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniElderly =?, dniVolunteer=? AND date = ?", new HourVolunteerRowMapper(),
+					dniElderly, dniVolunteer, date);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
