@@ -1,5 +1,7 @@
 package es.uji.ei1027.elderlypeople.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,8 +46,8 @@ public class HourVolunteerController {
 	}
 	
 	@RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
-	public String editHourVolunteer(Model model, @PathVariable String dniElderly, String dniVolunteer) {
-		model.addAttribute("socialWorker", hourVolunteerDao.getHourVolunteer(dniElderly, dniVolunteer)); //DUDAA y la fecha? taibién forma parte de la clave primaria
+	public String editHourVolunteer(Model model, @PathVariable String dniElderly, String dniVolunteer, LocalDate date) {
+		model.addAttribute("socialWorker", hourVolunteerDao.getHourVolunteer(dniElderly, dniVolunteer, date)); //DUDAA y la fecha? taibién forma parte de la clave primaria
 		return "hourVolunteer/update";
 	}
 	
@@ -60,8 +62,8 @@ public class HourVolunteerController {
 	//DUDAA:
 	// y la fecha? taibién forma parte de la clave primaria
 	@RequestMapping(value = "/delete/{dni}")
-	public String processDelete(@PathVariable String dniElderly, String dniVolunteer) {
-		hourVolunteerDao.deleteHourVolunteer(dniElderly, dniVolunteer);
+	public String processDelete(@PathVariable String dniElderly, String dniVolunteer, LocalDate date) {
+		hourVolunteerDao.deleteHourVolunteer(dniElderly, dniVolunteer, date);
 		return "redirect:../list";
 	}
 }
