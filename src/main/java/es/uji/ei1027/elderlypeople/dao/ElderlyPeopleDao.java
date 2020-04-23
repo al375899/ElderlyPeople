@@ -32,7 +32,7 @@ public class ElderlyPeopleDao {
 
 	/* Esborra el elderly de la base de dades */
 	public void deleteElderlyPeople(ElderlyPeople elderlyPeople) {
-		jdbcTemplate.update("DELETE FROM Company WHERE fiscalNumber=?", elderlyPeople.getDni());
+		jdbcTemplate.update("DELETE FROM ElderlyPeople WHERE dni=?", elderlyPeople.getDni());
 	}
 
 	// Esborra el elderly per el dni
@@ -42,9 +42,9 @@ public class ElderlyPeopleDao {
 
 	// Actualitza els atributs del elderly
 	public void updateEldely(ElderlyPeople elderlyPeople) {
-		jdbcTemplate.update("UPDATE Elderly SET alergies = ?, name = ?, surnames = ?, birthDate = ?, diseases = ?, "
+		jdbcTemplate.update("UPDATE ElderlyPeople SET alergies = ?, name = ?, surnames = ?, birthDate = ?, diseases = ?, "
 				+ "address = ?, phoneNumber = ?, email = ?, bankAccountNumber= ?, socialWorker = ?  WHERE dni = ?",
-				elderlyPeople.getAlergies(), elderlyPeople.getName(), elderlyPeople.getBirthDate(),
+				elderlyPeople.getAlergies(), elderlyPeople.getName(), elderlyPeople.getSurnames(), elderlyPeople.getBirthDate(),
 				elderlyPeople.getDiseases(), elderlyPeople.getAddress(), elderlyPeople.getPhoneNumber(),
 				elderlyPeople.getEmail(), elderlyPeople.getBankAccountNumber(), elderlyPeople.getSocialWorker(),
 				elderlyPeople.getDni());
