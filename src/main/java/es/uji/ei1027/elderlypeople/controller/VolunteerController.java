@@ -25,7 +25,7 @@ public class VolunteerController {
 	
 	@RequestMapping("/list")
 	public String listVolunteers(Model model) {
-		model.addAttribute("Volunteers", volunteerDao.getVolunteers());
+		model.addAttribute("volunteers", volunteerDao.getVolunteers());
 		return "volunteer/list";
 	}
 	
