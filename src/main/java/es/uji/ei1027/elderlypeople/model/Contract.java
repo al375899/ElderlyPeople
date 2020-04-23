@@ -9,8 +9,11 @@ public class Contract {
 	String fnCompany;
 	String serviceType;
 	Integer quantity;
+	
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	LocalDate startDate;
+	
+	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	LocalDate endDate;
 	Integer price;
 
