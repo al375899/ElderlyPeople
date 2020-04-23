@@ -42,7 +42,7 @@ public class VolunteerDao {
 	 * Actualitza els atributs del volunteer
 	 */
 	public void updateVolunteer(Volunteer volunteer) {
-		jdbcTemplate.update("UPDATE Volunteer SET requestDate = ?, acceptationDate = ?, endDate = ?, name = ?, phoneNumber = ?, gender = ?, age = ? WHERE dni = ?",
+		jdbcTemplate.update("UPDATE Volunteer SET requestDate = ?, acceptationDate = ?, endDate = ?, name = ?, phoneNumber = ?, gender = ?, birthDate = ? WHERE dni = ?",
 				volunteer.getRequestDate(), volunteer.getAcceptationDate(), volunteer.getEndDate(), volunteer.getName(),
 				volunteer.getPhoneNumber(), volunteer.getGender(), volunteer.getBirthDate(), volunteer.getDni());
 	}
