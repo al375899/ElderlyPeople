@@ -26,6 +26,7 @@
         <tr>
             <td><label>Dni</label></td>
             <td><input type="text" th:field="*{dni}" /></td>
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>
         </tr>
         <tr>
             <td><label>E-mail</label></td>
