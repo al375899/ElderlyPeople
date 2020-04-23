@@ -1,6 +1,8 @@
 package es.uji.ei1027.elderlypeople.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,9 +39,21 @@ public class SocialWorkerController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("socialWorker") SocialWorker socialWorker, BindingResult bindingResult) {
+		SocialWorkerValidator socialWorkerValidator = new SocialWorkerValidator();
+		socialWorkerValidator.validate(socialWorker, bindingResult);
 		if (bindingResult.hasErrors())
 			return "socialWorker/add";
-		socialWorkerDao.addSocialWorker(socialWorker);
+		try {
+			socialWorkerDao.addSocialWorker(socialWorker);
+		} catch (DuplicateKeyException e) { 
+		    throw new ElderlyPeopleException(  
+		         "Ja existeix un treballador social amb el dni: "  
+		         + socialWorker.getDni(), "CPduplicada"); 
+		} catch (DataAccessException e) { 
+		    throw new ElderlyPeopleException(  
+		         "Error en l'accés a la base de dades", "ErrorAccedintDades"); 
+		}
+
 		return "redirect:list";
 	}
 
