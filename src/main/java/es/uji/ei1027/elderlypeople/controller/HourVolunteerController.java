@@ -47,7 +47,7 @@ public class HourVolunteerController {
 	
 	@RequestMapping(value = "/update/{dniElderly}/{dniVolunteer}/{date}", method = RequestMethod.GET)
 	public String editHourVolunteer(Model model, @PathVariable String dniElderly, @PathVariable String dniVolunteer, @PathVariable LocalDate date) {
-		model.addAttribute("socialWorker", hourVolunteerDao.getHourVolunteer(dniElderly, dniVolunteer, date)); //DUDAA y la fecha? taibién forma parte de la clave primaria
+		model.addAttribute("socialWorker", hourVolunteerDao.getHourVolunteer(dniElderly, dniVolunteer, date));
 		return "hourVolunteer/update";
 	}
 	
@@ -59,8 +59,6 @@ public class HourVolunteerController {
 		return "redirect:list";
 	}
 	
-	//DUDAA:
-	// y la fecha? taibién forma parte de la clave primaria
 	@RequestMapping(value = "/delete/{dniElderly}/{dniVolunteer}/{date}")
 	public String processDelete(@PathVariable String dniElderly, @PathVariable String dniVolunteer, @PathVariable LocalDate date) {
 		hourVolunteerDao.deleteHourVolunteer(dniElderly, dniVolunteer, date);
