@@ -47,7 +47,7 @@ public class HourVolunteerController {
 	
 	@RequestMapping(value = "/update/{dniElderly}/{dniVolunteer}/{date}", method = RequestMethod.GET)
 	public String editHourVolunteer(Model model, @PathVariable String dniElderly, @PathVariable String dniVolunteer, @PathVariable LocalDate date) {
-		model.addAttribute("socialWorker", hourVolunteerDao.getHourVolunteer(dniElderly, dniVolunteer, date));
+		model.addAttribute("hourVolunteer", hourVolunteerDao.getHourVolunteer(dniElderly, dniVolunteer, date));
 		return "hourVolunteer/update";
 	}
 	

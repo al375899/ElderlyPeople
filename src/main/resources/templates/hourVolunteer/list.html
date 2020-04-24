@@ -22,7 +22,7 @@
        <tr th:each="hourVolunteer: ${hourVolunteers}"> 
          <td th:text="${hourVolunteer.dniElderly}"></td> 
          <td th:text=${hourVolunteer.dniVolunteer}></td>
-         <td th:text="${hourVolunteer.date}"></td>
+         <td th:text="${#temporals.format(hourVolunteer.date,'dd-MM-yyyy')}"></td>
          <td th:text="${hourVolunteer.startHour}"></td>
          <td th:text="${hourVolunteer.endHour}"></td>
          <td th:text="${hourVolunteer.taken}"></td>
