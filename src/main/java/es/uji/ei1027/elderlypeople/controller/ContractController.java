@@ -61,7 +61,6 @@ public class ContractController {
 	@RequestMapping(value = "/delete/{idContract}")
 	public String processDelete(@PathVariable int idContract) {
 		contractDao.deleteContract(idContract);
-		;
 		return "redirect:../list";
 	}
 

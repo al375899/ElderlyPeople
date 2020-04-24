@@ -27,9 +27,9 @@
 				<td th:text="${request.idRequest}"></td>
 				<td th:text="${request.serviceType}"></td>
 				<td th:text="${request.state}"></td>
-				<td th:text="${request.beginDate}"></td>
-				<td th:text="${request.endDate}"></td>
-				<td th:text="${request.dateApprobation}"></td>
+				<td th:text="${#temporals.format(request.beginDate,'dd-MM-yyyy')}"></td>
+				<td th:text="${#temporals.format(request.endDate,'dd-MM-yyyy')}"></td>
+				<td th:text="${#temporals.format(request.dateApprobation,'dd-MM-yyyy')}"></td>
 				<td th:text="${request.comments}"></td>
 				<td th:text="${request.idContract}"></td>
 				<td th:text="${request.dniElderly}"></td>
@@ -38,7 +38,7 @@
 					th:href="@{/request/update/{idRequest}(idRequest=${request.idRequest})}">Edita</a>
 				</td>
 				<td><a
-					th:href="@{/request/delete/{idRequest}/{idContract}/{dniElderly}(idRequest=${request.idRequest},(idContract=${request.idContract},(dniElderly=${request.dniElderly})}">Esborra</a>
+					th:href="@{/request/delete/{idRequest}(idRequest=${request.idRequest})}">Esborra</a>
 				</td>
 			</tr>
 		</tbody>

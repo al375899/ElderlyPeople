@@ -39,7 +39,7 @@ public class RequestDao {
 
 	/* Esborra el Request de la base de dades */
 	public void deleteRequest(Request request) {
-		jdbcTemplate.update("DELETE FROM Request WHERE idRequest=? AND idContract=? AND dniElderly=? ", 
+		jdbcTemplate.update("DELETE FROM Request WHERE idRequest=? AND idContract=? AND dniElderly=?", 
 				request.getIdRequest(),
 				request.getIdContract(),
 				request.getDniElderly()
@@ -47,18 +47,16 @@ public class RequestDao {
 	}
 
 	// Esborra el Request per el id
-	public void deleteRequest(Integer idRequest, Integer idContract, String dniElderly) {
-		jdbcTemplate.update("DELETE FROM Request WHERE idRequest=? AND idContract=? AND dniElderly=?", 
-				idRequest, 
-				idContract, 
-				dniElderly
+	public void deleteRequest(Integer idRequest) {
+		jdbcTemplate.update("DELETE FROM Request WHERE idRequest=?", 
+				idRequest 
 				);
 	}
 
 	// Actualitza els atributs del Request
 	public void updateRequest(Request request) {
 		jdbcTemplate.update("UPDATE Request SET serviceType = ?, state = ?, beginDate = ?, endDate = ?, dateApprobation = ?, "
-				+ "comments = ? WHERE idRequest=? AND idContract=? AND dniElderly=?",
+				+ "comments = ? WHERE idRequest=?",
 				request.getServiceType(),
 				request.getState(),
 				request.getBeginDate(),
@@ -66,9 +64,7 @@ public class RequestDao {
 				request.getDateApprobation(),
 				request.getComments(),
 				
-				request.getIdRequest(),
-				request.getIdContract(),
-				request.getDniElderly()
+				request.getIdRequest()
 				);
 	}
 
