@@ -28,7 +28,7 @@
          <td th:text="${hourVolunteer.taken}"></td>
          <td><a th:href="@{/hourVolunteer/update/{dniElderly}/{dniVolunteer}/{date}(dniElderly=${hourVolunteer.dniElderly}, dniVolunteer=${hourVolunteer.dniVolunteer}, date=${hourVolunteer.date})}">Edita</a> 
          </td>
-         <td><a th:href="@{/hourVolunteer/update/{dniElderly}/{dniVolunteer}/{date}(dniElderly=${hourVolunteer.dniElderly}, dniVolunteer=${hourVolunteer.dniVolunteer}, date=${hourVolunteer.date})}">Esborra</a>
+         <td><a th:href="@{/hourVolunteer/delete/{dniElderly}/{dniVolunteer}/{date}(dniElderly=${hourVolunteer.dniElderly}, dniVolunteer=${hourVolunteer.dniVolunteer}, date=${hourVolunteer.date})}">Esborra</a>
          </td>
        </tr>
      </tbody>
