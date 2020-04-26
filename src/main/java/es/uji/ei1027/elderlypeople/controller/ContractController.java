@@ -1,6 +1,8 @@
 package es.uji.ei1027.elderlypeople.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,10 +39,18 @@ public class ContractController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
+		ContractValidator contractValidator = new ContractValidator();
+		contractValidator.validate(contract, bindingResult);
 		if (bindingResult.hasErrors())
 			return "contract/add";
-		System.out.println("Contract: "+contract);
-		contractDao.addContract(contract);
+		try {
+			contractDao.addContract(contract);
+		} catch (DuplicateKeyException e) {
+			throw new ElderlyPeopleException("Error add contract controller", "validator");
+		} catch (DataAccessException e) {
+			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+		}
+
 		return "redirect:list";
 	}
 
