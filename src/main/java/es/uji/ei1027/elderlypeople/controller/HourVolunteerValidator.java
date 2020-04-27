@@ -19,9 +19,8 @@ public class HourVolunteerValidator implements Validator {
 		if (hourVolunteer.getDniVolunteer().trim().equals(""))
 			errors.rejectValue("dniVolunteer", "obligatori", "Cal introduir un valor");
 		
-		//DUDA, com se fa amb un tipus LocalTime?
-		//if (hourVolunteer.getDate().trim().equals(""))
-		//	errors.rejectValue("date", "obligatori", "Cal introduir un valor");
+		if (hourVolunteer.getDate()==null)
+			errors.rejectValue("date", "obligatori", "Cal introduir un valor");
 	
 	}
 	
