@@ -14,6 +14,7 @@
         <tr>
             <td><label>idRequest</label></td>
             <td><input type="number" th:field="*{idRequest}" /></td> 
+            <td th:if="${#fields.hasErrors('idRequest')}" th:errors="*{idRequest}"></td>
         </tr>
         <tr>
             <td> <label th:field="*{serviceType}">Tipus de servei:</label> </td>
@@ -40,10 +41,12 @@
         <tr>
             <td><label>beginDate</label></td>
             <td><input type="text" th:field="*{beginDate}" placeholder="dd-MM-yyyy"/></td> 
+            <td th:if="${#fields.hasErrors('beginDate')}" th:errors="*{beginDate}"></td>
         </tr>
         <tr>
             <td><label>endDate</label></td>
             <td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy"/></td> 
+            <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
         </tr>
         <tr>
             <td><label>dateApprobation</label></td>
@@ -56,10 +59,12 @@
         <tr>
             <td><label>idContract</label></td>
             <td><input type="number" th:field="*{idContract}" /></td> 
+            <td th:if="${#fields.hasErrors('idContract')}" th:errors="*{idContract}"></td>
         </tr>
         <tr>
             <td><label>dniElderly</label></td>
             <td><input type="text" th:field="*{dniElderly}" /></td> 
+            <td th:if="${#fields.hasErrors('dniElderly')}" th:errors="*{dniElderly}"></td>
         </tr>
         
         

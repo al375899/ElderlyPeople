@@ -14,15 +14,14 @@
         <tr>
             <td><label>id</label></td>
             <td><input type="number" th:field="*{idContract}" /></td> 
+            <td th:if="${#fields.hasErrors('idContract')}" th:errors="*{idContract}"></td>
         </tr>
         <tr>
             <td><label>Empresa</label></td>
             <td><input type="text" th:field="*{fnCompany}" /></td>
+            <td th:if="${#fields.hasErrors('fnCompany')}" th:errors="*{fnCompany}"></td>
         </tr>
         <tr>
-            <!--  <td><label>Tipus de servei</label></td>
-            <td><input type="text" th:field="*{serviceType}" /></td>
-            -->
             <td> <label th:field="*{serviceType}">Tipus de servei:</label> </td>
             <td> 
             	
@@ -37,18 +36,22 @@
          <tr>
             <td><label>Quantitat</label></td>
             <td><input type="number" th:field="*{quantity}" /></td>
+            <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></td>
         </tr>
          <tr>
             <td><label>Data d'inici</label></td>
             <td><input type="text" th:field="*{startDate}" placeholder="dd-MM-yyyy"/></td>
+            <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></td>
         </tr>
          <tr>
             <td><label>Data de fi</label></td>
             <td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy"/></td>
+            <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
         </tr>
          <tr>
             <td><label>Preu</label></td>
             <td><input type="number" th:field="*{price}" /></td>
+            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
         </tr>
         
         

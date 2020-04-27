@@ -1,6 +1,8 @@
 package es.uji.ei1027.elderlypeople.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.elderlypeople.dao.CompanyDao;
 import es.uji.ei1027.elderlypeople.model.Company;
+
 
 @Controller
 @RequestMapping("/company")
@@ -37,9 +40,20 @@ public class CompanyController {
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult) {
+		CompanyValidator companyValidator = new CompanyValidator();
+		companyValidator.validate(company, bindingResult);
 		if (bindingResult.hasErrors())
 			return "company/add";
-		companyDao.addCompany(company);
+		try {
+			companyDao.addCompany(company);
+		} catch (DuplicateKeyException e) {
+			throw new ElderlyPeopleException(
+					"Ja existeix una companyia amb el mateix numero fiscal: " + company.getFiscalNumber(),
+					"CPduplicada");
+		} catch (DataAccessException e) {
+			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+		}
+
 		return "redirect:list";
 	}
 

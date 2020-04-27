@@ -1,6 +1,8 @@
 package es.uji.ei1027.elderlypeople.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -8,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-
 import es.uji.ei1027.elderlypeople.dao.RequestDao;
 import es.uji.ei1027.elderlypeople.model.Request;
 
@@ -35,11 +36,23 @@ public class RequestController {
 		return "request/add";
 	}
 
+
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+		RequestValidator requestValidator = new RequestValidator();
+		requestValidator.validate(request, bindingResult);
 		if (bindingResult.hasErrors())
 			return "request/add";
-		requestDao.addRequest(request);
+		try {
+			requestDao.addRequest(request);
+		} catch (DuplicateKeyException e) {
+			throw new ElderlyPeopleException(
+					"Ja existeix una solicitud amb el mateix id: " + request.getIdRequest(),
+					"CPduplicada");
+		} catch (DataAccessException e) {
+			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+		}
+
 		return "redirect:list";
 	}
 
