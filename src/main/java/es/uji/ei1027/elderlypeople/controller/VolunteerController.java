@@ -1,6 +1,8 @@
 package es.uji.ei1027.elderlypeople.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,12 +39,23 @@ public class VolunteerController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
+		VolunteerValidator volunteerValidator = new VolunteerValidator();
+		volunteerValidator.validate(volunteer, bindingResult);
 		if (bindingResult.hasErrors())
 			return "volunteer/add";
-		volunteerDao.addVolunteer(volunteer);;
+		try {
+		volunteerDao.addVolunteer(volunteer);
+		} catch (DuplicateKeyException e) { 
+		    throw new ElderlyPeopleException(  
+		         "Ja existeix un voluntari amb el dni: "  
+		         + volunteer.getDni(), "CPduplicada"); 
+		} catch (DataAccessException e) { 
+		    throw new ElderlyPeopleException(  
+		         "Error en l'accés a la base de dades", "ErrorAccedintDades"); 
+		}
 		return "redirect:list";
 	}
-
+	
 	@RequestMapping(value = "/update/{dni}", method = RequestMethod.GET)
 	public String editVolunteer(Model model, @PathVariable String dni) {
 		model.addAttribute("volunteer", volunteerDao.getVolunteer(dni));

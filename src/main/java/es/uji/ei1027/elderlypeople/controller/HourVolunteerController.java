@@ -3,6 +3,8 @@ package es.uji.ei1027.elderlypeople.controller;
 import java.time.LocalDate;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -39,9 +41,22 @@ public class HourVolunteerController {
 	
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("hourVolunteer") HourVolunteer hourVolunteer, BindingResult bindingResult) {
+		HourVolunteerValidator hourVolunteerValidator = new HourVolunteerValidator();
+		hourVolunteerValidator.validate(hourVolunteer, bindingResult);
 		if (bindingResult.hasErrors())
 			return "hourVolunteer/add";
-		hourVolunteerDao.addHourVolunteer(hourVolunteer);;
+		try {
+		hourVolunteerDao.addHourVolunteer(hourVolunteer);
+		} catch (DuplicateKeyException e) { 
+		    throw new ElderlyPeopleException(  
+		         "Ja existeix una persona major amb este voluntari i esta data: "  
+		         + "DNI persona major: "+ hourVolunteer.getDniElderly() 
+		         + "DNI Voluntari: "+ hourVolunteer.getDniVolunteer()
+		         + "Data: " + hourVolunteer.getDate(), "CPduplicada"); 
+		} catch (DataAccessException e) { 
+		    throw new ElderlyPeopleException(  
+		         "Error en l'accés a la base de dades", "ErrorAccedintDades"); 
+		}
 		return "redirect:list";
 	}
 	

@@ -14,6 +14,7 @@
         <tr>
             <td><label>DNI</label></td>
             <td><input type="text" th:field="*{dni}" /></td> 
+            <td th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></td>
         </tr>
         <tr>
             <td><label>Data de sol·licitud</label></td>
@@ -30,6 +31,7 @@
         <tr>
             <td><label>Nom</label></td>
             <td><input type="text" th:field="*{name}" /></td>
+            <td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
         </tr>
         <tr>
             <td><label>Telèfon</label></td>

@@ -13,15 +13,18 @@
       <table>
         <tr>
             <td><label>DNI persona major</label></td>
-            <td><input type="text" th:field="*{dniElderly}" /></td> 
+            <td><input type="text" th:field="*{dniElderly}" /></td>
+            <td th:if="${#fields.hasErrors('dniElderly')}" th:errors="*{dniElderly}"></td>
         </tr>
         <tr>
             <td><label>DNI voluntari</label></td>
             <td><input type="text" th:field="*{dniVolunteer}" /></td>
+            <td th:if="${#fields.hasErrors('dniVolunteer')}" th:errors="*{dniVolunteer}"></td>
         </tr>
         <tr>
             <td><label>Data</label></td>
             <td><input type="text" th:field="*{date}" placeholder="dd-MM-yyyy"/></td>
+            <td th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></td>
         </tr>
         <tr>
             <td><label>Hoda d'inici</label></td>
