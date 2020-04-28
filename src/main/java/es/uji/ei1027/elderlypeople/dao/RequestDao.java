@@ -38,17 +38,12 @@ public class RequestDao {
 	}
 	
 	public void addRequestUser(Request request) {
-		System.out.println(request.toString());
 		request.setState("Waiting");
-		System.out.println("Hola");
-		List<Request> prueba = jdbcTemplate.query("SELECT MAX(idRequest) FROM Request", new RequestRowMapper());
-		for (Request elemento : prueba) {
-			System.out.println(elemento.toString());
-		}
-		int cont = 5;
+		String comando = "SELECT * FROM Request WHERE idRequest = (SELECT MAX(idRequest) FROM Request)";
+		Request prueba = jdbcTemplate.queryForObject(comando, new RequestRowMapper());
+		int cont = prueba.getIdRequest();
 		request.setIdRequest(cont+1);
 		request.setDateApprobation(null);
-		System.out.println(request.toString());
 		jdbcTemplate.update("INSERT INTO Request VALUES(?,?,?,?,?,?,?,?,?)", 
 				request.getIdRequest(),
 				request.getServiceType(),

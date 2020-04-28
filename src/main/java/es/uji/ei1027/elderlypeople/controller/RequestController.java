@@ -76,7 +76,7 @@ public class RequestController {
 		} catch (DataAccessException e) {
 			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
 		}
-		return "redirect:list";
+		return "redirect:/index_ElderlyPeople.html";
 	}
 
 	@RequestMapping(value = "/update/{idRequest}", method = RequestMethod.GET)
