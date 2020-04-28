@@ -55,6 +55,29 @@ public class RequestController {
 
 		return "redirect:list";
 	}
+	
+	@RequestMapping(value = "/addUser")
+	public String addRequestUser(Model model) {
+		model.addAttribute("request", new Request());
+		return "request/addUser";
+	}
+
+
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public String processAddSubmitUser(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "request/addUser";
+		try {
+			requestDao.addRequestUser(request);
+		} catch (DuplicateKeyException e) {
+			throw new ElderlyPeopleException(
+					"Ja existeix una solicitud amb el mateix id: " + request.getIdRequest(),
+					"CPduplicada");
+		} catch (DataAccessException e) {
+			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+		}
+		return "redirect:list";
+	}
 
 	@RequestMapping(value = "/update/{idRequest}", method = RequestMethod.GET)
 	public String editRequest(Model model, @PathVariable Integer idRequest) {

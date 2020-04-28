@@ -36,6 +36,31 @@ public class RequestDao {
 				request.getDniElderly()
 				);
 	}
+	
+	public void addRequestUser(Request request) {
+		System.out.println(request.toString());
+		request.setState("Waiting");
+		System.out.println("Hola");
+		List<Request> prueba = jdbcTemplate.query("SELECT MAX(idRequest) FROM Request", new RequestRowMapper());
+		for (Request elemento : prueba) {
+			System.out.println(elemento.toString());
+		}
+		int cont = 5;
+		request.setIdRequest(cont+1);
+		request.setDateApprobation(null);
+		System.out.println(request.toString());
+		jdbcTemplate.update("INSERT INTO Request VALUES(?,?,?,?,?,?,?,?,?)", 
+				request.getIdRequest(),
+				request.getServiceType(),
+				request.getState(),
+				request.getBeginDate(),
+				request.getEndDate(),
+				request.getDateApprobation(),
+				request.getComments(),
+				request.getIdContract(),
+				request.getDniElderly()
+				);
+	}
 
 	/* Esborra el Request de la base de dades */
 	public void deleteRequest(Request request) {

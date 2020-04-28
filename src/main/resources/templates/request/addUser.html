@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="theme.css">
+<meta charset="UTF-8">
+<title>ElderlyPeople</title>
+</head>
+
+
+<body>
+	<table class="greenTable">
+		<thead>
+			<tr>
+				<th align="center" colspan="3">Elderly People at Home</th>
+			</tr>
+
+		</thead>
+
+		<tfoot>
+			<tr>
+				<td colspan="3">Creado por el grupo JODIMI.</td>
+			</tr>
+		</tfoot>
+
+		<tbody>
+			<tr>
+				<td><a href="/index_ElderlyPeople.html">Home</a></td>
+
+				<td><a href="request/addUser">Add new request</a></td>
+
+				<td><a href="request/list">See all request</a></td>
+
+
+
+			</tr>
+
+			<tr>
+
+				<td colspan="3">
+					<center>
+
+
+						<h2>New Request</h2>
+						<form action="#" th:action="@{/request/addUser}"
+							th:object="${request}" method="post">
+							<table>
+								<tr>
+									<td><label th:field="*{serviceType}">Service type: </label></td>
+									<td><select th:field="*{serviceType}">
+											<option value="Catering">Catering</option>
+											<option value="Cleaning">Cleaning</option>
+											<option value="Sanity">Sanity</option>
+											<option value="Others">Others</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td><label>Begin Date: </label></td>
+									<td><input type="text" th:field="*{beginDate}"
+										placeholder="dd-MM-yyyy" /></td>
+									<td th:if="${#fields.hasErrors('beginDate')}"
+										th:errors="*{beginDate}"></td>
+								</tr>
+								<tr>
+									<td><label>End Date: </label></td>
+									<td><input type="text" th:field="*{endDate}"
+										placeholder="dd-MM-yyyy" /></td>
+									<td th:if="${#fields.hasErrors('endDate')}"
+										th:errors="*{endDate}"></td>
+								</tr>
+								<tr>
+									<td><label>Comments: </label></td>
+									<td><input type="text" th:field="*{comments}" /></td>
+								</tr>
+								<tr>
+									<td><label>Contract Id: </label></td>
+									<td><input type="number" th:field="*{idContract}" /></td>
+									<td th:if="${#fields.hasErrors('idContract')}"
+										th:errors="*{idContract}"></td>
+								</tr>
+								<tr>
+									<td><label>Your DNI: </label></td>
+									<td><input type="text" th:field="*{dniElderly}" /></td>
+									<td th:if="${#fields.hasErrors('dniElderly')}"
+										th:errors="*{dniElderly}"></td>
+								</tr>
+
+
+
+								<tr>
+									<td colspan="2"><input type="submit"
+										value="Create request" /></td>
+								</tr>
+							</table>
+						</form>
+
+
+					</center>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+</html>
