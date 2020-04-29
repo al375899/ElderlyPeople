@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/theme.css">
+<meta charset="UTF-8">
+<title>ElderlyPeople</title>
+</head>
+
+
+<body>
+	<table class="greenTable">
+		<thead>
+			<tr>
+				<th align="center" colspan="3">Elderly People at Home</th>
+			</tr>
+
+		</thead>
+
+		<tfoot>
+			<tr>
+				<td colspan="3">Creado por el grupo JODIMI.</td>
+			</tr>
+		</tfoot>
+
+		<tbody>
+			<tr>
+				<td><a href="/index_ElderlyPeople.html">Home</a></td>
+
+				<td><a href="request/addUser">Add new request</a></td>
+
+				<td><a href="request/listUser">See all request</a></td>
+
+
+
+			</tr>
+
+			<tr>
+
+				<td colspan="3">
+					<center>
+
+							<br>
+							<br>
+							<h2> List of your requests</h2>
+							<br>
+							<br>
+							<table class="greenTableData">
+								<thead>
+									<tr>
+										<th>Request ID</th>
+										<th>Service Type</th>
+										<th>State</th>
+										<th>Begin Date</th>
+										<th>End Date</th>
+										<th>Date Approbation</th>
+										<th>Comments</th>
+										<th>Contract ID</th>
+										
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="request: ${requests}">
+										<td th:text="${request.idRequest}"></td>
+										<td th:text="${request.serviceType}"></td>
+										<td th:text="${request.state}"></td>
+										<td
+											th:text="${#temporals.format(request.beginDate,'dd-MM-yyyy')}"></td>
+										<td
+											th:text="${#temporals.format(request.endDate,'dd-MM-yyyy')}"></td>
+										<td
+											th:text="${#temporals.format(request.dateApprobation,'dd-MM-yyyy')}"></td>
+										<td th:text="${request.comments}"></td>
+										<td th:text="${request.idContract}"></td>
+										
+
+										<td><a
+											th:href="@{/request/updateUser/{idRequest}(idRequest=${request.idRequest})}">Edit</a>
+										</td>
+										<td><a
+											th:href="@{/request/deleteUser/{idRequest}(idRequest=${request.idRequest})}">Delete</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<br>
+							<br>
+							<br>
+
+
+					</center>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
+</body>
+</html>

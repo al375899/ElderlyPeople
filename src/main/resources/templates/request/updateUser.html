@@ -39,13 +39,19 @@
 				<td colspan="3">
 					<center>
 
+						<br> <br>
+						<h2>Update your request</h2>
+						<br> <br>
 
-						<h2>New Request</h2>
-						<form action="#" th:action="@{/request/addUser}"
+						<form action="#" th:action="@{/request/updateUser}"
 							th:object="${request}" method="post">
 							<table class="greenTable3">
 								<tr>
-									<td><label>Service type: </label></td>
+									<td><label>Request ID</label></td>
+									<td><input type="number" th:field="*{idRequest}" readonly /></td>
+								</tr>
+								<tr>
+									<td><label>Service type</label></td>
 									<td><select th:field="*{serviceType}">
 											<option value="Catering">Catering</option>
 											<option value="Cleaning">Cleaning</option>
@@ -54,44 +60,36 @@
 									</select></td>
 								</tr>
 								<tr>
-									<td><label>Begin Date: </label></td>
+									<td><label>State</label></td>
+									<td><input type="text" th:field="*{state}" readonly /></td>
+								</tr>
+								<tr>
+									<td><label>Begin date</label></td>
 									<td><input type="text" th:field="*{beginDate}"
 										placeholder="dd-MM-yyyy" /></td>
-									<td th:if="${#fields.hasErrors('beginDate')}"
-										th:errors="*{beginDate}"></td>
 								</tr>
 								<tr>
-									<td><label>End Date: </label></td>
+									<td><label>End date</label></td>
 									<td><input type="text" th:field="*{endDate}"
 										placeholder="dd-MM-yyyy" /></td>
-									<td th:if="${#fields.hasErrors('endDate')}"
-										th:errors="*{endDate}"></td>
 								</tr>
 								<tr>
-									<td><label>Comments: </label></td>
+									<td><label>Approbation date</label></td>
+									<td><input type="text" th:field="*{dateApprobation}"
+										placeholder="dd-MM-yyyy" readonly /></td>
+								</tr>
+								<tr>
+									<td><label>Comments</label></td>
 									<td><input type="text" th:field="*{comments}" /></td>
 								</tr>
-								<tr>
-									<td><label>Contract Id: </label></td>
-									<td><input type="number" th:field="*{idContract}" /></td>
-									<td th:if="${#fields.hasErrors('idContract')}"
-										th:errors="*{idContract}"></td>
-								</tr>
-								<tr>
-									<td><label>Your DNI: </label></td>
-									<td><input type="text" th:field="*{dniElderly}" /></td>
-									<td th:if="${#fields.hasErrors('dniElderly')}"
-										th:errors="*{dniElderly}"></td>
-								</tr>
-
-
 
 								<tr>
 									<td colspan="2"><input type="submit"
-										value="Create request" /></td>
+										value="Modify request" /></td>
 								</tr>
 							</table>
 						</form>
+						<br> <br> <br>
 
 
 					</center>

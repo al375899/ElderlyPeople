@@ -29,6 +29,14 @@ public class RequestController {
 		model.addAttribute("requests", requestDao.getRequests());
 		return "request/list";
 	}
+	
+	@RequestMapping("/listUser")
+	public String listRequestUser(Model model) {
+		model.addAttribute("requests", requestDao.getRequestsUser("A123450987"));
+		return "request/listUser";
+	}
+	
+	
 
 	@RequestMapping(value = "/add")
 	public String addRequest(Model model) {
@@ -79,24 +87,24 @@ public class RequestController {
 		return "redirect:/index_ElderlyPeople.html";
 	}
 
-	@RequestMapping(value = "/update/{idRequest}", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateUser/{idRequest}", method = RequestMethod.GET)
 	public String editRequest(Model model, @PathVariable Integer idRequest) {
 		model.addAttribute("request", requestDao.getRequest(idRequest));
-		return "request/update";
+		return "request/updateUser";
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String processUpdateSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public String processUpdateSubmitUser(@ModelAttribute("request") Request request, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
-			return "request/update";
-		requestDao.updateRequest(request);
-		return "redirect:list";
+			return "request/updateUser";
+		requestDao.updateRequestUser(request);
+		return "redirect:listUser";
 	}
 
-	@RequestMapping(value = "/delete/{idRequest}")
+	@RequestMapping(value = "/deleteUser/{idRequest}")
 	public String processDelete(@PathVariable int idRequest) {
 		requestDao.deleteRequest(idRequest);
-		return "redirect:../list";
+		return "redirect:../listUser";
 	}
 
 

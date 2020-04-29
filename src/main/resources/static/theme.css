@@ -80,31 +80,6 @@ table.greenTable tfoot .links a {
 	text-align: center;
 }
 
-.myButton {
-	box-shadow: inset 0px 0px 15px 3px #23395e;
-	background: linear-gradient(to bottom, #2e466e 5%, #415989 100%);
-	background-color: #2e466e;
-	border-radius: 17px;
-	border: 1px solid #1f2f47;
-	display: inline-block;
-	cursor: pointer;
-	color: #ffffff;
-	font-family: Arial;
-	font-size: 15px;
-	padding: 6px 13px;
-	text-decoration: none;
-	text-shadow: 0px 1px 0px #263666;
-}
-
-.myButton:hover {
-	background: linear-gradient(to bottom, #415989 5%, #2e466e 100%);
-	background-color: #415989;
-}
-
-.myButton:active {
-	position: relative;
-	top: 1px;
-}
 
 table.greenTable2{
 	font-family: "Montserrat", "Oxigen", "Ubuntu", "Cantarell", "Fira Sans",
@@ -128,6 +103,35 @@ table.greenTable3 td, table.greenTable3 th {
 	border: 0px solid black;
 }
 
+
+table.greenTableData{
+	border: 0px solid black;
+
+}
+
+table.greenTableData td, table.greenTableData th {
+	border: 0px solid black;
+}
+
+table.greenTableData thead th{
+	font-size: 26px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	border: 0px solid black;
+}
+
+table.greenTableData tbody td{
+	
+	font-size: 20px;
+	color: black;
+	text-align: center;
+	border: 0px solid black;
+}
+
+table.greenTableData thead th:first-child {
+	border-left: none;
+}
 
 
 
