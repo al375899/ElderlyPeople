@@ -46,6 +46,15 @@ public class RequestDao {
 		request.setIdRequest(cont+1);
 		request.setDateApprobation(null);
 		
+		String comando2="SELECT * FROM Request WHERE dniElderly = ? AND state = 'Approved'";
+		List <Request> aceptadas = jdbcTemplate.query(comando2, new RequestRowMapper(), request.getDniElderly());
+		
+		for (Request solicitud : aceptadas) {
+			if(solicitud.getServiceType().equals(request.getServiceType())) {
+				throw new IllegalArgumentException();
+			}
+		}
+		
 		jdbcTemplate.update("INSERT INTO Request VALUES(?,?,?,?,?,?,?,?,?)", 
 				request.getIdRequest(),
 				request.getServiceType(),
@@ -77,9 +86,8 @@ public class RequestDao {
 
 	// Actualitza els atributs del Request
 	public void updateRequestUser(Request request) {
-		jdbcTemplate.update("UPDATE Request SET serviceType = ?, state = ?, beginDate = ?, endDate = ?, dateApprobation = ?, "
+		jdbcTemplate.update("UPDATE Request SET state = ?, beginDate = ?, endDate = ?, dateApprobation = ?, "
 				+ "comments = ? WHERE idRequest=?",
-				request.getServiceType(),
 				request.getState(),
 				request.getBeginDate(),
 				request.getEndDate(),

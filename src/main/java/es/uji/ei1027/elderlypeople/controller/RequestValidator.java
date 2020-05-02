@@ -27,6 +27,6 @@ public class RequestValidator implements Validator {
 		
 		if (request.getEndDate() == null)
 			errors.rejectValue("endDate", "obligatori", "Cal introduir un valor");
-
+		
 	}
 }

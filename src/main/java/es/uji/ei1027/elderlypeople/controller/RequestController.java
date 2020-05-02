@@ -83,7 +83,11 @@ public class RequestController {
 					"CPduplicada");
 		} catch (DataAccessException e) {
 			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+		} catch (IllegalArgumentException e) {
+			throw new ElderlyPeopleException("Already exist an accepted request with this service type", "RequestDuplicada");
 		}
+		
+		
 		return "redirect:/index_ElderlyPeople.html";
 	}
 
