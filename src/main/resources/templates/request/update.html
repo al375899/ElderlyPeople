@@ -1,69 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> 
+<html>
 <head>
-   <title>Modificar solicitud</title>
-   <meta charset="UTF-8" />
-   <link rel="stylesheet"       
-     href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" type="text/css" href="/theme.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
+<meta charset="UTF-8">
+<title>ElderlyPeople</title>
 </head>
+
 <body>
     <h2>Modificar solicitud</h2>
-    <form action="#" th:action="@{/request/update}" 
-                     th:object="${request}" method="post"> 
-      <table>
-        <tr>
-            <td><label>idRequest</label></td>
-            <td><input type="number" th:field="*{idRequest}" readonly/></td> 
-        </tr>
-        <tr>
-            <td> <label th:field="*{serviceType}">Tipus de servei:</label> </td>
-            <td> 
-            	
-            	<select th:field="*{serviceType}">
-			    	<option value="Catering">Catering</option>
-			    	<option value="Cleaning">Cleaning</option>
-			    	<option value="Sanity">Sanity</option>
-			    	<option value="Others">Others</option>
-			  	</select>
-            </td>
-        </tr>
-        <tr>
-            <td> <label th:field="*{state}">state:</label> </td>
-            <td> 
-            	<select th:field="*{serviceType}">
-			    	<option value="Waiting">Waiting</option>
-			    	<option value="Approved">Approved</option>
-			    	<option value="Rejected">Rejected</option>
-			  	</select>
-            </td>
-        </tr>
-        <tr>
-            <td><label>beginDate</label></td>
-            <td><input type="text" th:field="*{beginDate}" placeholder="dd-MM-yyyy"/></td>
-        </tr>
-      	<tr>
-            <td><label>endDate</label></td>
-            <td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy"/></td>
-        </tr>
-        <tr>
-            <td><label>dateApprobation</label></td>
-            <td><input type="text" th:field="*{dateApprobation}" placeholder="dd-MM-yyyy"/></td>
-        </tr>
-        <tr>
-            <td><label>comments</label></td>
-            <td><input type="text" th:field="*{comments}" /></td>
-        </tr>
-        <tr>
-            <td><label>idContract</label></td>
-            <td><input type="number" th:field="*{idContract}" readonly/></td>
-        </tr>
-        <tr>
-            <td><label>dniElderly</label></td>
-            <td><input type="text" th:field="*{dniElderly}" readonly/></td>
-        </tr>
-        <tr>
-            <td colspan="2"><input type="submit" value="Modifica solicitud" /></td>
-        </tr>
+    <form action="#" th:action="@{/request/update}" th:object="${request}" method="post"> 
+    	<table>
+        	<tr>
+            	<td><label>idRequest</label></td>
+            	<td><input type="number" th:field="*{idRequest}" readonly/></td> 
+        	</tr>
+        
+        
+        	<tr>
+           		<td> <label th:field="*{serviceType}">Tipus de servei:</label> </td>
+	            
+	            <td> 	
+		            <select th:field="*{serviceType}">
+				    	<option value="Catering">Catering</option>
+				    	<option value="Cleaning">Cleaning</option>
+				    	<option value="Sanity">Sanity</option>			    	
+				    	<option value="Others">Others</option>
+					</select>
+	            </td>
+        	</tr>
+        
+	        <tr>
+	            <td> <label th:field="*{state}">state:</label> </td>
+	            <td> 
+	            	<select th:field="*{serviceType}">
+				    	<option value="Waiting">Waiting</option>
+				    	<option value="Approved">Approved</option>
+				    	<option value="Rejected">Rejected</option>
+				  	</select>
+	            </td>
+	            
+	        </tr>
+	        
+	        
+	        <tr>
+	            <td><label>beginDate</label></td>
+	            <td><input type="text" th:field="*{beginDate}" placeholder="dd-MM-yyyy"/></td>
+	        </tr>
+	        
+	        
+	      	<tr>
+	            <td><label>endDate</label></td>
+	            <td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy"/></td>
+	        </tr>
+	        
+	        
+	        <tr>
+	            <td><label>dateApprobation</label></td>
+	            <td><input type="text" th:field="*{dateApprobation}" placeholder="dd-MM-yyyy"/></td>
+	        </tr>
+	        
+	        
+	        <tr>
+	            <td><label>comments</label></td>
+	            <td><input type="text" th:field="*{comments}" /></td>
+	        </tr>
+	        
+	        
+	        <tr>
+	            <td><label>idContract</label></td>
+	            <td><input type="number" th:field="*{idContract}" readonly/></td>
+	        </tr>
+	        
+	        
+	        <tr>
+	            <td><label>dniElderly</label></td>
+	            <td><input type="text" th:field="*{dniElderly}" readonly/></td>
+	        </tr>
+	        
+	        
+	        <tr>
+	            <td colspan="2"><input type="submit" value="Modifica solicitud" /></td>
+	        </tr>
+	        
+	        
       </table>
     </form>
 </body>

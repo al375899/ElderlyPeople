@@ -2,8 +2,12 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/theme.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
 <meta charset="UTF-8">
 <title>ElderlyPeople</title>
+
+<head>
+
 </head>
 
 
@@ -24,14 +28,9 @@
 
 		<tbody>
 			<tr>
-				<td><a href="/index_ElderlyPeople.html">Home</a></td>
-
-				<td><a href="addUser">Add new request</a></td>
-
-				<td><a href="listUser">See all request</a></td>
-
-
-
+				<td class="hover"><a href="/index_ElderlyPeople.html" class="enlace">Home <img src="/home.png" height="50" width="50"> </a></td>
+				<td class="hover"><a href="/request/addUser" class="enlace">Add new request <img src="/add.png" height="50" width="50"></a></td>
+				<td class="hover"><a href="/request/listUser" class="enlace">See all request <img src="/see.png" height="50" width="50"></a></td>
 			</tr>
 
 			<tr>
@@ -40,58 +39,65 @@
 					<center>
 
 
-						<h2>New Request</h2>
+						<h1>New Request</h1>
 						<form action="#" th:action="@{/request/addUser}"
 							th:object="${request}" method="post">
 							<table class="greenTable3">
 								<tr>
-									<td><label>Service type: </label></td>
-									<td><select th:field="*{serviceType}">
-											<option value="Catering">Catering</option>
-											<option value="Cleaning">Cleaning</option>
-											<option value="Sanity">Sanity</option>
-											<option value="Others">Others</option>
+									<td><label class="data_title">Service type: </label></td>
+									<td><select th:field="*{serviceType}" class="data">
+											<option value="Catering" class="data">Catering</option>
+											<option value="Cleaning"class="data">Cleaning</option>
+											<option value="Sanity" class="data">Sanity</option>
+											<option value="Others" class="data">Others</option>
 									</select></td>
 								</tr>
 								<tr>
-									<td><label>Begin Date: </label></td>
+									<td><label class="data_title">Begin Date: </label></td>
 									<td><input type="text" th:field="*{beginDate}"
-										placeholder="dd-MM-yyyy" /></td>
+										placeholder="dd-MM-yyyy" class="data"/></td>
 									<td th:if="${#fields.hasErrors('beginDate')}"
 										th:errors="*{beginDate}"></td>
 								</tr>
 								<tr>
-									<td><label>End Date: </label></td>
+									<td><label class="data_title">End Date: </label></td>
 									<td><input type="text" th:field="*{endDate}"
-										placeholder="dd-MM-yyyy" /></td>
+										placeholder="dd-MM-yyyy" / class="data"></td>
 									<td th:if="${#fields.hasErrors('endDate')}"
 										th:errors="*{endDate}"></td>
 								</tr>
 								<tr>
-									<td><label>Comments: </label></td>
-									<td><input type="text" th:field="*{comments}" /></td>
+									<td><label class="data_title">Comments: </label></td>
+									<td><input type="text" th:field="*{comments}" class="data"/></td>
 								</tr>
-								<tr>
-									<td><label>Contract Id: </label></td>
-									<td><input type="number" th:field="*{idContract}" /></td>
-									<td th:if="${#fields.hasErrors('idContract')}"
-										th:errors="*{idContract}"></td>
-								</tr>
-								<tr>
-									<td><label>Your DNI: </label></td>
-									<td><input type="text" th:field="*{dniElderly}" /></td>
-									<td th:if="${#fields.hasErrors('dniElderly')}"
-										th:errors="*{dniElderly}"></td>
-								</tr>
+								
+								
+																		<!-- 
+																		<tr>
+																			<td><label>Contract Id: </label></td>
+																			<td><input type="number" th:field="*{idContract}" /></td>
+																			<td th:if="${#fields.hasErrors('idContract')}"
+																				th:errors="*{idContract}"></td>
+																		</tr>
+																		<tr>
+																			<td><label>Your DNI: </label></td>
+																			<td><input type="text" th:field="*{dniElderly}" /></td>
+																			<td th:if="${#fields.hasErrors('dniElderly')}"
+																				th:errors="*{dniElderly}"></td>
+																		</tr>
+																		 -->
 
 
-
 								<tr>
-									<td colspan="2"><input type="submit"
-										value="Create request" /></td>
+									<td colspan="2">
+									<br><br>
+									<input type="submit" value="Create request" class="myButton"/></td>
+									
 								</tr>
+								<br><br>
 							</table>
 						</form>
+						<br><br>
 
 
 					</center>

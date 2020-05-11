@@ -11,16 +11,21 @@ public class HourVolunteerValidator implements Validator {
 	}
 
 	@Override
+	
+	//String dniElderly, String day, LocalTime startHour, LocalTime endHour
 	public void validate(Object obj, Errors errors) {
 		HourVolunteer hourVolunteer = (HourVolunteer) obj;
 		if (hourVolunteer.getDniElderly().trim().equals(""))
 			errors.rejectValue("dniElderly", "obligatori", "Cal introduir un valor");
 		
-		if (hourVolunteer.getDniVolunteer().trim().equals(""))
-			errors.rejectValue("dniVolunteer", "obligatori", "Cal introduir un valor");
+		if (hourVolunteer.getDay().trim().equals(""))
+			errors.rejectValue("day", "obligatori", "Cal introduir un valor");
 		
-		if (hourVolunteer.getDate()==null)
-			errors.rejectValue("date", "obligatori", "Cal introduir un valor");
+		if (hourVolunteer.getStartHour()==null)
+			errors.rejectValue("startHour", "obligatori", "Cal introduir un valor");
+		
+		if (hourVolunteer.getEndHour()==null)
+			errors.rejectValue("endHour", "obligatori", "Cal introduir un valor");
 	
 	}
 	

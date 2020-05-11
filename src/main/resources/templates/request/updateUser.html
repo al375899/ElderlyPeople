@@ -2,6 +2,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="/theme.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
 <meta charset="UTF-8">
 <title>ElderlyPeople</title>
 </head>
@@ -13,7 +14,6 @@
 			<tr>
 				<th align="center" colspan="3">Elderly People at Home</th>
 			</tr>
-
 		</thead>
 
 		<tfoot>
@@ -24,63 +24,67 @@
 
 		<tbody>
 			<tr>
-				<td><a href="/index_ElderlyPeople.html">Home</a></td>
-
-				<td><a href="request/addUser">Add new request</a></td>
-
-				<td><a href="request/listUser">See all request</a></td>
-
-
-
+				<td class="hover"><a href="/index_ElderlyPeople.html" class="enlace">Home <img src="/home.png" height="50" width="50"> </a></td>
+				<td class="hover"><a href="/request/addUser" class="enlace">Add new request <img src="/add.png" height="50" width="50"></a></td>
+				<td class="hover"><a href="/request/listUser" class="enlace">See all request <img src="/see.png" height="50" width="50"></a></td>
 			</tr>
 
 			<tr>
-
 				<td colspan="3">
 					<center>
+						<br> 
+						<br>
+						<h1>Update your request</h1>
+						<br> 
+						<br>
 
-						<br> <br>
-						<h2>Update your request</h2>
-						<br> <br>
-
-						<form action="#" th:action="@{/request/updateUser}"
-							th:object="${request}" method="post">
+						<form action="#" th:action="@{/request/updateUser}" th:object="${request}" method="post">
+							
 							<table class="greenTable3">
 								<tr>
-									<td><label>Request ID</label></td>
-									<td><input type="number" th:field="*{idRequest}" readonly /></td>
+									<td><label class="data_title">Request ID</label></td>
+									<td><input class="data" type="number" th:field="*{idRequest}" readonly /></td>
 								</tr>
+								
+								
 								<tr>
-									<td><label>Service Type</label></td>
-									<td><input type="text" th:field="*{serviceType}" readonly /></td>
+									<td><label class="data_title">Service Type</label></td>
+									<td><input class="data" type="text" th:field="*{serviceType}" readonly /></td>
 								</tr>
+								
+								
 								<tr>
-									<td><label>State</label></td>
-									<td><input type="text" th:field="*{state}" readonly /></td>
+									<td><label class="data_title">State</label></td>
+									<td><input class="data" type="text" th:field="*{state}" readonly /></td>
 								</tr>
+								
+								
 								<tr>
-									<td><label>Begin date</label></td>
-									<td><input type="text" th:field="*{beginDate}"
-										placeholder="dd-MM-yyyy" /></td>
+									<td><label class="data_title">Begin date</label></td>
+									<td><input class="data" type="text" th:field="*{beginDate}" placeholder="dd-MM-yyyy" /></td>
 								</tr>
+								
+								
 								<tr>
-									<td><label>End date</label></td>
-									<td><input type="text" th:field="*{endDate}"
-										placeholder="dd-MM-yyyy" /></td>
+									<td><label class="data_title">End date</label></td>
+									<td><input class="data" type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy" /></td>
 								</tr>
+								
+								
 								<tr>
-									<td><label>Approbation date</label></td>
-									<td><input type="text" th:field="*{dateApprobation}"
-										placeholder="dd-MM-yyyy" readonly /></td>
+									<td><label class="data_title">Approbation date</label></td>
+									<td><input class="data" type="text" th:field="*{dateApprobation}" placeholder="dd-MM-yyyy" readonly /></td>
 								</tr>
+								
+								
 								<tr>
-									<td><label>Comments</label></td>
-									<td><input type="text" th:field="*{comments}" /></td>
+									<td><label class="data_title">Comments</label></td>
+									<td><input class="data" type="text" th:field="*{comments}" /></td>
 								</tr>
 
+
 								<tr>
-									<td colspan="2"><input type="submit"
-										value="Modify request" /></td>
+									<td colspan="2"><input type="submit" value="Modify request" class="myButton"/></td>
 								</tr>
 							</table>
 						</form>

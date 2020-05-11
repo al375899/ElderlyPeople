@@ -1,6 +1,5 @@
 package es.uji.ei1027.elderlypeople.model;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -8,8 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class HourVolunteer {
 	String dniElderly;
 	String dniVolunteer;
-	@DateTimeFormat(pattern = "dd-MM-yyyy")
-	LocalDate date;
+	String day;
 	@DateTimeFormat(pattern = "HH:mm")
 	LocalTime startHour;
 	@DateTimeFormat(pattern = "HH:mm")
@@ -36,12 +34,12 @@ public class HourVolunteer {
 		this.dniVolunteer = dniVolunteer;
 	}
 
-	public LocalDate getDate() {
-		return date;
+	public String getDay() {
+		return day;
 	}
 
-	public void setDate(LocalDate date) {
-		this.date = date;
+	public void setDay(String day) {
+		this.day = day;
 	}
 
 	public LocalTime getStartHour() {
@@ -70,7 +68,7 @@ public class HourVolunteer {
 
 	@Override
 	public String toString() {
-		return "HourVolunteer [dniElderly=" + dniElderly + ", dniVolunteer=" + dniVolunteer + ", date=" + date
+		return "HourVolunteer [dniElderly=" + dniElderly + ", dniVolunteer=" + dniVolunteer + ", day=" + day
 				+ ", startHour=" + startHour + ", endHour=" + endHour + ", taken=" + taken + "]";
 	}
 
