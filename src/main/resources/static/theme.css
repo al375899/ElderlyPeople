@@ -208,3 +208,15 @@ table.greenTableData thead th:first-child {
 	background: linear-gradient(to bottom, #415989 5%, #2e466e 100%);
 	background-color: #415989;
 }
+
+.menu {
+	width: 33%;
+}
+
+.menu:hover {
+	background: linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+	background-color: #415989;
+}
+
+
+
