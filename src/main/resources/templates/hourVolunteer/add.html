@@ -21,17 +21,24 @@
             <td><input type="text" th:field="*{dniVolunteer}" /></td>
             <td th:if="${#fields.hasErrors('dniVolunteer')}" th:errors="*{dniVolunteer}"></td>
         </tr>
-        <tr>
-            <td><label>Data</label></td>
-            <td><input type="text" th:field="*{date}" placeholder="dd-MM-yyyy"/></td>
-            <td th:if="${#fields.hasErrors('date')}" th:errors="*{date}"></td>
-        </tr>
+		<tr>
+			<td><label th:field="*{dayType}">Day:</label></td>
+			<td><select th:field="*{dayType}">
+					<option value="Dilluns">Dilluns</option>
+					<option value="Dimarts">Dimarts</option>
+					<option value="Dimecres">Diumenge</option>
+					<option value="Dijous">Dijous</option>
+					<option value="Divendres">Divendres</option>
+					<option value="Disapte">Disapte</option>
+					<option value="Diumenge">Diumenge</option>
+			</select></td>
+		</tr>
         <tr>
             <td><label>Hoda d'inici</label></td>
             <td><input type="text" th:field="*{startHour}" placeholder="hh:mm"/></td>
         </tr>
         <tr>
-            <td><label>Hoda de final</label></td>
+            <td><label>Hora de final</label></td>
             <td><input type="text" th:field="*{endHour}" placeholder="hh:mm"/></td>
         </tr>
         <tr>

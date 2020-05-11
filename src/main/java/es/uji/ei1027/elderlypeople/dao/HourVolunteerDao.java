@@ -9,7 +9,7 @@ import es.uji.ei1027.elderlypeople.model.HourVolunteer;
 
 import javax.sql.DataSource;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,19 +27,19 @@ public class HourVolunteerDao {
 	/* Afegeix el hourvolunteer a la base de dades */
 	public void addHourVolunteer(HourVolunteer hourVolunteer) {
 		jdbcTemplate.update("INSERT INTO HourVolunteer VALUES(?,?,?,?,?,?)", hourVolunteer.getDniElderly(),
-				hourVolunteer.getDniVolunteer(), hourVolunteer.getDate(), hourVolunteer.getStartHour(),
+				hourVolunteer.getDniVolunteer(), hourVolunteer.getDay(), hourVolunteer.getStartHour(),
 				hourVolunteer.getEndHour(), hourVolunteer.getTaken());
 	}
 
 	/* Esborra el hourvolunteer de la base de dades */
 	public void deleteHourVolunteer(HourVolunteer hourVolunteer) {
-		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=?, dniVolunteer = ? AND date = ?",
-				hourVolunteer.getDniElderly(), hourVolunteer.getDniVolunteer(), hourVolunteer.getDate());
+		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=?, day = ? startHour = ? AND endHour = ?",
+				hourVolunteer.getDniElderly(), hourVolunteer.getDniVolunteer(), hourVolunteer.getDay());
 	}
 
-	public void deleteHourVolunteer(String dniElderly, String dniVolunteer, LocalDate date) {
-		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=?, dniVolunteer=? AND date = ?", dniElderly,
-				dniVolunteer, date);
+	public void deleteHourVolunteer(String dniElderly, String day, LocalTime startHour, LocalTime endHour) {
+		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=?, day = ?, startHour=?  AND endHour = ?", dniElderly,
+				day, startHour, endHour);
 	}
 
 	/*
@@ -47,16 +47,16 @@ public class HourVolunteerDao {
 	 */
 	public void updateHourVolunteer(HourVolunteer hourVolunteer) {
 		jdbcTemplate.update(
-				"UPDATE HourVolunteer SET date = ?, startHour = ?, endHour = ?, taken = ? WHERE dniElderly=? AND dniVolunteer=?",
-				hourVolunteer.getDate(), hourVolunteer.getStartHour(), hourVolunteer.getEndHour(),
-				hourVolunteer.getTaken(), hourVolunteer.getDniElderly(), hourVolunteer.getDniVolunteer());
+				"UPDATE HourVolunteer SET dniVolunteer=?, taken = ? WHERE dniElderly=? day = ?, startHour = ? AND endHour = ?",
+				hourVolunteer.getDniVolunteer(), hourVolunteer.getTaken(), hourVolunteer.getDniElderly(), hourVolunteer.getDay(), 
+				hourVolunteer.getStartHour(), hourVolunteer.getEndHour());
 	}
 
 	/* Obté el hourvolunteer */
-	public HourVolunteer getHourVolunteer(String dniElderly, String dniVolunteer, LocalDate date) {
+	public HourVolunteer getHourVolunteer(String dniElderly, String day, LocalTime startHour, LocalTime endHour) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniElderly =?, dniVolunteer=? AND date = ?", new HourVolunteerRowMapper(),
-					dniElderly, dniVolunteer, date);
+			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniElderly = ?, day = ?, startHour = ? AND endHour = ?", new HourVolunteerRowMapper(),
+					dniElderly, day, startHour, endHour);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

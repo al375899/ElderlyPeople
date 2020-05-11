@@ -20,10 +20,18 @@
             <td><label>DNI voluntari</label></td>
             <td><input type="text" th:field="*{dniVolunteer}" readonly /></td>
         </tr>
-        <tr>
-            <td><label>Data</label></td>
-            <td><input type="text" th:field="*{date}" readonly/></td>
-        </tr>
+		<tr>
+			<td><label th:field="*{dayType}">Day:</label></td>
+			<td><select th:field="*{dayType}">
+					<option value="Dilluns">Dilluns</option>
+					<option value="Dimarts">Dimarts</option>
+					<option value="Dimecres">Diumenge</option>
+					<option value="Dijous">Dijous</option>
+					<option value="Divendres">Divendres</option>
+					<option value="Disapte">Disapte</option>
+					<option value="Diumenge">Diumenge</option>
+			</select></td>
+		</tr>
         <tr>
             <td><label>Hora d'inici</label></td>
             <td><input type="text" th:field="*{startHour}" /></td>
