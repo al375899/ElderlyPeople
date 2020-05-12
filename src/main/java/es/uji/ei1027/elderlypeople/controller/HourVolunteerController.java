@@ -61,7 +61,7 @@ public class HourVolunteerController {
 		return "redirect:list";
 	}
 	
-	@RequestMapping(value = "/update/{dniVolunteer}/{date}/{startHour}/{endHour}", method = RequestMethod.GET)
+	@RequestMapping(value = "/update/{dniVolunteer}/{day}/{startHour}/{endHour}", method = RequestMethod.GET)
 	public String editHourVolunteer(Model model, @PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
 		model.addAttribute("hourVolunteer", hourVolunteerDao.getHourVolunteer(dniVolunteer, day, startHour, endHour));
 		return "hourVolunteer/update";
