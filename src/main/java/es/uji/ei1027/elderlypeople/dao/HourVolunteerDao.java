@@ -33,12 +33,12 @@ public class HourVolunteerDao {
 
 	/* Esborra el hourvolunteer de la base de dades */
 	public void deleteHourVolunteer(HourVolunteer hourVolunteer) {
-		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=?, day = ? startHour = ? AND endHour = ?",
-				hourVolunteer.getDniElderly(), hourVolunteer.getDniVolunteer(), hourVolunteer.getDay());
+		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniVolunteer=?, day = ? startHour = ? AND endHour = ?",
+				hourVolunteer.getDniVolunteer(), hourVolunteer.getDay(), hourVolunteer.getStartHour(), hourVolunteer.getEndHour());
 	}
 
-	public void deleteHourVolunteer(String dniElderly, String day, LocalTime startHour, LocalTime endHour) {
-		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniElderly=?, day = ?, startHour=?  AND endHour = ?", dniElderly,
+	public void deleteHourVolunteer(String dniVolunteer, String day, LocalTime startHour, LocalTime endHour) {
+		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniVolunteer=?, day = ?, startHour=?  AND endHour = ?", dniVolunteer,
 				day, startHour, endHour);
 	}
 
@@ -47,16 +47,16 @@ public class HourVolunteerDao {
 	 */
 	public void updateHourVolunteer(HourVolunteer hourVolunteer) {
 		jdbcTemplate.update(
-				"UPDATE HourVolunteer SET dniVolunteer=?, taken = ? WHERE dniElderly=? day = ?, startHour = ? AND endHour = ?",
-				hourVolunteer.getDniVolunteer(), hourVolunteer.getTaken(), hourVolunteer.getDniElderly(), hourVolunteer.getDay(), 
+				"UPDATE HourVolunteer SET dniElderly=?, taken = ? WHERE dniVolunteer=? day = ?, startHour = ? AND endHour = ?",
+				hourVolunteer.getDniElderly(), hourVolunteer.getTaken(), hourVolunteer.getDniVolunteer(), hourVolunteer.getDay(), 
 				hourVolunteer.getStartHour(), hourVolunteer.getEndHour());
 	}
 
 	/* Obté el hourvolunteer */
-	public HourVolunteer getHourVolunteer(String dniElderly, String day, LocalTime startHour, LocalTime endHour) {
+	public HourVolunteer getHourVolunteer(String dniVolunteer, String day, LocalTime startHour, LocalTime endHour) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniElderly = ?, day = ?, startHour = ? AND endHour = ?", new HourVolunteerRowMapper(),
-					dniElderly, day, startHour, endHour);
+			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniVolunteer = ?, day = ?, startHour = ? AND endHour = ?", new HourVolunteerRowMapper(),
+					dniVolunteer, day, startHour, endHour);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}

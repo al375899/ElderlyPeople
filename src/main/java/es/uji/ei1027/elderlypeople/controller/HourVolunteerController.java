@@ -50,10 +50,10 @@ public class HourVolunteerController {
 		} catch (DuplicateKeyException e) { 
 		    throw new ElderlyPeopleException(  
 		         "Ja existeix una persona major amb aquests valors: "  
-		         + "DNI persona major: "+ hourVolunteer.getDniElderly() 
+		         + "DNI voluntari: "+ hourVolunteer.getDniVolunteer() 
 		         + "Día: "+ hourVolunteer.getDay()
 		         + "Hora inici: " + hourVolunteer.getStartHour()
-		    	 + "Hora final: " + hourVolunteer.getEndHour(), "CPduplicada"); 
+		    	 + "Hora final: " + hourVolunteer.getEndHour(), "CPduplicada");
 		} catch (DataAccessException e) { 
 		    throw new ElderlyPeopleException(  
 		         "Error en l'accés a la base de dades", "ErrorAccedintDades"); 
@@ -61,9 +61,9 @@ public class HourVolunteerController {
 		return "redirect:list";
 	}
 	
-	@RequestMapping(value = "/update/{dniElderly}/{dniVolunteer}/{date}", method = RequestMethod.GET)
-	public String editHourVolunteer(Model model, @PathVariable String dniElderly, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
-		model.addAttribute("hourVolunteer", hourVolunteerDao.getHourVolunteer(dniElderly, day, startHour, endHour));
+	@RequestMapping(value = "/update/{dniVolunteer}/{date}/{startHour}/{endHour}", method = RequestMethod.GET)
+	public String editHourVolunteer(Model model, @PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
+		model.addAttribute("hourVolunteer", hourVolunteerDao.getHourVolunteer(dniVolunteer, day, startHour, endHour));
 		return "hourVolunteer/update";
 	}
 	
@@ -75,9 +75,9 @@ public class HourVolunteerController {
 		return "redirect:list";
 	}
 	
-	@RequestMapping(value = "/delete/{dniElderly}/{day}/{startHour}/{endHour}")
-	public String processDelete(@PathVariable String dniElderly, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
-		hourVolunteerDao.deleteHourVolunteer(dniElderly, day, startHour, endHour);
+	@RequestMapping(value = "/delete/{dniVolunteer}/{day}/{startHour}/{endHour}")
+	public String processDelete(@PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
+		hourVolunteerDao.deleteHourVolunteer(dniVolunteer, day, startHour, endHour);
 		return "redirect:../list";
 	}
 }

@@ -15,7 +15,7 @@ public class HourVolunteerValidator implements Validator {
 	//String dniElderly, String day, LocalTime startHour, LocalTime endHour
 	public void validate(Object obj, Errors errors) {
 		HourVolunteer hourVolunteer = (HourVolunteer) obj;
-		if (hourVolunteer.getDniElderly().trim().equals(""))
+		if (hourVolunteer.getDniVolunteer().trim().equals(""))
 			errors.rejectValue("dniElderly", "obligatori", "Cal introduir un valor");
 		
 		if (hourVolunteer.getDay().trim().equals(""))

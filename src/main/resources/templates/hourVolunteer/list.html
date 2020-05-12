@@ -26,9 +26,10 @@
          <td th:text="${hourVolunteer.startHour}"></td>
          <td th:text="${hourVolunteer.endHour}"></td>
          <td th:text="${hourVolunteer.taken}"></td>
-         <td><a th:href="@{/hourVolunteer/update/{dniElderly}/{day}/{startHour}/{endHour}(dniElderly=${hourVolunteer.dniElderly}, day=${hourVolunteer.day}, startHour=${hourVolunteer.startHour}, endHour=${hourVolunteer.endHour})}">Edita</a> 
+         
+         <td><a th:href="@{/hourVolunteer/update/{dniVolunteer}/{day}/{startHour}/{endHour}(dniVolunteer=${hourVolunteer.dniVolunteer}, day=${hourVolunteer.day}, startHour=${hourVolunteer.startHour}, endHour=${hourVolunteer.endHour})}">Edita</a> 
          </td>
-         <td><a th:href="@{/hourVolunteer/update/{dniElderly}/{day}/{startHour}/{endHour}(dniElderly=${hourVolunteer.dniElderly}, day=${hourVolunteer.day}, startHour=${hourVolunteer.startHour}, endHour=${hourVolunteer.endHour})}">Esborra</a>
+         <td><a th:href="@{/hourVolunteer/update/{dniVolunteer}/{day}/{startHour}/{endHour}(dniVolunteer=${hourVolunteer.dniVolunteer}, day=${hourVolunteer.day}, startHour=${hourVolunteer.startHour}, endHour=${hourVolunteer.endHour})}">Esborra</a>
          </td>
        </tr>
      </tbody>
