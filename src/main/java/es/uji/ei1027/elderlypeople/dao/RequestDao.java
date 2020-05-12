@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.elderlypeople.model.Request;
+import es.uji.ei1027.elderlypeople.model.UserDetails;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -37,7 +38,7 @@ public class RequestDao {
 				);
 	}
 	
-	public void addRequestUser(Request request) {
+	public void addRequestUser(Request request, String dniElderly) {
 		request.setState("Waiting");
 		String comando = "SELECT * FROM Request WHERE idRequest = (SELECT MAX(idRequest) FROM Request)";
 		
@@ -45,6 +46,10 @@ public class RequestDao {
 		int cont = prueba.getIdRequest();
 		request.setIdRequest(cont+1);
 		request.setDateApprobation(null);
+		request.setIdContract(null);
+		request.setDniElderly(dniElderly);
+			
+		
 		
 		String comando2="SELECT * FROM Request WHERE dniElderly = ? AND state = 'Approved'";
 		List <Request> aceptadas = jdbcTemplate.query(comando2, new RequestRowMapper(), request.getDniElderly());
@@ -86,12 +91,9 @@ public class RequestDao {
 
 	// Actualitza els atributs del Request
 	public void updateRequestUser(Request request) {
-		jdbcTemplate.update("UPDATE Request SET state = ?, beginDate = ?, endDate = ?, dateApprobation = ?, "
-				+ "comments = ? WHERE idRequest=?",
-				request.getState(),
+		jdbcTemplate.update("UPDATE Request SET beginDate = ?, endDate = ?, comments = ? WHERE idRequest=?",
 				request.getBeginDate(),
 				request.getEndDate(),
-				request.getDateApprobation(),
 				request.getComments(),
 				request.getIdRequest()
 				);

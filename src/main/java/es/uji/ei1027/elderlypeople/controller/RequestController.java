@@ -1,5 +1,7 @@
 package es.uji.ei1027.elderlypeople.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import es.uji.ei1027.elderlypeople.dao.RequestDao;
 import es.uji.ei1027.elderlypeople.model.Request;
+import es.uji.ei1027.elderlypeople.model.UserDetails;
 
 @Controller
 @RequestMapping("/request")
@@ -29,21 +32,19 @@ public class RequestController {
 		model.addAttribute("requests", requestDao.getRequests());
 		return "request/list";
 	}
-	
+
 	@RequestMapping("/listUser")
-	public String listRequestUser(Model model) {
-		model.addAttribute("requests", requestDao.getRequestsUser("A123450987"));
+	public String listRequestUser(Model model, HttpSession session) {
+		UserDetails user = (UserDetails) session.getAttribute("user");
+		model.addAttribute("requests", requestDao.getRequestsUser(user.getUsername()));
 		return "request/listUser";
 	}
-	
-	
 
 	@RequestMapping(value = "/add")
 	public String addRequest(Model model) {
 		model.addAttribute("request", new Request());
 		return "request/add";
 	}
-
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String processAddSubmit(@ModelAttribute("request") Request request, BindingResult bindingResult) {
@@ -54,8 +55,7 @@ public class RequestController {
 		try {
 			requestDao.addRequest(request);
 		} catch (DuplicateKeyException e) {
-			throw new ElderlyPeopleException(
-					"Ja existeix una solicitud amb el mateix id: " + request.getIdRequest(),
+			throw new ElderlyPeopleException("Ja existeix una solicitud amb el mateix id: " + request.getIdRequest(),
 					"CPduplicada");
 		} catch (DataAccessException e) {
 			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
@@ -63,31 +63,35 @@ public class RequestController {
 
 		return "redirect:list";
 	}
-	
+
 	@RequestMapping(value = "/addUser")
 	public String addRequestUser(Model model) {
 		model.addAttribute("request", new Request());
 		return "request/addUser";
 	}
-
+	
+	
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-	public String processAddSubmitUser(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+	public String processAddSubmitUser(@ModelAttribute("request") Request request, BindingResult bindingResult, HttpSession session) {
+		
+		UserDetails user = (UserDetails) session.getAttribute("user");
+		
+		
 		if (bindingResult.hasErrors())
 			return "request/addUser";
 		try {
-			requestDao.addRequestUser(request);
+			requestDao.addRequestUser(request, user.getUsername());
 		} catch (DuplicateKeyException e) {
-			throw new ElderlyPeopleException(
-					"Ja existeix una solicitud amb el mateix id: " + request.getIdRequest(),
+			throw new ElderlyPeopleException("Ja existeix una solicitud amb el mateix id: " + request.getIdRequest(),
 					"CPduplicada");
 		} catch (DataAccessException e) {
 			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
 		} catch (IllegalArgumentException e) {
-			throw new ElderlyPeopleException("Already exist an accepted request with this service type", "RequestDuplicada");
+			throw new ElderlyPeopleException("Already exist an accepted request with this service type",
+					"RequestDuplicada");
 		}
-		
-		
+
 		return "redirect:/index_ElderlyPeople.html";
 	}
 
@@ -110,6 +114,5 @@ public class RequestController {
 		requestDao.deleteRequest(idRequest);
 		return "redirect:../listUser";
 	}
-
 
 }

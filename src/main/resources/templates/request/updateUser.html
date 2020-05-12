@@ -41,21 +41,10 @@
 						<form action="#" th:action="@{/request/updateUser}" th:object="${request}" method="post">
 							
 							<table class="greenTable3">
-								<tr>
-									<td><label class="data_title">Request ID</label></td>
-									<td><input class="data" type="number" th:field="*{idRequest}" readonly /></td>
-								</tr>
-								
-								
+
 								<tr>
 									<td><label class="data_title">Service Type</label></td>
 									<td><input class="data" type="text" th:field="*{serviceType}" readonly /></td>
-								</tr>
-								
-								
-								<tr>
-									<td><label class="data_title">State</label></td>
-									<td><input class="data" type="text" th:field="*{state}" readonly /></td>
 								</tr>
 								
 								
@@ -72,15 +61,11 @@
 								
 								
 								<tr>
-									<td><label class="data_title">Approbation date</label></td>
-									<td><input class="data" type="text" th:field="*{dateApprobation}" placeholder="dd-MM-yyyy" readonly /></td>
-								</tr>
-								
-								
-								<tr>
 									<td><label class="data_title">Comments</label></td>
 									<td><input class="data" type="text" th:field="*{comments}" /></td>
 								</tr>
+								
+									<input type="hidden" th:field="*{idRequest}" value="*{idRequest}">
 
 
 								<tr>
