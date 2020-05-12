@@ -2,8 +2,17 @@ package es.uji.ei1027.elderlypeople.model;
 
 public class UserDetails {
 	String username;
-	String password; 
+	String password;
+	String type;
 	
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
 	public String getUsername() {
 		return username; 
 	}
@@ -19,4 +28,11 @@ public class UserDetails {
 	public void setPassword(String password) {
 	   this.password = password;
 	}
+
+	@Override
+	public String toString() {
+		return "UserDetails [username=" + username + ", password=" + password + ", type=" + type + "]";
+	}
+	
+	
 }

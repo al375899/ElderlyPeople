@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="theme.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
+<meta charset="UTF-8">
+<title>ElderlyPeople</title>
+</head>
+
+
+<body>
+	<table class="greenTable">
+		<thead>
+			<tr>
+				<th align="center">Elderly People at Home</th>
+			</tr>
+		</thead>
+
+		<tfoot>
+			<tr>
+				<td>Creado por el grupo JODIMI.</td>
+			</tr>
+		</tfoot>
+
+		<tbody>
+			<tr>
+				<td>
+					<h2>Accés</h2>
+					<form action="#" th:action="@{/login}" 
+	      				th:object="${user}" method="post">
+						<p>
+		   					<label class="data_title">Nom d'usuari:</label>
+            			<input class="data" type="text" th:field="*{username}"/>
+            			<div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+						</p>
+						<p>
+		   					<label class="data_title">Contrasenya:</label>
+           				<input class="data" type="password" th:field="*{password}"/>
+            			<div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+						</p>		
+						<input type="submit" class="myButton" value="Accedir" />
+					</form>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>
