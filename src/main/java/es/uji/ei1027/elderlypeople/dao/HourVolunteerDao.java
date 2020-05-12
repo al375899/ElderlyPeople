@@ -54,7 +54,8 @@ public class HourVolunteerDao {
 	/* Obté el hourvolunteer */
 	public HourVolunteer getHourVolunteer(String dniVolunteer, String day, LocalTime startHour, LocalTime endHour) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniVolunteer = ?, day = ?, startHour = ? AND endHour = ?", new HourVolunteerRowMapper(), dniVolunteer, day, startHour, endHour);
+			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniVolunteer = ?, day = ?, startHour = ? AND endHour = ?", 
+					new HourVolunteerRowMapper(), dniVolunteer, day, startHour, endHour);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
 		}
