@@ -219,4 +219,24 @@ table.greenTableData thead th:first-child {
 }
 
 
+.logout:hover {
+	background: linear-gradient(to bottom, #DC143C 5%, #FF0000 100%);
+	background-color: #FF0000;
+}
+
+.enlace_logout {
+	font-family: 'Comfortaa', 'Arial';
+	font-size: 16px;
+	letter-spacing: 2px;
+	word-spacing: 2px;
+	color: #000000;
+	font-weight: 700;
+	text-decoration: none solid rgb(68, 68, 68);
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: none;
+}
+
+
+
 
