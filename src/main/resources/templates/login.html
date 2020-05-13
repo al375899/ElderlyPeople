@@ -25,20 +25,26 @@
 		<tbody>
 			<tr>
 				<td>
-					<h2>Accés</h2>
+					<h1>ACCOUNT LOGIN</h1>
 					<form action="#" th:action="@{/login}" 
 	      				th:object="${user}" method="post">
 						<p>
-		   					<label class="data_title">Nom d'usuari:</label>
+		   					<label class="data_title">Username:</label>
             			<input class="data" type="text" th:field="*{username}"/>
             			<div class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
 						</p>
 						<p>
-		   					<label class="data_title">Contrasenya:</label>
+		   					<label class="data_title">Password:</label>
            				<input class="data" type="password" th:field="*{password}"/>
             			<div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-						</p>		
-						<input type="submit" class="myButton" value="Accedir" />
+						</p>
+						<br>
+						<a href="/" class="myButton">Back</a> 
+						&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
+						<input type="submit" class="myButton" value="Log in" />
+						<br>
+						<br>
+						
 					</form>
 				</td>
 			</tr>
