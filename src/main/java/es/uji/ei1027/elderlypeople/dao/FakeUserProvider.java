@@ -1,7 +1,12 @@
 package es.uji.ei1027.elderlypeople.dao;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.net.URL;
 import java.util.Collection;
-import java.util.HashMap; 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.jasypt.util.password.BasicPasswordEncryptor; 
 import org.springframework.stereotype.Repository;
@@ -13,17 +18,37 @@ public class FakeUserProvider implements UserDao {
 
   public FakeUserProvider() {
 	BasicPasswordEncryptor passwordEncryptor = new BasicPasswordEncryptor(); 
-	UserDetails userAlice = new UserDetails(); 
-	userAlice.setUsername("A123450987"); 
-	userAlice.setPassword(passwordEncryptor.encryptPassword("patata")); 
-	userAlice.setType("elderly");
-	knownUsers.put("A123450987", userAlice);
-	  
-   UserDetails userBob = new UserDetails(); 
-   userBob.setUsername("bob"); 
-   userBob.setPassword(passwordEncryptor.encryptPassword("bob"));
-   userBob.setType("ministry");
-   knownUsers.put("bob", userBob);
+    File archivo = null;
+    FileReader fr = null;
+    BufferedReader br = null;
+    
+    try {
+    	URL url = getClass().getResource("bbdd.txt");
+	   archivo = new File(url.getPath());
+	   fr = new FileReader(archivo);
+	   br = new BufferedReader(fr);
+	   
+	   String usuario;
+	   while((usuario=br.readLine())!=null) {
+		   String[] datos = usuario.split(" ");
+		   UserDetails user = new UserDetails();
+		   user.setUsername(datos[0]);
+		   user.setPassword(passwordEncryptor.encryptPassword(datos[1]));
+		   user.setType(datos[2]);
+		   knownUsers.put(datos[0], user);
+	   }  
+   } catch (Exception e) {
+	   e.printStackTrace();
+   } finally {
+	   try{                    
+           if( null != fr ){   
+              fr.close();     
+           }                  
+        }catch (Exception e2){ 
+           e2.printStackTrace();
+        }
+   }
+   
   }
 
   @Override
