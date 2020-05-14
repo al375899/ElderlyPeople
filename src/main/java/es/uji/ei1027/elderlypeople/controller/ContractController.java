@@ -1,5 +1,7 @@
 package es.uji.ei1027.elderlypeople.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.elderlypeople.dao.ContractDao;
 import es.uji.ei1027.elderlypeople.model.Contract;
+import es.uji.ei1027.elderlypeople.model.UserDetails;
 
 @Controller
 @RequestMapping("/contract")
@@ -28,6 +31,12 @@ public class ContractController {
 	@RequestMapping("/list")
 	public String listContracts(Model model) {
 		model.addAttribute("contracts", contractDao.getContracts());
+		return "contract/list";
+	}
+	
+	@RequestMapping(value = "/listUser/{fiscalNumber}")
+	public String listContractsUser(Model model, @PathVariable String fiscalNumber) {
+		model.addAttribute("contracts", contractDao.getContractsUser(fiscalNumber));
 		return "contract/list";
 	}
 

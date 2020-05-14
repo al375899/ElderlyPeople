@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.elderlypeople.model.Contract;
+import es.uji.ei1027.elderlypeople.model.Request;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -61,6 +62,14 @@ public class ContractDao {
 	public List<Contract> getContracts() {
 		try {
 			return jdbcTemplate.query("SELECT * FROM Contract", new ContractRowMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Contract>();
+		}
+	}
+	
+	public List<Contract> getContractsUser(String fnCompany) {
+		try {
+			return jdbcTemplate.query("SELECT * FROM Contract WHERE fnCompany=? ORDER BY 5", new ContractRowMapper(), fnCompany);
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Contract>();
 		}
