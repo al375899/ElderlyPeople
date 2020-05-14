@@ -1,32 +1,110 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> 
+<html>
 <head>
-   <title>Gestionar Empreses</title>
-   <meta charset="UTF-8" />
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/theme.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
+<meta charset="UTF-8">
+<title>ElderlyPeople</title>
+
+<head>
+
 </head>
+
+
 <body>
-   <h1>Llista d'empreses</h1>
-   <table>
-     <thead>
-       <tr>
-         <th>Nom</th>
-         <th>Persona de contacte</th>
-         <th>Numero fiscal</th>
-       </tr>
-     </thead>
-     <tbody>
-       <tr th:each="company: ${companies}"> 
-         <td th:text="${company.name}"></td> 
-         <td th:text=${company.contactPerson}></td>
-         <td th:text="${company.fiscalNumber}"></td>
-         <td><a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">Edita</a> 
-         </td>
-         <td><a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">Esborra</a>
-         </td>
-       </tr>
-     </tbody>
-   </table>
-   <a href="add">Afegeix empresa</a> 
+	<table class="greenTable">
+		<thead>
+			<tr>
+				<th align="center" colspan="4">Elderly People at Home</th>
+			</tr>
+
+		</thead>
+
+		<tfoot>
+			<tr>
+				<td colspan="4">Creado por el grupo JODIMI.</td>
+			</tr>
+		</tfoot>
+
+		<tbody>
+			<tr>
+				<td class="menu"><a href="/index_casManager.html" class="enlace">Home <img src="/home.png" height="50" width="50"> </a></td>
+				<td class="menu"><a href="/company/add" class="enlace">Add new company <img src="/add.png" height="50" width="50"></a></td>
+				<td class="menu"><a href="/company/list" class="enlace">See all company <img src="/see.png" height="50" width="50"></a></td>
+				<td class="logout"><a href="/logout" class="enlace_logout"> <img src="/logout.png" height="50" width="50"> logout </td>
+			</tr>
+
+			<tr>
+
+				<td colspan="4">
+					<center>
+
+						<br>
+						<h1> List of all companies</h1>
+						<br>
+						<form action="#" th:action="@{/company/add}" th:object="${company}" method="post">
+							<table class="greenTableData">
+							     <thead>
+							       <tr>
+							         <th>Company name</th>
+							         <th>Contact person</th>
+							         <th>Fiscal number</th>
+							       </tr>
+							     </thead>
+							     <tbody>
+							       	<tr th:each="company: ${companies}"> 
+							         
+							         <td class="hover" th:text="${company.name}"></td> 
+							         
+							         <td class="hover" th:text=${company.contactPerson}></td>
+							         
+							         <td class="hover" th:text="${company.fiscalNumber}"></td>
+							         
+							         <td class="hover">
+							         	<a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
+							         		<img src="/edit.png" height="50" width="50">
+							         	</a> 
+							         </td>
+							         
+							         <td class="hover">
+							         	<a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
+							         		<img src="/delete.png" height="50" width="50">
+							         	</a>
+							         </td>
+							         
+							         
+							         <td class="hover">
+								         
+								        <div class="container">
+								       	 <a th:href="@{/contract/listUser/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
+										  <img src="/contract.png" style="width:50px; weigth:50px">
+										  <div class="centered">Manage contracts</div>
+										</div>
+							         	
+							         	
+							        
+							         	</a> 
+							         </td>
+							         
+							         
+							       </tr>
+							     </tbody>
+							   </table>
+							   <br>
+							   <br>
+							   <a href="/company/add" class="myButton">New company</a> 
+						</form>
+						<br>
+						<br>
+
+
+					</center>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
 </body>
 </html>
+
+

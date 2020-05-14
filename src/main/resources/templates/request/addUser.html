@@ -41,8 +41,7 @@
 
 
 						<h1>New Request</h1>
-						<form action="#" th:action="@{/request/addUser}"
-							th:object="${request}" method="post">
+						<form action="#" th:action="@{/request/addUser}" th:object="${request}" method="post">
 							<table class="greenTable3">
 								<tr>
 									<td><label class="data_title">Service type: </label></td>
@@ -55,17 +54,13 @@
 								</tr>
 								<tr>
 									<td><label class="data_title">Begin Date: </label></td>
-									<td><input type="text" th:field="*{beginDate}"
-										placeholder="dd-MM-yyyy" class="data"/></td>
-									<td th:if="${#fields.hasErrors('beginDate')}"
-										th:errors="*{beginDate}"></td>
+									<td><input type="text" th:field="*{beginDate}" placeholder="dd-MM-yyyy" class="data"/></td>
+									<td th:if="${#fields.hasErrors('beginDate')}" th:errors="*{beginDate}"></td>
 								</tr>
 								<tr>
 									<td><label class="data_title">End Date: </label></td>
-									<td><input type="text" th:field="*{endDate}"
-										placeholder="dd-MM-yyyy" / class="data"></td>
-									<td th:if="${#fields.hasErrors('endDate')}"
-										th:errors="*{endDate}"></td>
+									<td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy" / class="data"></td>
+									<td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
 								</tr>
 								<tr>
 									<td><label class="data_title">Comments: </label></td>

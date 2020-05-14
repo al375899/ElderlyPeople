@@ -60,8 +60,11 @@ public class LoginController {
 		session.setAttribute("user", user); 
 		System.out.println("Encuentra usuario");
 		if (user.getType().equals("elderly")) {
-			System.out.println("Intenta redirigir");
 			return "redirect:/index_ElderlyPeople.html";
+		}
+		
+		if (user.getType().equals("casManager")) {
+			return "redirect:/index_casManager.html";
 		}
 			
 		return "redirect:/";
