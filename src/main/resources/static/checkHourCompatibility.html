@@ -48,9 +48,18 @@
 								
 								<tr>
 									<td>
-										<label class="data_title"> Date </label></td>
+										<label class="data_title"> Day of the week </label></td>
 									<td>
-										<input type="text" th:field="*{date}" placeholder="dd-MM-yyyy" class="data"/></td>
+										<select th:field="*{day}">
+											<option value="Monday">Monday</option>
+											<option value="Tuesday">Tuesday</option>
+											<option value="Wednesday">Wednesday</option>
+											<option value="Thursday">Thursday</option>
+											<option value="Friday">Friday</option>
+											<option value="Saturday">Saturday</option>
+											<option value="Sunday">Sunday</option>
+										</select>
+									</td>
 								</tr>
 								
 								<tr>
