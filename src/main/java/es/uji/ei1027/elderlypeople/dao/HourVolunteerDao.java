@@ -33,12 +33,12 @@ public class HourVolunteerDao {
 
 	/* Esborra el hourvolunteer de la base de dades */
 	public void deleteHourVolunteer(HourVolunteer hourVolunteer) {
-		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniVolunteer=?, day=?, startHour=? AND endHour=?",
+		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniVolunteer=? AND day=? AND startHour=? AND endHour=?",
 				hourVolunteer.getDniVolunteer(), hourVolunteer.getDay(), hourVolunteer.getStartHour(), hourVolunteer.getEndHour());
 	}
 
 	public void deleteHourVolunteer(String dniVolunteer, String day, LocalTime startHour, LocalTime endHour) {
-		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniVolunteer=?, day=?, startHour=? AND endHour=?", dniVolunteer, day, startHour, endHour);
+		jdbcTemplate.update("DELETE FROM HourVolunteer WHERE dniVolunteer=? AND day=? AND startHour=? AND endHour=?", dniVolunteer, day, startHour, endHour);
 	}
 
 	/*
@@ -46,7 +46,7 @@ public class HourVolunteerDao {
 	 */
 	public void updateHourVolunteer(HourVolunteer hourVolunteer) {
 		jdbcTemplate.update(
-				"UPDATE HourVolunteer SET dniElderly=?, taken = ? WHERE dniVolunteer=?, day = ?, startHour = ? AND endHour = ?",
+				"UPDATE HourVolunteer SET dniElderly=?, taken = ? WHERE dniVolunteer=? AND day = ? AND startHour = ? AND endHour = ?",
 				hourVolunteer.getDniElderly(), hourVolunteer.getTaken(), hourVolunteer.getDniVolunteer(), hourVolunteer.getDay(), 
 				hourVolunteer.getStartHour(), hourVolunteer.getEndHour());
 	}
@@ -54,7 +54,7 @@ public class HourVolunteerDao {
 	/* Obté el hourvolunteer */
 	public HourVolunteer getHourVolunteer(String dniVolunteer, String day, LocalTime startHour, LocalTime endHour) {
 		try {
-			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniVolunteer = ?, day = ?, startHour = ? AND endHour = ?", 
+			return jdbcTemplate.queryForObject("SELECT * FROM HourVolunteer WHERE dniVolunteer = ? AND day = ? AND startHour = ? AND endHour = ?", 
 					new HourVolunteerRowMapper(), dniVolunteer, day, startHour, endHour);
 		} catch (EmptyResultDataAccessException e) {
 			return null;
