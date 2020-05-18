@@ -49,6 +49,9 @@
 							         <th>Company name</th>
 							         <th>Contact person</th>
 							         <th>Fiscal number</th>
+							         <th></th>
+							         <th></th>
+							         <th></th>
 							       </tr>
 							     </thead>
 							     <tbody>
@@ -60,25 +63,25 @@
 							         
 							         <td class="hover" th:text="${company.fiscalNumber}"></td>
 							         
-							         <td class="hover">
+							         <td>
 							         	<a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
 							         		<img src="/edit.png" height="50" width="50">
 							         	</a> 
 							         </td>
 							         
-							         <td class="hover">
+							         <td>
 							         	<a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
 							         		<img src="/delete.png" height="50" width="50">
 							         	</a>
 							         </td>
 							         
 							         
-							         <td class="hover">
+							         <td>
 								         
 								        <div class="container">
-								       	 <a th:href="@{/contract/listUser/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
+								       	 <a class="enlace2" th:href="@{/contract/listUser/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
 										  <img src="/contract.png" style="width:50px; weigth:50px">
-										  <div class="centered">Manage contracts</div>
+										  <div class="centered">Manage <br>contracts</div>
 										</div>
 							         	
 							         	

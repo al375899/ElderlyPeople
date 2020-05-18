@@ -45,7 +45,7 @@
 						<form action="#" th:action="@{/company/add}" th:object="${company}" method="post">
 							<table class="greenTable3">
 								<tr>
-									<td><labe class="data_title">Company name</label></td>
+									<td><label class="data_title">Company name</label></td>
 									<td><input type="text" th:field="*{name}" class="data"/></td>
 									<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
 								</tr>

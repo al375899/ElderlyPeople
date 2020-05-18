@@ -238,5 +238,18 @@ table.greenTableData thead th:first-child {
 }
 
 
+.enlace2 {
+	font-family: 'Comfortaa', 'Arial';
+	font-size: 15px;
+	letter-spacing: 2px;
+	word-spacing: 2px;
+	color: #000000;
+	font-weight: 700;
+	text-decoration: none solid rgb(68, 68, 68);
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: none;
+}
+
 
 

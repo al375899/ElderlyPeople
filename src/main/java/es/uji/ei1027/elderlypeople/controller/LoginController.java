@@ -53,12 +53,10 @@ public class LoginController {
 		// intentant carregar les dades de l'usuari 
 		user = userDao.loadUserByUsername(user.getUsername(), user.getPassword()); 
 		if (user == null) {
-			System.out.println("Va mal");
 			bindingResult.rejectValue("password", "badpw", "Contrasenya incorrecta"); 
 			return "login";
 		}
 		session.setAttribute("user", user); 
-		System.out.println("Encuentra usuario");
 		if (user.getType().equals("elderly")) {
 			return "redirect:/index_ElderlyPeople.html";
 		}

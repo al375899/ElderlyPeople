@@ -1,40 +1,101 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"> 
+<html>
 <head>
-   <title>Gestionar de contractes</title>
-   <meta charset="UTF-8" />
-   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="/theme.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
+<meta charset="UTF-8">
+<title>ElderlyPeople</title>
+
+<head>
+
 </head>
+
+
 <body>
-   <h1>Llista de contractes</h1>
-   <table>
-     <thead>
-       <tr>
-         <th>id</th>
-         <th>Empresa</th>
-         <th>Tipus de servei</th>
-         <th>Cantitat</th>
-         <th>Data inici</th>
-         <th>Data fi</th>
-         <th>Preu</th>
-       </tr>
-     </thead>
-     <tbody>
-       <tr th:each="contract: ${contracts}"> 
-         <td th:text="${contract.idContract}"></td> 
-         <td th:text="${contract.fnCompany}"></td>
-         <td th:text="${contract.serviceType}"></td>
-         <td th:text="${contract.quantity}"></td>
-         <td th:text="${contract.startDate}"></td>
-         <td th:text="${contract.endDate}"></td>
-         <td th:text="${contract.price}"></td>         
-         <td><a th:href="@{/contract/update/{idContract}(idContract=${contract.idContract})}">Edita</a> 
-         </td>
-         <td><a th:href="@{/contract/delete/{idContract}(idContract=${contract.idContract})}">Esborra</a>
-         </td>
-       </tr>
-     </tbody>
-   </table>
-   <a href="add">Afegeix contracte</a> 
+	<table class="greenTable">
+		<thead>
+			<tr>
+				<th align="center" colspan="4">Elderly People at Home</th>
+			</tr>
+
+		</thead>
+
+		<tfoot>
+			<tr>
+				<td colspan="4">Creado por el grupo JODIMI.</td>
+			</tr>
+		</tfoot>
+
+		<tbody>
+			<tr>
+				<td class="menu"><a href="/index_casManager.html" class="enlace">Home <img src="/home.png" height="50" width="50"> </a></td>
+				<td class="menu"><a href="/company/add" class="enlace">Add new company <img src="/add.png" height="50" width="50"></a></td>
+				<td class="menu"><a href="/company/list" class="enlace">See all company <img src="/see.png" height="50" width="50"></a></td>
+				<td class="logout"><a href="/logout" class="enlace_logout"> <img src="/logout.png" height="50" width="50"> logout </td>
+			</tr>
+
+			<tr>
+
+				<td colspan="4">
+					<center>
+
+						<br>
+						<h1>Contracts list</h1>
+					   <table class="greenTableData">
+					     <thead>
+					       <tr>
+					         <th>Id contract</th>
+					         <th>Fiscal number company</th>
+					         <th>Service type</th>
+					         <th>Quantity</th>
+					         <th>Start date</th>
+					         <th>End date</th>
+					         <th>Price</th>
+					       </tr>
+					     </thead>
+					     <tbody>
+					       <tr th:each="contract: ${contracts}"> 
+					         <td class="hover" th:text="${contract.idContract}"></td> 
+					         <td class="hover" th:text="${contract.fnCompany}"></td>
+					         <td class="hover" th:text="${contract.serviceType}"></td>
+					         <td class="hover" th:text="${contract.quantity}"></td>
+					         <td class="hover" th:text="${contract.startDate}"></td>
+					         <td class="hover" th:text="${contract.endDate}"></td>
+					         <td class="hover" th:text="${contract.price}"></td>         
+					         
+					         
+					         <td>
+					         	<a th:href="@{/contract/update/{idContract}(idContract=${contract.idContract})}">
+							    <img src="/edit.png" height="50" width="50">
+							    </a>
+					         </td>
+					         
+					         
+					         <td>
+							    <a th:href="@{/contract/delete/{idContract}(idContract=${contract.idContract})}">
+							    <img src="/delete.png" height="50" width="50"> </a> 
+					         </td>
+					         
+					       </tr>
+					     </tbody>
+					     	
+					   </table>
+					   
+					   		<br>
+					   		<br>						
+							<a href="/company/list" class="myButton">Back</a> 		
+							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+					   		<a href="/contract/add" class="myButton">Add new contract</a> 
+					   		<br>
+							<br>
+
+					</center>
+				</td>
+			</tr>
+
+		</tbody>
+	</table>
 </body>
 </html>
+
+
