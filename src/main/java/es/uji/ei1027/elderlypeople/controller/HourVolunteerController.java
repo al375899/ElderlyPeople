@@ -71,13 +71,13 @@ public class HourVolunteerController {
 	public String processUpdateSubmit(@ModelAttribute("hourVolunteer") HourVolunteer hourVolunteer, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "hourVolunteer/update";
-		hourVolunteerDao.updateHourVolunteer(hourVolunteer);;
+		hourVolunteerDao.updateHourVolunteer(hourVolunteer);
 		return "redirect:list";
 	}
 	
 	@RequestMapping(value = "/delete/{dniVolunteer}/{day}/{startHour}/{endHour}")
 	public String processDelete(@PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
 		hourVolunteerDao.deleteHourVolunteer(dniVolunteer, day, startHour, endHour);
-		return "redirect:../list";
+		return "redirect:/hourVolunteer/list";
 	}
 }

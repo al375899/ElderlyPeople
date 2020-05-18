@@ -14,35 +14,27 @@
 
         <tr>
             <td><label>DNI persona major</label></td>
-            <td><input type="text" th:field="*{dniElderly}" readonly /></td> 
+            <td><input type="text" th:field="*{dniElderly}"/></td> 
         </tr>
         <tr>
             <td><label>DNI voluntari</label></td>
             <td><input type="text" th:field="*{dniVolunteer}" readonly /></td>
         </tr>
 		<tr>
-			<td><label th:field="*{dayType}">Day:</label></td>
-			<td><select th:field="*{dayType}">
-					<option value="Dilluns">Dilluns</option>
-					<option value="Dimarts">Dimarts</option>
-					<option value="Dimecres">Diumenge</option>
-					<option value="Dijous">Dijous</option>
-					<option value="Divendres">Divendres</option>
-					<option value="Disapte">Disapte</option>
-					<option value="Diumenge">Diumenge</option>
-			</select></td>
+			<td><label th:field="*{day}" >Day:</label></td>
+			<td><input type="text" th:field="*{day}" readonly /></td>
 		</tr>
         <tr>
             <td><label>Hora d'inici</label></td>
-            <td><input type="text" th:field="*{startHour}" /></td>
+            <td><input type="text" th:field="*{startHour}" readonly/></td>
         </tr>
         <tr>
             <td><label>Hora de final</label></td>
-            <td><input type="text" th:field="*{endHour}"/></td>
+            <td><input type="text" th:field="*{endHour}" readonly/></td>
         </tr>
         <tr>
             <td><label>Agafat</label></td>
-            <td><input type="text" th:field="*{taken}" /></td>
+            <td><input type="checkbox" th:field="*{taken}" /></td>
         </tr>
         
         <tr>
