@@ -6,6 +6,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.elderlypeople.model.HourVolunteer;
+import es.uji.ei1027.elderlypeople.model.Search;
+import es.uji.ei1027.elderlypeople.model.Volunteer;
 
 import javax.sql.DataSource;
 
@@ -65,6 +67,14 @@ public class HourVolunteerDao {
 	public List<HourVolunteer> getHourVolunteers() {
 		try {
 			return jdbcTemplate.query("SELECT * FROM HourVolunteer", new HourVolunteerRowMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<HourVolunteer>();
+		}
+	}
+	
+	public List<HourVolunteer> getHourVolunteersFilter(Search search) {
+		try {
+			return jdbcTemplate.query("SELECT * FROM HourVolunteer WHERE taken=false AND day=? AND startHour<=? AND endHour>=?", new HourVolunteerRowMapper(), search.getDay(), search.getStartHour(), search.getEndHour());
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<HourVolunteer>();
 		}

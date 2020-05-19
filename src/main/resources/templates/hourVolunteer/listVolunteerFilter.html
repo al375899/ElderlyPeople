@@ -47,9 +47,9 @@
 						<table class="greenTableData">
 							<thead>	
 								<tr>
-									<th>Volunteer name</th>
-							        <th>Gender</th>
-							        <th>Birth date</th>
+									<th>DNI Volunteer</th>
+							        <th>Start Hour</th>
+							        <th>End Hour</th>
 								</tr>
 							</thead>
 							
@@ -58,20 +58,13 @@
 							
 							<tbody>
 								<tr th:each="hourVolunteer: ${hourVolunteers}"> 
-									<td class="hover" th:text="${hourVolunteer.name}"></td> 
-							        <td class="hover" th:text=${hourVolunteer.gender}></td>
-							        <td class="hover"  th:text="${hourVolunteer.birthdate}"></td>
-
-									<td >
-										<!--  <a th:href="@{/hourVolunteer/update/{dniVolunteer}/{day}/{startHour}/{endHour}(dniVolunteer=${hourVolunteer.dniVolunteer}, day=${hourVolunteer.day}, startHour=${hourVolunteer.startHour}, endHour=${hourVolunteer.endHour})}">-->
-										<a th:href="#">
-										
-										<img src="/edit.png" height="50" width="50">
-										</a>
-			
-										</td>
-										
-								</tr>
+							         <td th:text=${hourVolunteer.dniVolunteer}></td>
+							         <td th:text="${hourVolunteer.startHour}"></td>
+							         <td th:text="${hourVolunteer.endHour}"></td>
+         
+							         <td><a>Choose this volunteer</a> 
+							         </td>
+       							</tr>
 							</tbody>
 						</table>
 						<br>

@@ -42,7 +42,7 @@
 						<br><br>
 						<h1>New volunteer request</h1>
 						<br><br>
-						<form action="#" th:action="@{/hourVolunter/metodo}" th:object="${search}" method="post">
+						<form action="#" th:action="@{/hourVolunteer/listFilterUser}" th:object="${search}" method="post">
 							
 							<table class="greenTable3">
 								
@@ -50,7 +50,7 @@
 									<td>
 										<label class="data_title"> Day of the week </label></td>
 									<td>
-										<select th:field="*{day}">
+										<select class="data" th:field="*{day}">
 											<option value="Monday">Monday</option>
 											<option value="Tuesday">Tuesday</option>
 											<option value="Wednesday">Wednesday</option>

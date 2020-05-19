@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei1027.elderlypeople.dao.HourVolunteerDao;
 import es.uji.ei1027.elderlypeople.model.HourVolunteer;
+import es.uji.ei1027.elderlypeople.model.Search;
 
 @Controller
 @RequestMapping("/hourVolunteer")
@@ -79,5 +81,24 @@ public class HourVolunteerController {
 	public String processDelete(@PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
 		hourVolunteerDao.deleteHourVolunteer(dniVolunteer, day, startHour, endHour);
 		return "redirect:/hourVolunteer/list";
+	}
+	
+	@RequestMapping(value = "/listFilter")
+	public String listFilter(Model model) {
+		model.addAttribute("search", new Search());
+		return "checkHourCompatibility";
+	}
+	
+	@RequestMapping(value = "/listFilterUser", method = RequestMethod.POST)
+	public String listFilterUser(Model model, @ModelAttribute("search") Search search, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "/checkHourCompatibility";
+		try {
+			model.addAttribute("hourVolunteers", hourVolunteerDao.getHourVolunteersFilter(search));
+		} catch (DataAccessException e) { 
+		    throw new ElderlyPeopleException(  
+		         "Error en l'accés a la base de dades", "ErrorAccedintDades"); 
+		}
+		return "hourVolunteer/listVolunteerFilter";
 	}
 }
