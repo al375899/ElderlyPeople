@@ -2,6 +2,7 @@ package es.uji.ei1027.elderlypeople.controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.Iterator;
 
 import javax.servlet.http.HttpSession;
 
@@ -107,13 +108,21 @@ public class HourVolunteerController {
 		return "hourVolunteer/listVolunteerFilter";
 	}
 	
-	@RequestMapping(value = "/create/{startHourElderly}/{endHourElderly}/{dniVolunteer}/{day}/{startHour}/{endHour}", method = RequestMethod.POST)
-	public String takeHour(@PathVariable LocalDate startHourElderly, @PathVariable LocalDate endHourElderly, @PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalDate startHour, @PathVariable LocalDate endHour, BindingResult bindingResult, HttpSession session) {
+	@RequestMapping(value = "/create/{startHourElderly}/{endHourElderly}/{dniVolunteer}/{day}/{startHour}/{endHour}", 
+							method = {RequestMethod.GET, RequestMethod.PUT})
+	public String takeHour(	@PathVariable LocalTime startHourElderly, 
+							@PathVariable LocalTime endHourElderly, 
+							@PathVariable String dniVolunteer, 
+							@PathVariable String day, 
+							@PathVariable LocalTime startHour, 
+							@PathVariable LocalTime endHour, 
+							 HttpSession session) {//BindingResult bindingResult,
+		
 		System.out.println("Entra en el controlador");
 		UserDetails user = (UserDetails) session.getAttribute("user");
-		
-		if (bindingResult.hasErrors())
-			return "hourVolunteer/listFilterUser";
+	
+		//if (bindingResult.hasErrors())
+		//	return "hourVolunteer/listFilterUser";
 		try {
 			System.out.println("Prueba el modelo");
 			hourVolunteerDao.takeHour(startHourElderly, endHourElderly, dniVolunteer, day, startHour, endHour, user.getUsername());
@@ -123,7 +132,7 @@ public class HourVolunteerController {
 			e.printStackTrace();
 		}
 		System.out.println("Sale a la página html");
-		return "redirect:/hourVolunteer/requestOk";
+		return "hourVolunteer/requestOk";
 		
 	}
 }

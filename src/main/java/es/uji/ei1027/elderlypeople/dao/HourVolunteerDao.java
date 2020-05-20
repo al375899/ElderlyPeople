@@ -97,7 +97,7 @@ public class HourVolunteerDao {
 		}
 	}
 	
-	public void takeHour(LocalDate startHourElderly, LocalDate endHourElderly, String dniVolunteer, String day, LocalDate startHour, LocalDate endHour, String dniElderly) {
+	public void takeHour(LocalTime startHourElderly, LocalTime endHourElderly, String dniVolunteer, String day, LocalTime startHour, LocalTime endHour, String dniElderly) {
 		System.out.println("Entra al modelo");
 		try {
 			jdbcTemplate.update(
