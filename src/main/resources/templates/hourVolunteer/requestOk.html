@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="/theme.css">
+
+<link rel="stylesheet" type="text/css" href="theme.css">
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
+
 <meta charset="UTF-8">
 <title>ElderlyPeople</title>
 </head>
@@ -13,6 +15,7 @@
 		<thead>
 			<tr>
 				<th align="center" colspan="4">Elderly People at Home</th>
+				
 			</tr>
 
 		</thead>
@@ -35,47 +38,27 @@
 
 				<td colspan="4">
 					<center>
+						<table class="greenTable3">
+						
+						
+							<tr>
+								<th colspan="4">
+									<h1>Your volunteer's request has been created successfully</h1>
+								</th>
+							</tr>
+							
 
-						<br>
-						<br>
-						<h1> List of compatible volunteers </h1>
+						</table>
 						
-						
-						
-						<br>
-						<br>
-						<form action="#" th:action="@{/hourVolunteer/create}" th:object="${requestVolunteer}" method="get">
-							<table class="greenTableData">
-								<thead>	
-									<tr>
-										<th>Name</th>
-								        <th>Gender</th>
-								        <th>Age</th>
-									</tr>
-								</thead>
-								
-								
-								
-								
-								<tbody>
-									<tr th:each="requestVolunteer: ${requestVolunteers}"> 
-								         <td th:text=${requestVolunteer.volunteer.name}></td>
-								         <td th:text="${requestVolunteer.volunteer.gender}"></td>
-								         <td th:text="${requestVolunteer.age}"></td>
-	         
-								         <td><a href = "">Choose this volunteer</a> 
-								         </td>
-	       							</tr>
-								</tbody>
-							</table>
-						</form>
-						<br>
-						<a href="/requestType.html" class="myButton">Back</a> 
-						<br>
-						<br>
+						<br><br>
+						<a href="/index_ElderlyPeople.html" class="myButton">Return home</a> 
+
+
+
 					</center>
 				</td>
 			</tr>
+
 		</tbody>
 	</table>
 </body>

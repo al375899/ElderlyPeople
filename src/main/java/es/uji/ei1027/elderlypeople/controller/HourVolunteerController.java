@@ -2,6 +2,8 @@ package es.uji.ei1027.elderlypeople.controller;
 
 import java.time.LocalTime;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import es.uji.ei1027.elderlypeople.dao.HourVolunteerDao;
 import es.uji.ei1027.elderlypeople.model.HourVolunteer;
+import es.uji.ei1027.elderlypeople.model.RequestVolunteer;
 import es.uji.ei1027.elderlypeople.model.Search;
+import es.uji.ei1027.elderlypeople.model.UserDetails;
 
 @Controller
 @RequestMapping("/hourVolunteer")
@@ -94,11 +98,31 @@ public class HourVolunteerController {
 		if (bindingResult.hasErrors())
 			return "/checkHourCompatibility";
 		try {
-			model.addAttribute("hourVolunteers", hourVolunteerDao.getHourVolunteersFilter(search));
+			model.addAttribute("requestVolunteers", hourVolunteerDao.getHourVolunteersFilter(search));
 		} catch (DataAccessException e) { 
 		    throw new ElderlyPeopleException(  
 		         "Error en l'accés a la base de dades", "ErrorAccedintDades"); 
 		}
 		return "hourVolunteer/listVolunteerFilter";
+	}
+	
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
+	public String takeHour(@ModelAttribute("requestVolunteer") RequestVolunteer requestVolunteer, BindingResult bindingResult, HttpSession session) {
+		System.out.println("Entra en el controlador");
+		UserDetails user = (UserDetails) session.getAttribute("user");
+		
+		if (bindingResult.hasErrors())
+			return "hourVolunteer/listFilterUser";
+		try {
+			System.out.println("Prueba el modelo");
+			hourVolunteerDao.takeHour(requestVolunteer, user.getUsername());
+		} catch (DataAccessException e) {
+			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+		} catch (Exception e) { // MODIFICAR CON LAS OTRAS EXCEPCIONES QUE PUEDAN OCURRIR
+			e.printStackTrace();
+		}
+		System.out.println("Sale a la página html");
+		return "redirect:/homeVolunteer/requestOk";
+		
 	}
 }

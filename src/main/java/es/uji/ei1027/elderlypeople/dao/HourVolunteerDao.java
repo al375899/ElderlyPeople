@@ -6,12 +6,16 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.elderlypeople.model.HourVolunteer;
+import es.uji.ei1027.elderlypeople.model.RequestVolunteer;
 import es.uji.ei1027.elderlypeople.model.Search;
 import es.uji.ei1027.elderlypeople.model.Volunteer;
 
 import javax.sql.DataSource;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.Period;
+import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -72,11 +76,37 @@ public class HourVolunteerDao {
 		}
 	}
 	
-	public List<HourVolunteer> getHourVolunteersFilter(Search search) {
+	public List<RequestVolunteer> getHourVolunteersFilter(Search search) {
 		try {
-			return jdbcTemplate.query("SELECT * FROM HourVolunteer WHERE taken=false AND day=? AND startHour<=? AND endHour>=?", new HourVolunteerRowMapper(), search.getDay(), search.getStartHour(), search.getEndHour());
+			List<RequestVolunteer> list = new ArrayList<>();
+			List<HourVolunteer> listaHoras = jdbcTemplate.query("SELECT * FROM HourVolunteer WHERE taken=false AND day=? AND startHour<=? AND endHour>=?", new HourVolunteerRowMapper(), search.getDay(), search.getStartHour(), search.getEndHour());
+			for (HourVolunteer hora : listaHoras) {
+				String dniVolunteer = hora.getDniVolunteer();
+				Volunteer voluntario = jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE dni = ?", new VolunteerRowMapper(), dniVolunteer);
+				RequestVolunteer requestVolunteer = new RequestVolunteer();
+				requestVolunteer.setHourVolunteer(hora);
+				requestVolunteer.setVolunteer(voluntario);
+				requestVolunteer.setSearch(search);
+				LocalDate now = LocalDate.now();
+				requestVolunteer.setAge(Period.between(voluntario.getBirthDate(),now).getYears());
+				list.add(requestVolunteer);
+			}
+			return list;
 		} catch (EmptyResultDataAccessException e) {
-			return new ArrayList<HourVolunteer>();
+			return new ArrayList<RequestVolunteer>();
+		}
+	}
+	
+	public void takeHour(RequestVolunteer requestVolunteer, String dniElderly) {
+		System.out.println("Entra al modelo");
+		try {
+			jdbcTemplate.update(
+					"UPDATE HourVolunteer SET taken=true, dniElderly=?, startHour=?, endHour=? WHERE dniVolunteer=? AND day = ? AND startHour = ? AND endHour = ?",
+					dniElderly, requestVolunteer.getSearch().getStartHour(), requestVolunteer.getSearch().getEndHour(), requestVolunteer.getHourVolunteer().getDniVolunteer(),
+					requestVolunteer.getHourVolunteer().getDay(), requestVolunteer.getHourVolunteer().getStartHour(), requestVolunteer.getHourVolunteer().getEndHour());
+			System.out.println("Actualiza la bb.dd");
+		} catch (Exception e) { // MODIFICAR LOS ERRORES
+			e.printStackTrace();
 		}
 	}
 }
