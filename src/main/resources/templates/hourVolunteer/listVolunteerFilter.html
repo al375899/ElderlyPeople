@@ -44,31 +44,35 @@
 						
 						<br>
 						<br>
-						<form action="#" th:action="@{/hourVolunteer/create}" th:object="${requestVolunteer}" method="get">
-							<table class="greenTableData">
-								<thead>	
-									<tr>
-										<th>Name</th>
-								        <th>Gender</th>
-								        <th>Age</th>
-									</tr>
-								</thead>
-								
-								
-								
-								
-								<tbody>
-									<tr th:each="requestVolunteer: ${requestVolunteers}"> 
-								         <td th:text=${requestVolunteer.volunteer.name}></td>
-								         <td th:text="${requestVolunteer.volunteer.gender}"></td>
-								         <td th:text="${requestVolunteer.age}"></td>
-	         
-								         <td><a href = "">Choose this volunteer</a> 
-								         </td>
-	       							</tr>
-								</tbody>
-							</table>
-						</form>
+						<table class="greenTableData">
+							<thead>	
+								<tr>
+									<th>Name</th>
+							        <th>Gender</th>
+							        <th>Age</th>
+								</tr>
+							</thead>
+							
+							
+							
+							
+							<tbody>
+								<tr th:each="requestVolunteer: ${requestVolunteers}"> 
+							         <td th:text=${requestVolunteer.volunteer.name}></td>
+							         <td th:text="${requestVolunteer.volunteer.gender}"></td>
+							         <td th:text="${requestVolunteer.age}"></td>
+         
+							         <td><a th:href="@{/hourVolunteer/create/{startHourElderly}/{endHourElderly}/{dniVolunteer}/{day}/{startHour}/{endHour}
+							         			(startHourElderly=${requestVolunteer.search.startHour}, 
+							         			endHourElderly=${requestVolunteer.search.endHour}, 
+							         			dniVolunteer=${requestVolunteer.hourVolunteer.dniVolunteer},
+							         			day=${requestVolunteer.hourVolunteer.day},
+							         			startHour=${requestVolunteer.hourVolunteer.startHour},
+							         			endHour=${requestVolunteer.hourVolunteer.endHour})}" class="myButton">Choose this volunteer</a> 
+							         </td>
+       							</tr>
+							</tbody>
+						</table>
 						<br>
 						<a href="/requestType.html" class="myButton">Back</a> 
 						<br>

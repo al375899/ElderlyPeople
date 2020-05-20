@@ -10,7 +10,6 @@ public class RequestVolunteer {
 	Search search;
 	int age;
 	
-	
 	public HourVolunteer getHourVolunteer() {
 		return hourVolunteer;
 	}

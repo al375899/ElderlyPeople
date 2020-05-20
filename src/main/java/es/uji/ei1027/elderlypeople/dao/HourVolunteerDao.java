@@ -97,13 +97,12 @@ public class HourVolunteerDao {
 		}
 	}
 	
-	public void takeHour(RequestVolunteer requestVolunteer, String dniElderly) {
+	public void takeHour(LocalDate startHourElderly, LocalDate endHourElderly, String dniVolunteer, String day, LocalDate startHour, LocalDate endHour, String dniElderly) {
 		System.out.println("Entra al modelo");
 		try {
 			jdbcTemplate.update(
 					"UPDATE HourVolunteer SET taken=true, dniElderly=?, startHour=?, endHour=? WHERE dniVolunteer=? AND day = ? AND startHour = ? AND endHour = ?",
-					dniElderly, requestVolunteer.getSearch().getStartHour(), requestVolunteer.getSearch().getEndHour(), requestVolunteer.getHourVolunteer().getDniVolunteer(),
-					requestVolunteer.getHourVolunteer().getDay(), requestVolunteer.getHourVolunteer().getStartHour(), requestVolunteer.getHourVolunteer().getEndHour());
+					dniElderly, startHourElderly, endHourElderly, dniVolunteer, day, startHour, endHour);
 			System.out.println("Actualiza la bb.dd");
 		} catch (Exception e) { // MODIFICAR LOS ERRORES
 			e.printStackTrace();

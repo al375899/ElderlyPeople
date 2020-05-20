@@ -1,5 +1,6 @@
 package es.uji.ei1027.elderlypeople.controller;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.servlet.http.HttpSession;
@@ -106,8 +107,8 @@ public class HourVolunteerController {
 		return "hourVolunteer/listVolunteerFilter";
 	}
 	
-	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public String takeHour(@ModelAttribute("requestVolunteer") RequestVolunteer requestVolunteer, BindingResult bindingResult, HttpSession session) {
+	@RequestMapping(value = "/create/{startHourElderly}/{endHourElderly}/{dniVolunteer}/{day}/{startHour}/{endHour}", method = RequestMethod.POST)
+	public String takeHour(@PathVariable LocalDate startHourElderly, @PathVariable LocalDate endHourElderly, @PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalDate startHour, @PathVariable LocalDate endHour, BindingResult bindingResult, HttpSession session) {
 		System.out.println("Entra en el controlador");
 		UserDetails user = (UserDetails) session.getAttribute("user");
 		
@@ -115,14 +116,14 @@ public class HourVolunteerController {
 			return "hourVolunteer/listFilterUser";
 		try {
 			System.out.println("Prueba el modelo");
-			hourVolunteerDao.takeHour(requestVolunteer, user.getUsername());
+			hourVolunteerDao.takeHour(startHourElderly, endHourElderly, dniVolunteer, day, startHour, endHour, user.getUsername());
 		} catch (DataAccessException e) {
 			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
 		} catch (Exception e) { // MODIFICAR CON LAS OTRAS EXCEPCIONES QUE PUEDAN OCURRIR
 			e.printStackTrace();
 		}
 		System.out.println("Sale a la página html");
-		return "redirect:/homeVolunteer/requestOk";
+		return "redirect:/hourVolunteer/requestOk";
 		
 	}
 }
