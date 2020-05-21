@@ -108,4 +108,24 @@ public class HourVolunteerDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<RequestVolunteer> getHourVolunteersUser(String username){
+		try {
+			List<RequestVolunteer> list = new ArrayList<>();
+			List<HourVolunteer> listaHoras = jdbcTemplate.query("SELECT * FROM HourVolunteer WHERE taken=true AND dniElderly=?", new HourVolunteerRowMapper(), username);
+			for (HourVolunteer hora : listaHoras) {
+				String dniVolunteer = hora.getDniVolunteer();
+				Volunteer voluntario = jdbcTemplate.queryForObject("SELECT * FROM Volunteer WHERE dni = ?", new VolunteerRowMapper(), dniVolunteer);
+				RequestVolunteer requestVolunteer = new RequestVolunteer();
+				requestVolunteer.setHourVolunteer(hora);
+				requestVolunteer.setVolunteer(voluntario);
+				LocalDate now = LocalDate.now();
+				requestVolunteer.setAge(Period.between(voluntario.getBirthDate(),now).getYears());
+				list.add(requestVolunteer);
+			}
+			return list;
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<RequestVolunteer>();
+		}
+	}
 }

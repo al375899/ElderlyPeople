@@ -50,6 +50,7 @@
 									<th>Volunteer name</th>
 									<th>Age</th>
 									<th>Gender</th>
+									<th>Day</th>
 									<th>Start hour</th>
 									<th>End hour</th>								
 								</tr>
@@ -63,12 +64,13 @@
 									<td th:text="${requestVolunteer.volunteer.name}" class="hover"></td>
 									<td class="hover" th:text="${requestVolunteer.age}"></td>
 									<td class="hover" th:text="${requestVolunteer.volunteer.gender}"></td>
+									<td class="hover" th:text="${requestVolunteer.hourVolunteer.day}" ></td>
 									<td class="hover" th:text="${requestVolunteer.hourVolunteer.startHour}" ></td>
 									<td class="hover" th:text="${requestVolunteer.hourVolunteer.endHour}"></td>
 										
 										
 									<td >
-										<a th:href="@{/hourVolunteer/delete/{dniVolunteer}/{day}/{startHour}/{endHour}
+										<a th:href="@{/hourVolunteer/deleteUser/{dniVolunteer}/{day}/{startHour}/{endHour}
 										(dniVolunteer=${requestVolunteer.hourVolunteer.dniVolunteer},
 										 day=${requestVolunteer.hourVolunteer.day},
 										 startHour=${requestVolunteer.hourVolunteer.startHour},
