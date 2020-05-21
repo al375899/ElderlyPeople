@@ -38,7 +38,7 @@
 
 						<br>
 						<br>
-						<h1> List of volunteers</h1>
+						<h1> List of volunteers inscription requests</h1>
 						
 						
 						
@@ -47,14 +47,13 @@
 						<table class="greenTableData">
 							<thead>	
 								<tr>
+									<th> </th>
 									<th>Name</th>
 									<th>Genre</th>
 									<th>Birth date</th>
 									<th>Phone</th>
 									<th>DNI</th>
 									<th>Inscription date</th>
-									<th>Acceptation date</th>
-									<th>End date</th>					
 								</tr>
 							</thead>
 							
@@ -62,25 +61,26 @@
 							
 							
 							<tbody>
-						   		<tr th:each="volunteer: ${volunteers}"> 
-									<td class="hover" th:text="${volunteer.name}"></td> 
-									<td class="hover" th:text=${volunteer.gender}></td>
-									<td class="hover" th:text="${#temporals.format(volunteer.birthDate,'dd-MM-yyyy')}"></td>
-									<td class="hover" th:text="${volunteer.phoneNumber}"></td>
-									<td class="hover" th:text="${volunteer.dni}"></td>
-									<td class="hover" th:text="${#temporals.format(volunteer.requestDate,'dd-MM-yyyy')}"></td>
-									<td class="hover" th:text="${#temporals.format(volunteer.acceptationDate,'dd-MM-yyyy')}"></td>
-									<td class="hover" th:text="${#temporals.format(volunteer.endDate,'dd-MM-yyyy')}"></td>
+						   		<tr> 
+						   			<td class="hover"> 
+						   				<img src="/paco.png" height="50" width="50">
+									</td> 
+									<td class="hover"> Paco | Paca </td> 
+									<td class="hover"> Male </td>
+									<td class="hover" > 19/03/1997 </td>
+									<td class="hover" > 618612924 </td>
+									<td class="hover" > 47862076L </td>
+									<td class="hover" > 21/05/2020</td>
 							 							 
 							 		<td >
-										<a th:href="@{/volunteer/update/{dni}(dni=${volunteer.dni})}">
-										<img src="/edit.png" height="50" width="50">
+										<a th:href="#">
+										<img src="/accept.png" height="50" width="50">
 										</a>
 									</td>
 							 
 									 <td>
-										<a th:href="@{/volunteer/delete/{dni}(dni=${volunteer.dni})}">
-											<img src="/delete.png" height="50" width="50">
+										<a th:href="#">
+											<img src="/deny.png" height="50" width="50">
 										</a>
 									 </td>
 							 
