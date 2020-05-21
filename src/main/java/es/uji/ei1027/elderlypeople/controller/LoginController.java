@@ -64,6 +64,14 @@ public class LoginController {
 		if (user.getType().equals("casManager")) {
 			return "redirect:/index_casManager.html";
 		}
+		
+		if (user.getType().equals("casVolunteer")) {
+			return "redirect:/index_casVolunteer.html";
+		}
+		
+		if (user.getType().equals("casComitee")) {
+			return "redirect:/index_casComitee.html";
+		}
 			
 		return "redirect:/";
 	}

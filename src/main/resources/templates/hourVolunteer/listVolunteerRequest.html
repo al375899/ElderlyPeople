@@ -38,7 +38,7 @@
 
 						<br>
 						<br>
-						<h1> List of compatible volunteers </h1>
+						<h1> List of your requests</h1>
 						
 						
 						
@@ -47,9 +47,11 @@
 						<table class="greenTableData">
 							<thead>	
 								<tr>
-									<th>Name</th>
-							        <th>Gender</th>
-							        <th>Age</th>
+									<th>Volunteer name</th>
+									<th>Age</th>
+									<th>Gender</th>
+									<th>Start hour</th>
+									<th>End hour</th>								
 								</tr>
 							</thead>
 							
@@ -57,24 +59,31 @@
 							
 							
 							<tbody>
-								<tr th:each="requestVolunteer: ${requestVolunteers}"> 
-							         <td th:text=${requestVolunteer.volunteer.name}></td>
-							         <td th:text="${requestVolunteer.volunteer.gender}"></td>
-							         <td th:text="${requestVolunteer.age}"></td>
-         
-							         <td><a th:href="@{/hourVolunteer/create/{startHourElderly}/{endHourElderly}/{dniVolunteer}/{day}/{startHour}/{endHour}
-							         			(startHourElderly=${requestVolunteer.search.startHour}, 
-							         			endHourElderly=${requestVolunteer.search.endHour}, 
-							         			dniVolunteer=${requestVolunteer.hourVolunteer.dniVolunteer},
-							         			day=${requestVolunteer.hourVolunteer.day},
-							         			startHour=${requestVolunteer.hourVolunteer.startHour},
-							         			endHour=${requestVolunteer.hourVolunteer.endHour})}" class="myButton">Choose this volunteer</a> 
-							         </td>
-       							</tr>
+								<tr th:each="requestVolunteer: ${requestVolunteers}">
+									<td th:text="${requestVolunteer.volunteer.name}" class="hover"></td>
+									<td class="hover" th:text="${requestVolunteer.age}"></td>
+									<td class="hover" th:text="${requestVolunteer.volunteer.gender}"></td>
+									<td class="hover" th:text="${requestVolunteer.hourVolunteer.startHour}" ></td>
+									<td class="hover" th:text="${requestVolunteer.hourVolunteer.endHour}"></td>
+										
+										
+									<td >
+										<a th:href="@{/hourVolunteer/delete/{dniVolunteer}/{day}/{startHour}/{endHour}
+										(dniVolunteer=${requestVolunteer.hourVolunteer.dniVolunteer},
+										 day=${requestVolunteer.hourVolunteer.day},
+										 startHour=${requestVolunteer.hourVolunteer.startHour},
+										  endHour=${requestVolunteer.hourVolunteer.endHour}
+										)}">
+										<img src="/delete.png" height="50" width="50">
+										</a>
+									</td>
+										
+								</tr>
 							</tbody>
 						</table>
 						<br>
-						<a href="/requestType.html" class="myButton">Back</a> 
+						<a href="/index_ElderlyPeople.html" class="myButton">Back</a> 
+						<br>
 						<br>
 						<br>
 					</center>
