@@ -34,18 +34,18 @@ public class VolunteerController {
 		return "volunteer/list";
 	}
 	
-	@RequestMapping("/listUsers")
+	@RequestMapping("/listHoursTaken")
 	public String listVolunteersUsers(Model model, HttpSession session) {
 		UserDetails user = (UserDetails) session.getAttribute("user");
 		model.addAttribute("elderlyList", volunteerDao.getElderlyList(user.getUsername()));
-		return "volunteer/listUsers";
+		return "volunteer/listHoursTaken";
 	}
 	
-	@RequestMapping("/listHours")
+	@RequestMapping("/listHoursNotTaken")
 	public String listVolunteersHours(Model model, HttpSession session) {
 		UserDetails user = (UserDetails) session.getAttribute("user");
 		model.addAttribute("hoursList", volunteerDao.getHoursList(user.getUsername()));
-		return "volunteer/listHours";
+		return "volunteer/listHoursNotTaken";
 	}
 	
 	@RequestMapping(value = "/add")
@@ -85,6 +85,22 @@ public class VolunteerController {
 			return "volunteer/update";
 		volunteerDao.updateVolunteer(volunteer);;
 		return "redirect:list";
+	}
+	
+	// Saca el voluntario a partir de la sesión iniciada
+	@RequestMapping(value = "/updateUser", method = RequestMethod.GET)
+	public String editVolunteerUser(Model model, HttpSession session) {
+		UserDetails user = (UserDetails) session.getAttribute("user");
+		model.addAttribute("volunteer", volunteerDao.getVolunteer(user.getUsername()));
+		return "volunteer/updateUser";
+	}
+	
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public String processUpdateSubmitUser(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "volunteer/updateUser";
+		volunteerDao.updateVolunteer(volunteer);;
+		return "redirect:/index_userVolunteer.html";
 	}
 	
 	@RequestMapping(value = "/delete/{dni}")

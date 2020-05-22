@@ -76,6 +76,29 @@ public class HourVolunteerController {
 		return "redirect:list";
 	}
 	
+	@RequestMapping(value = "/addUser")
+	public String addHourVolunteerUser(Model model) {
+		model.addAttribute("hourVolunteer", new HourVolunteer());
+		return "hourVolunteer/addUser";
+	}
+	
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public String processAddSubmitUser(@ModelAttribute("hourVolunteer") HourVolunteer hourVolunteer, BindingResult bindingResult, HttpSession session) {
+		if (bindingResult.hasErrors())
+			return "hourVolunteer/addUser";
+		try {
+		hourVolunteer.setTaken(false);
+		hourVolunteer.setDniElderly(null);
+		UserDetails user = (UserDetails) session.getAttribute("user");
+		hourVolunteer.setDniVolunteer(user.getUsername());
+		hourVolunteerDao.addHourVolunteer(hourVolunteer);
+		} catch (DataAccessException e) { 
+		    throw new ElderlyPeopleException(  
+		         "Error en l'accés a la base de dades", "ErrorAccedintDades"); 
+		}
+		return "redirect:/volunteer/listHoursNotTaken";
+	}
+	
 	@RequestMapping(value = "/update/{dniVolunteer}/{day}/{startHour}/{endHour}", method = RequestMethod.GET)
 	public String editHourVolunteer(Model model, @PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
 		model.addAttribute("hourVolunteer", hourVolunteerDao.getHourVolunteer(dniVolunteer, day, startHour, endHour));
@@ -83,11 +106,25 @@ public class HourVolunteerController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String processUpdateSubmit(@ModelAttribute("hourVolunteer") HourVolunteer hourVolunteer, BindingResult bindingResult) {
+	public String processUpdateSubmitUser (@ModelAttribute("hourVolunteer") HourVolunteer hourVolunteer, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())
 			return "hourVolunteer/update";
 		hourVolunteerDao.updateHourVolunteer(hourVolunteer);
 		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "/updateUser/{dniVolunteer}/{day}/{startHour}/{endHour}", method = RequestMethod.GET)
+	public String editHourVolunteerUser(Model model, @PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
+		model.addAttribute("hourVolunteer", hourVolunteerDao.getHourVolunteer(dniVolunteer, day, startHour, endHour));
+		return "hourVolunteer/updateUser";
+	}
+	
+	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
+	public String processUpdateSubmit(@ModelAttribute("hourVolunteer") HourVolunteer hourVolunteer, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "hourVolunteer/update";
+		hourVolunteerDao.updateHourVolunteer(hourVolunteer);
+		return "redirect:/hourVolunteer/listHoursNotTaken";
 	}
 	
 	@RequestMapping(value = "/delete/{dniVolunteer}/{day}/{startHour}/{endHour}")
@@ -99,7 +136,13 @@ public class HourVolunteerController {
 	@RequestMapping(value = "/deleteUser/{dniVolunteer}/{day}/{startHour}/{endHour}")
 	public String processDeleteUser(@PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
 		hourVolunteerDao.deleteHourVolunteer(dniVolunteer, day, startHour, endHour);
-		return "redirect:/hourVolunteer/listUser";
+		return "redirect:/hourVolunteer/listHoursNotTaken";
+	}
+	
+	@RequestMapping(value = "/deleteHourTaken/{dniVolunteer}/{day}/{startHour}/{endHour}")
+	public String processDeleteHourTaken(@PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
+		hourVolunteerDao.deleteHourVolunteer(dniVolunteer, day, startHour, endHour);
+		return "redirect:/hourVolunteer/listHoursTaken";
 	}
 	
 	@RequestMapping(value = "/listFilter")

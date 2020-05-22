@@ -51,12 +51,11 @@
 								<tr>
 									<th>Elderly name</th>
 									<th>Age</th>
-									<th>Gender</th>
 									<th>Address</th>
 									<th>Email</th>
 									<th>Alergies</th>
 									<th>Diseases</th>
-									<th>        </th>
+									<th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
 									<th>Day</th>
 									<th>Start hour</th>
 									<th>End hour</th>
@@ -67,27 +66,22 @@
 						
 							<tbody>
 						   		<tr th:each="hourTaken: ${elderlyList}"> 
-							        <td class="hover" th:text="${hourTaken.volunteer.name}"></td>
+							        <td class="hover" th:text="${hourTaken.elderly.name}"></td>
 							        <td class="hover" th:text="${hourTaken.age}"></td>
-							        <td class="hover" th:text="${hourTaken.volunteer.gender}"></td>
-							        <td class="hover" th:text="${hourTaken.volunteer.address}"></td>
-							        <td class="hover" th:text="${hourTaken.volunteer.email}"></td>
-							        <td class="hover" th:text="${hourTaken.volunteer.alergies}"></td>
-							        <td class="hover" th:text="${hourTaken.volunteer.diseases}"></td>
+							        <td class="hover" th:text="${hourTaken.elderly.address}"></td>
+							        <td class="hover" th:text="${hourTaken.elderly.email}"></td>
+							        <td class="hover" th:text="${hourTaken.elderly.alergies}"></td>
+							        <td class="hover" th:text="${hourTaken.elderly.diseases}"></td>
 							        
 							        <td> 															</td>
 							        
+							        <td class="hover" th:text="${hourTaken.hourVolunteer.day}"></td>
 							        <td class="hover" th:text="${hourTaken.hourVolunteer.startHour}"></td>
 							        <td class="hover" th:text="${hourTaken.hourVolunteer.endHour}"></td>
-  
-							        <td>
-							        	<a th:href="@{/hourVolunteer/updateUser/{dniVolunteer}/{day}/{startHour}/{endHour}(dniVolunteer=${hour.dniVolunteer}, day=${hour.day}, startHour=${hour.startHour}, endHour=${hour.endHour})}">
-							        		<img src="/edit.png" height="50" width="50">
-							        	</a> 
-							        </td>
+ 
 							        
 							        <td>
-							        	<a th:href="@{/hourVolunteer/deleteHourTaken/{dniVolunteer}/{day}/{startHour}/{endHour}(dniVolunteer=${hour.dniVolunteer}, day=${hour.day}, startHour=${hour.startHour}, endHour=${hour.endHour})}">
+							        	<a th:href="@{/hourVolunteer/deleteHourTaken/{dniVolunteer}/{day}/{startHour}/{endHour}(dniVolunteer=${hourTaken.hourVolunteer.dniVolunteer}, day=${hourTaken.hourVolunteer.day}, startHour=${hourTaken.hourVolunteer.startHour}, endHour=${hourTaken.hourVolunteer.endHour})}">
 							        		<img src="/delete.png" height="50" width="50">
 							        	</a>
 							        </td>
