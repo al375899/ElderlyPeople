@@ -5,9 +5,15 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import es.uji.ei1027.elderlypeople.model.ElderlyList;
+import es.uji.ei1027.elderlypeople.model.ElderlyPeople;
+import es.uji.ei1027.elderlypeople.model.HourVolunteer;
 import es.uji.ei1027.elderlypeople.model.Volunteer;
 
 import javax.sql.DataSource;
+
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -63,6 +69,34 @@ public class VolunteerDao {
 			return jdbcTemplate.query("SELECT * FROM Volunteer", new VolunteerRowMapper());
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Volunteer>();
+		}
+	}
+	
+	public List<ElderlyList> getElderlyList(String username){
+		try {
+			List<ElderlyList> list = new ArrayList<>();
+			List<HourVolunteer> listaHoras = jdbcTemplate.query("SELECT * FROM HourVolunteer WHERE taken=true AND dniVolunteer = ?", new HourVolunteerRowMapper(), username);
+			for (HourVolunteer hora : listaHoras) {
+				String dniElderly = hora.getDniElderly();
+				ElderlyPeople elderly = jdbcTemplate.queryForObject("SELECT * FROM ElderlyPeople WHERE dni=?", new ElderlyPeopleRowMapper(), dniElderly);
+				ElderlyList elderlyList = new ElderlyList();
+				elderlyList.setHourVolunteer(hora);
+				elderlyList.setElderly(elderly);
+				LocalDate now = LocalDate.now();
+				elderlyList.setAge(Period.between(elderly.getBirthDate(),now).getYears());
+				list.add(elderlyList);
+			}
+			return list;
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<ElderlyList>();
+		}
+	}
+	
+	public List<HourVolunteer> getHoursList(String username){
+		try {
+			return jdbcTemplate.query("SELECT * FROM HourVolunteer WHERE taken=false AND dniVolunteer = ?", new HourVolunteerRowMapper(), username);
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<HourVolunteer>();
 		}
 	}
 }

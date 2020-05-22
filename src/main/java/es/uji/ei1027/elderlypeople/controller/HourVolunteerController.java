@@ -40,6 +40,13 @@ public class HourVolunteerController {
 		model.addAttribute("hourVolunteers", hourVolunteerDao.getHourVolunteers());
 		return "hourVolunteer/list";
 	}
+	
+	@RequestMapping("/listUser")
+	public String listHourVolunteersUser(Model model, HttpSession session) {
+		UserDetails user = (UserDetails) session.getAttribute("user");
+		model.addAttribute("requestVolunteers", hourVolunteerDao.getHourVolunteersUser(user.getUsername()));
+		return "hourVolunteer/listVolunteerRequest";
+	}
 
 	@RequestMapping(value = "/add")
 	public String addHourVolunteer(Model model) {
@@ -87,6 +94,12 @@ public class HourVolunteerController {
 	public String processDelete(@PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
 		hourVolunteerDao.deleteHourVolunteer(dniVolunteer, day, startHour, endHour);
 		return "redirect:/hourVolunteer/list";
+	}
+	
+	@RequestMapping(value = "/deleteUser/{dniVolunteer}/{day}/{startHour}/{endHour}")
+	public String processDeleteUser(@PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
+		hourVolunteerDao.deleteHourVolunteer(dniVolunteer, day, startHour, endHour);
+		return "redirect:/hourVolunteer/listUser";
 	}
 	
 	@RequestMapping(value = "/listFilter")

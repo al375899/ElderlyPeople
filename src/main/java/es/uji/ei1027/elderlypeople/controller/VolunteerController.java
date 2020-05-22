@@ -1,5 +1,7 @@
 package es.uji.ei1027.elderlypeople.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import es.uji.ei1027.elderlypeople.dao.VolunteerDao;
+import es.uji.ei1027.elderlypeople.model.UserDetails;
 import es.uji.ei1027.elderlypeople.model.Volunteer;
 
 @Controller
@@ -29,6 +32,20 @@ public class VolunteerController {
 	public String listVolunteers(Model model) {
 		model.addAttribute("volunteers", volunteerDao.getVolunteers());
 		return "volunteer/list";
+	}
+	
+	@RequestMapping("/listUsers")
+	public String listVolunteersUsers(Model model, HttpSession session) {
+		UserDetails user = (UserDetails) session.getAttribute("user");
+		model.addAttribute("elderlyList", volunteerDao.getElderlyList(user.getUsername()));
+		return "volunteer/listUsers";
+	}
+	
+	@RequestMapping("/listHours")
+	public String listVolunteersHours(Model model, HttpSession session) {
+		UserDetails user = (UserDetails) session.getAttribute("user");
+		model.addAttribute("hoursList", volunteerDao.getHoursList(user.getUsername()));
+		return "volunteer/listHours";
 	}
 	
 	@RequestMapping(value = "/add")
