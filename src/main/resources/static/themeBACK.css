@@ -1,0 +1,255 @@
+table.greenTable {
+	font-family: 'Nunito', sans-serif;
+	border: 6px solid #24943A;
+	background-color: #F8F8FF;
+	width: 100%;
+	text-align: center;
+}
+
+table.greenTable td, table.greenTable th {
+	border: 1px solid #24943A;
+	padding: 3px 2px;
+	text-align: center;
+}
+
+table.greenTable tbody td {
+	font-size: 13px;
+}
+
+table.greenTable thead {
+	background: #24943A;
+	background: -moz-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+	background: -webkit-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+	background: linear-gradient(to bottom, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+	border-bottom: 0px solid #444444;
+}
+
+table.greenTable thead th {
+	font-size: 32px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	border-left: 2px solid #24943A;
+}
+
+table.greenTable thead th:first-child {
+	border-left: none;
+}
+
+table.greenTable tfoot {
+	font-size: 13px;
+	font-weight: bold;
+	color: #F0F0F0;
+	background: #24943A;
+	background: -moz-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+	background: -webkit-linear-gradient(top, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+	background: linear-gradient(to bottom, #5baf6b 0%, #3a9e4d 66%, #24943A 100%);
+	border-top: 1px solid #24943A;
+}
+
+table.greenTable tfoot td {
+	font-size: 13px;
+	text-align: right;
+}
+
+table.greenTable tfoot .links {
+	text-align: right;
+}
+
+table.greenTable tfoot .links a {
+	display: inline-block;
+	background: #FFFFFF;
+	color: #24943A;
+	padding: 2px 8px;
+	border-radius: 5px;
+}
+
+.titulo {
+	color: #228B22;
+}
+
+.titulo2 {
+	color: #808080;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.text {
+	color: #808080;
+	text-align: center;
+}
+
+table.greenTable2 {
+	font-family: 'Nunito', sans-serif;
+	border: 0px solid black;
+	text-align: center;
+}
+
+table.greenTable2 td, table.greenTable2 th {
+	border: 0px solid #24943A;
+	padding: 3px 2px;
+	text-align: center;
+}
+
+table.greenTable3 {
+	border: 0px solid black;
+}
+
+table.greenTable3 td, table.greenTable3 th {
+	border: 0px solid black;
+}
+
+table.greenTableData {
+	border: 0px solid black;
+}
+
+table.greenTableData td, table.greenTableData th {
+	border: 0px solid black;
+}
+
+table.greenTableData thead th {
+	font-size: 22px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	border: 0px solid black;
+}
+
+table.greenTableData tbody td {
+	font-size: 16px;
+	color: black;
+	text-align: center;
+	border: 0px solid black;
+}
+
+table.greenTableData thead th:first-child {
+	border-left: none;
+}
+
+.myButton {
+	box-shadow: 0px 10px 14px -7px #3e7327;
+	background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+	background-color: #77b55a;
+	border-radius: 17px;
+	border: 1px solid #1f2f47;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: 'Nunito', sans-serif;
+	font-size: 30px;
+	padding: 6px 13px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #263666;
+	background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+	background-color: #77b55a;
+}
+
+.myButton:hover {
+	box-shadow: inset 0px 1px 0px 0px #a4e271;
+	background: linear-gradient(to bottom, #89c403 5%, #77a809 100%);
+	background-color: #89c403;
+}
+
+.myButton:active {
+	position: relative;
+	top: 1px;
+}
+
+.data_title {
+	border-color: #cccccc;
+	padding: 4px;
+	text-align: center;
+	border-radius: 0px;
+	font-size: 22px;
+	border-width: 13px;
+	border-style: hiden;
+	font-weight: bold;
+	font-style: none;
+	font-family: 'Nunito', sans-serif;
+}
+
+
+.data {
+	border-color: #cccccc;
+	border-style: solid;
+	font-size: 22px;
+	text-align: center;
+	border-width: 1px;
+	border-radius: 4px;
+	padding: 8px;
+	font-weight: bold;
+	font-family: 'Nunito', sans-serif;
+}
+
+.data:focus {
+	outline: none;
+}
+
+.data:hover {
+	background: linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+	background-color: #415989;
+}
+
+.enlace {
+	font-family: 'Nunito', sans-serif;
+	font-size: 22px;
+	letter-spacing: 2px;
+	word-spacing: 2px;
+	color: #000000;
+	font-weight: 700;
+	text-decoration: none solid rgb(68, 68, 68);
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: none;
+}
+
+
+.hover:hover {
+	background: linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+	background-color: #415989;
+}
+
+.menu {
+	width: 33%;
+}
+
+.menu:hover {
+	background: linear-gradient(to bottom, #415989 5%, #2e466e 100%);
+	background-color: #415989;
+}
+
+
+.logout:hover {
+	background: linear-gradient(to bottom, #DC143C 5%, #FF0000 100%);
+	background-color: #FF0000;
+}
+
+.enlace_logout {
+	font-family: 'Nunito', sans-serif;
+	font-size: 14px;
+	letter-spacing: 2px;
+	word-spacing: 2px;
+	color: #000000;
+	font-weight: 700;
+	text-decoration: none solid rgb(68, 68, 68);
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: none;
+}
+
+
+.enlace2 {
+	font-family: 'Nunito', sans-serif;
+	font-size: 14px;
+	letter-spacing: 2px;
+	word-spacing: 2px;
+	color: #000000;
+	font-weight: 700;
+	text-decoration: none solid rgb(68, 68, 68);
+	font-style: normal;
+	font-variant: small-caps;
+	text-transform: none;
+}
+
+
+
