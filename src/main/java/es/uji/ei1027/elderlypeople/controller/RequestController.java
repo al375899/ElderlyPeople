@@ -118,19 +118,25 @@ public class RequestController {
 	@RequestMapping(value = "/listFilterAccepted")
 	public String listFilterAccepted(Model model) {
 		model.addAttribute("requestsAccepted", requestDao.getRequestsAccepted());
-		return "redirect:/request/listAccepted";
+		return "/request/listAccepted";
 	}
 	
 	@RequestMapping(value = "/listFilterWaiting")
 	public String listFilterWaiting(Model model) {
 		model.addAttribute("requestsWaiting", requestDao.getRequestsWaiting());
-		return "redirect:/request/listWaiting";
+		return "/request/listWaiting";
 	}
 	
 	@RequestMapping(value = "/listFilterRejected")
 	public String listFilterRejected(Model model) {
 		model.addAttribute("requestsRejected", requestDao.getRequestsRejected());
-		return "redirect:/request/listRejected";
+		return "/request/listRejected";
+	}
+	
+	@RequestMapping(value = "/updateRequest/{idRequest}")
+	public String updateRequest(Model model, @PathVariable Integer idRequest) {
+		model.addAttribute("request", requestDao.getRequest(idRequest));
+		return "request/updateRequest";
 	}
 
 
