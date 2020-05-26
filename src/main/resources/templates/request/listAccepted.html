@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="/theme.css">
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Comfortaa"/>
+<meta charset="UTF-8">
+<title>ElderlyPeople</title>
+</head>
+
+
+<body>
+	<table class="greenTable">
+		<thead>
+			<tr>
+				<th align="center" colspan="4">Elderly People at Home</th>
+			</tr>
+
+		</thead>
+
+		<tfoot>
+			<tr>
+				<td colspan="4">Creado por el grupo JODIMI.</td>
+			</tr>
+		</tfoot>
+
+		<tbody>
+			<tr>
+				<td class="menu"><a href="/index_ElderlyPeople.html" class="enlace">Home <img src="/home.png" height="50" width="50"> </a></td>
+				<td class="menu"><a href="/requestType.html" class="enlace">Add new request <img src="/add.png" height="50" width="50"></a></td>
+				<td class="menu"><a href="/seeRequestType.html" class="enlace">See all request <img src="/see.png" height="50" width="50"></a></td>
+				<td class="logout"><a href="/logout" class="enlace_logout"> <img src="/logout.png" height="50" width="50"> logout </td>
+			</tr>
+
+			<tr>
+
+				<td colspan="4">
+					<center>
+
+						<br>
+						<br>
+						<h1> List of your requests</h1>
+						
+						
+						
+						<br>
+						<br>
+						<table class="greenTableData">
+							<thead>	
+								<tr>
+									<th>Service Type</th>
+									<th>State</th>
+									<th>Begin Date</th>
+									<th>End Date</th>
+									<th>Date Approbation</th>
+									<th>Comments</th>
+									<th></th>
+									<th></th>								
+								</tr>
+							</thead>
+							
+							
+							
+							
+							<tbody>
+								<tr th:each="request: ${requests}">
+									<td th:text="${request.serviceType}" class="hover"></td>
+									<td class="hover" th:text="${request.state}"></td>
+									<td class="hover" th:text="${#temporals.format(request.beginDate,'dd-MM-yyyy')}"></td>
+									<td class="hover" th:text="${#temporals.format(request.endDate,'dd-MM-yyyy')}" ></td>
+									<td class="hover" th:text="${#temporals.format(request.dateApprobation,'dd-MM-yyyy')}"></td>
+									<td class="hover" th:text="${request.comments}" ></td>
+										
+
+									<td >
+										<a th:href="@{/request/updateUser/{idRequest}(idRequest=${request.idRequest})}">
+										<img src="/edit.png" height="50" width="50">
+										</a>
+			
+										</td>
+										
+									<td >
+										<a th:href="@{/request/deleteUser/{idRequest}(idRequest=${request.idRequest})}">
+										<img src="/delete.png" height="50" width="50">
+										</a>
+									</td>
+										
+								</tr>
+							</tbody>
+						</table>
+						<br>
+						<a href="/index_ElderlyPeople.html" class="myButton">Back</a> 
+						<br>
+						<br>
+						<br>
+					</center>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

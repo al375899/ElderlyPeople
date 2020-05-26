@@ -69,7 +69,7 @@ public class LoginController {
 			return "redirect:/index_casVolunteer.html";
 		}
 		
-		if (user.getType().equals("casComitee")) {
+		if (user.getType().equals("casCommitee")) {
 			return "redirect:/index_casComitee.html";
 		}
 		

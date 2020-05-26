@@ -140,8 +140,6 @@ table.greenTableData thead th:first-child {
 	padding: 6px 13px;
 	text-decoration: none;
 	text-shadow: 0px 1px 0px #263666;
-	background: linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
-	background-color: #77b55a;
 }
 
 .myButton:hover {
@@ -252,4 +250,80 @@ table.greenTableData thead th:first-child {
 }
 
 
+.myButtonYELLOW {
+	background:linear-gradient(to bottom, #ffec64 5%, #ffab23 100%);
+	background-color:#ffec64;
+	border-radius: 17px;
+	border: 1px solid #1f2f47;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: 'Nunito', sans-serif;
+	font-size: 30px;
+	padding: 6px 13px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #263666;
+}
 
+.myButtonYELLOW:hover {
+	background:linear-gradient(to bottom, #ffab23 5%, #ffec64 100%);
+	background-color:#ffab23;
+}
+
+.myButtonYELLOW:active {
+	position: relative;
+	top: 1px;
+}
+
+
+.myButtonRED {
+	background:linear-gradient(to bottom, #c62d1f 5%, #f24437 100%);
+	background-color:#c62d1f;
+	border-radius: 17px;
+	border: 1px solid #1f2f47;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: 'Nunito', sans-serif;
+	font-size: 30px;
+	padding: 6px 13px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #263666;
+
+}
+
+.myButtonRED:hover {
+	background:linear-gradient(to bottom, #f24437 5%, #c62d1f 100%);
+	background-color:#f24437;
+}
+
+.myButtonRED:active {
+	position: relative;
+	top: 1px;
+}
+
+
+.myButtonGREEN {
+	background-color:#44c767;
+	border-radius: 17px;
+	border: 1px solid #1f2f47;
+	display: inline-block;
+	cursor: pointer;
+	color: #ffffff;
+	font-family: 'Nunito', sans-serif;
+	font-size: 30px;
+	padding: 6px 13px;
+	text-decoration: none;
+	text-shadow: 0px 1px 0px #263666;
+
+}
+
+.myButtonGREEN:hover {
+	box-shadow: inset 0px 1px 0px 0px #a4e271;
+	background-color:#5cbf2a;
+}
+
+.myButtonGREEN:active {
+	position: relative;
+	top: 1px;
+}
