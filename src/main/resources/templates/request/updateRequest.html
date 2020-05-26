@@ -39,7 +39,7 @@
 						<br> 
 						<br>
 
-						<form action="#" th:action="@{/request/updateUser}" th:object="${request}" method="post">
+						<form action="#" th:action="@{/request/updateRequest}" th:object="${request}" method="post">
 							
 							<table class="greenTable3">
 
@@ -66,7 +66,15 @@
 									<td><input class="data" type="text" th:field="*{comments}" /></td>
 								</tr>
 								
+								<tr>
+									<td><label class="data_title">Id contract</label></td>
+									<td><input class="data" type="text" th:field="*{idContract}" readonly/></td>
+								</tr>
 								
+								<tr>
+									<td><label class="data_title">DNI Elderly</label></td>
+									<td><input class="data" type="text" th:field="*{dniElderly}" readonly/></td>
+								</tr>
 								
 									<input type="hidden" th:field="*{idRequest}" value="*{idRequest}">
 
@@ -77,7 +85,7 @@
 									<td colspan="2">
 										<br>
 										<br>
-										<a href="/request/listUser" class="myButton">Back</a> 
+										<a href="/request/listFilterWaiting" class="myButton">Back</a> 
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 										<input type="submit" value="Modify request" class="myButton"/>
 									</td>
