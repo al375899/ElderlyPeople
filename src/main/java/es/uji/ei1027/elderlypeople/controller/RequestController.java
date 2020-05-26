@@ -114,5 +114,25 @@ public class RequestController {
 		requestDao.deleteRequest(idRequest);
 		return "redirect:/request/listUser";
 	}
+	
+	@RequestMapping(value = "/listFilterAccepted")
+	public String listFilterAccepted(Model model) {
+		model.addAttribute("requestsAccepted", requestDao.getRequestsAccepted());
+		return "redirect:/request/listAccepted";
+	}
+	
+	@RequestMapping(value = "/listFilterWaiting")
+	public String listFilterWaiting(Model model) {
+		model.addAttribute("requestsWaiting", requestDao.getRequestsWaiting());
+		return "redirect:/request/listWaiting";
+	}
+	
+	@RequestMapping(value = "/listFilterRejected")
+	public String listFilterRejected(Model model) {
+		model.addAttribute("requestsRejected", requestDao.getRequestsRejected());
+		return "redirect:/request/listRejected";
+	}
+
+
 
 }

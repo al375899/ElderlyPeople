@@ -125,4 +125,28 @@ public class RequestDao {
 			return new ArrayList<Request>();
 		}
 	}
+	
+	public List<Request> getRequestsAccepted (){
+		try {
+			return jdbcTemplate.query("SELECT * FROM Request WHERE state = 'Accepted'", new RequestRowMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Request>();
+		}
+	}
+	
+	public List<Request> getRequestsWaiting (){
+		try {
+			return jdbcTemplate.query("SELECT * FROM Request WHERE state = 'Waiting'", new RequestRowMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Request>();
+		}
+	}
+	
+	public List<Request> getRequestsRejected (){
+		try {
+			return jdbcTemplate.query("SELECT * FROM Request WHERE state = 'Rejected'", new RequestRowMapper());
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Request>();
+		}
+	}
 }
