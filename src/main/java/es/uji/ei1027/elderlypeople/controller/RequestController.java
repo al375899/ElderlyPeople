@@ -69,15 +69,13 @@ public class RequestController {
 		model.addAttribute("request", new Request());
 		return "request/addUser";
 	}
-	
-	
 
 	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
-	public String processAddSubmitUser(@ModelAttribute("request") Request request, BindingResult bindingResult, HttpSession session) {
-		
+	public String processAddSubmitUser(@ModelAttribute("request") Request request, BindingResult bindingResult,
+			HttpSession session) {
+
 		UserDetails user = (UserDetails) session.getAttribute("user");
-		
-		
+
 		if (bindingResult.hasErrors())
 			return "request/addUser";
 		try {
@@ -114,39 +112,43 @@ public class RequestController {
 		requestDao.deleteRequest(idRequest);
 		return "redirect:/request/listUser";
 	}
-	
+
 	@RequestMapping(value = "/listFilterAccepted")
 	public String listFilterAccepted(Model model) {
 		model.addAttribute("requestsAccepted", requestDao.getRequestsAccepted());
 		return "/request/listAccepted";
 	}
-	
+
 	@RequestMapping(value = "/listFilterWaiting")
 	public String listFilterWaiting(Model model) {
 		model.addAttribute("requestsWaiting", requestDao.getRequestsWaiting());
 		return "/request/listWaiting";
 	}
-	
+
 	@RequestMapping(value = "/listFilterRejected")
 	public String listFilterRejected(Model model) {
 		model.addAttribute("requestsRejected", requestDao.getRequestsRejected());
 		return "/request/listRejected";
 	}
-	
+
 	@RequestMapping(value = "/updateRequest/{idRequest}")
 	public String updateRequest(Model model, @PathVariable Integer idRequest) {
 		model.addAttribute("request", requestDao.getRequest(idRequest));
 		return "request/updateRequest";
 	}
-	
 
 	@RequestMapping(value = "/updateRequest", method = RequestMethod.POST)
-	public String processUpdateSubmitRequestAccept(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+	public String processUpdateSubmitRequestAccept(@ModelAttribute("request") Request request,
+			BindingResult bindingResult) {
+
 		if (bindingResult.hasErrors())
 			return "request/updateRequest";
+
 		requestDao.updateRequestUser(request);
-		switch(request.getState()) {
-		case "Accepted":
+		
+		System.out.println(request.getState());
+		switch (request.getState()) {
+		case "Approbed":
 			return "/request/listAccepted";
 		case "Waiting":
 			return "/request/listWaiting";
@@ -155,7 +157,7 @@ public class RequestController {
 		}
 		return "/manageElderlyRequests";
 	}
-	
+
 	@RequestMapping(value = "/acceptedRequest/{idRequest}", method = RequestMethod.POST)
 	public String acceptRequest(Model model, @PathVariable Integer idRequest) {
 		model.addAttribute("idRequest", idRequest);

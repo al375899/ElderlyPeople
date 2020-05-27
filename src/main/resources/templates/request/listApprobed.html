@@ -65,7 +65,7 @@
 							
 							
 							<tbody>
-								<tr th:each="request: ${requestsAccepted}">
+								<tr th:each="request: ${requestsApprobed}">
 									<td th:text="${request.serviceType}" class="hover"></td>
 									<td class="hover" th:text="${request.state}"></td>
 									<td class="hover" th:text="${#temporals.format(request.beginDate,'dd-MM-yyyy')}"></td>
