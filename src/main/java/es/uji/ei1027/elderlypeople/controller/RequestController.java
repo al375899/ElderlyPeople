@@ -145,17 +145,16 @@ public class RequestController {
 			return "request/updateRequest";
 
 		requestDao.updateRequestUser(request);
-		
-		System.out.println(request.getState());
+
 		switch (request.getState()) {
-		case "Approbed":
-			return "/request/listApproved";
+		case "Approved":
+			return "redirect:/request/listFilterApproved";
 		case "Waiting":
-			return "/request/listWaiting";
+			return "redirect:/request/listFilterWaiting";
 		case "Rejected":
-			return "/request/listRejected";
+			return "redirect:/request/listFilterRejected";
 		}
-		return "/manageElderlyRequests";
+		return "redirect:/manageElderlyRequests.html";
 	}
 
 	@RequestMapping(value = "/acceptedRequest/{idRequest}", method = RequestMethod.POST)
