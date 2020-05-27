@@ -113,10 +113,10 @@ public class RequestController {
 		return "redirect:/request/listUser";
 	}
 
-	@RequestMapping(value = "/listFilterAccepted")
+	@RequestMapping(value = "/listFilterApproved")
 	public String listFilterAccepted(Model model) {
-		model.addAttribute("requestsAccepted", requestDao.getRequestsAccepted());
-		return "/request/listAccepted";
+		model.addAttribute("requestsApproved", requestDao.getRequestsApproved());
+		return "/request/listApproved";
 	}
 
 	@RequestMapping(value = "/listFilterWaiting")
@@ -149,7 +149,7 @@ public class RequestController {
 		System.out.println(request.getState());
 		switch (request.getState()) {
 		case "Approbed":
-			return "/request/listAccepted";
+			return "/request/listApproved";
 		case "Waiting":
 			return "/request/listWaiting";
 		case "Rejected":

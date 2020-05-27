@@ -5,6 +5,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import es.uji.ei1027.elderlypeople.model.Contract;
 import es.uji.ei1027.elderlypeople.model.Request;
 import es.uji.ei1027.elderlypeople.model.UserDetails;
 
@@ -126,9 +127,9 @@ public class RequestDao {
 		}
 	}
 	
-	public List<Request> getRequestsAccepted (){
+	public List<Request> getRequestsApproved (){
 		try {
-			return jdbcTemplate.query("SELECT * FROM Request WHERE state = 'Accepted'", new RequestRowMapper());
+			return jdbcTemplate.query("SELECT * FROM Request WHERE state = 'Approved'", new RequestRowMapper());
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Request>();
 		}
@@ -147,6 +148,14 @@ public class RequestDao {
 			return jdbcTemplate.query("SELECT * FROM Request WHERE state = 'Rejected'", new RequestRowMapper());
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Request>();
+		}
+	}
+	
+	public List<Contract> getContracts(Request request){
+		try {
+			return jdbcTemplate.query("SELECT * FROM Contract WHERE serviceType = ? AND left > 0", new ContractRowMapper(), request.getServiceType());
+		} catch (EmptyResultDataAccessException e) {
+			return new ArrayList<Contract>();
 		}
 	}
 }
