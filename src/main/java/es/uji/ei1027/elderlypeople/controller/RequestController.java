@@ -139,6 +139,28 @@ public class RequestController {
 		return "request/updateRequest";
 	}
 
-
+	@RequestMapping(value = "/updateRequest", method = RequestMethod.POST)
+	public String processUpdateSubmitRequestAccept(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return "request/updateRequest";
+		requestDao.updateRequestUser(request);
+		switch(request.getState()) {
+		case "Accepted":
+			return "/request/listAccepted";
+		case "Waiting":
+			return "/request/listWaiting";
+		case "Rejected":
+			return "/request/listRejected";
+		}
+		return "/manageElderlyRequests";
+	}
+	
+	@RequestMapping(value = "/acceptedRequest/{idRequest}", method = RequestMethod.POST)
+	public String acceptRequest(Model model, @PathVariable Integer idRequest) {
+		model.addAttribute("idRequest", idRequest);
+		Request request = requestDao.getRequest(idRequest);
+		model.addAttribute("contracts", requestDao.getContracts(request));
+		return "";
+	}
 
 }
