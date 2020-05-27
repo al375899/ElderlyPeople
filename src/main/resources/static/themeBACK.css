@@ -14,6 +14,7 @@ table.greenTable td, table.greenTable th {
 
 table.greenTable tbody td {
 	font-size: 13px;
+	heigth: 100px;
 }
 
 table.greenTable thead {
@@ -186,6 +187,28 @@ table.greenTableData thead th:first-child {
 .data:hover {
 	background: linear-gradient(to bottom, #415989 5%, #2e466e 100%);
 	background-color: #415989;
+}
+
+
+.data_readonly {
+	border-color: white;
+	background-color: #DCDCDC;
+	border-style: solid;
+	font-size: 22px;
+	text-align: center;
+	border-width: 1px;
+	border-radius: 4px;
+	padding: 8px;
+	font-weight: bold;
+	font-family: 'Nunito', sans-serif;
+}
+
+.data_readonly:focus {
+	outline: none;
+}
+
+.data_readonly:hover {
+	background-color: #D3D3D3;
 }
 
 .enlace {

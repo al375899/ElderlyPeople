@@ -252,4 +252,22 @@ table.greenTableData thead th:first-child {
 }
 
 
+.data_readonly {
+	border-color: white;
+	background-color: #DCDCDC;
+	font-size: 27px;
+	text-align: center;
+	border-width: 1px;
+	border-radius: 4px;
+	padding: 8px;
+	font-weight: bold;
+	font-family: 'Comfortaa', 'Arial';
+}
 
+.data_readonly:focus {
+	outline: none;
+}
+
+.data_readonly:hover {
+	background-color: #D3D3D3;
+}

@@ -41,7 +41,7 @@
 
 						<br>
 						<br>
-						<h1> List of your requests</h1>
+						<h1> List of waiting requests</h1>
 						
 						
 						
@@ -54,7 +54,6 @@
 									<th>State</th>
 									<th>Begin Date</th>
 									<th>End Date</th>
-									<th>Date Approbation</th>
 									<th>Comments</th>
 									<th></th>
 									<th></th>
@@ -72,7 +71,6 @@
 									<td class="hover" th:text="${request.state}"></td>
 									<td class="hover" th:text="${#temporals.format(request.beginDate,'dd-MM-yyyy')}"></td>
 									<td class="hover" th:text="${#temporals.format(request.endDate,'dd-MM-yyyy')}" ></td>
-									<td class="hover" th:text="${#temporals.format(request.dateApprobation,'dd-MM-yyyy')}"></td>
 									<td class="hover" th:text="${request.comments}" ></td>
 										
 
@@ -91,7 +89,7 @@
 									
 									
 									<td >
-										<a th:href="@{/request/deleteUser/{idRequest}(idRequest=${request.idRequest})}">
+										<a th:href="@{/request/rejectedRequest/{idRequest}(idRequest=${request.idRequest})}">
 										<img src="/deny.png" height="50" width="50" class="hover">
 										</a>
 									</td>
