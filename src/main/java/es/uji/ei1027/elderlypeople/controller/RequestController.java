@@ -139,14 +139,6 @@ public class RequestController {
 		return "request/updateRequest";
 	}
 	
-	@RequestMapping(value = "/updateRequest", method = RequestMethod.POST)
-	public String processUpdateSubmitRequest(@ModelAttribute("request") Request request, BindingResult bindingResult) {
-		if (bindingResult.hasErrors())
-			return "request/updateRequest";
-		requestDao.updateRequestUser(request);
-		
-		return "redirect:/manageElderlyRequests.html";
-	}
 
 	@RequestMapping(value = "/updateRequest", method = RequestMethod.POST)
 	public String processUpdateSubmitRequestAccept(@ModelAttribute("request") Request request, BindingResult bindingResult) {
