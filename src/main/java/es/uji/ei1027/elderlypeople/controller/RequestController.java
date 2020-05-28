@@ -157,12 +157,74 @@ public class RequestController {
 		return "redirect:/manageElderlyRequests.html";
 	}
 
-	@RequestMapping(value = "/acceptedRequest/{idRequest}", method = RequestMethod.POST)
-	public String acceptRequest(Model model, @PathVariable Integer idRequest) {
+	// Le pasa los contratos disponibles al casCommitee
+	@RequestMapping(value = "/approvedRequest/{idRequest}", method = RequestMethod.POST)
+	public String appoveRequest(Model model, @PathVariable Integer idRequest) {
 		model.addAttribute("idRequest", idRequest);
 		Request request = requestDao.getRequest(idRequest);
 		model.addAttribute("contracts", requestDao.getContracts(request));
 		return "";
 	}
-
+	
+	// Acaba de aceptar la peticion desde el casCommitee
+	@RequestMapping(value = "/confirmApprove/{idRequest}/{idContract}", method = RequestMethod.POST)
+	public String confirmApprove(@PathVariable Integer idRequest, @PathVariable Integer idContract) {
+		String state = requestDao.getRequest(idRequest).getState();
+		requestDao.confirmApproveRequest(idRequest, idContract);
+		switch(state) {
+		case "Waiting":
+			return "redirect:/request/listFilterWaiting";
+		case "Rejected":
+			return "redirect:/request/listFilterRejected";
+		}
+		return "redirect:/manageElderlyRequests.html";
+	}
+	
+	
+	// Pone en espera una peticion desde el casCommitee
+	@RequestMapping(value = "/waitRequest/{idRequest}", method = RequestMethod.POST)
+	public String waitRequest(@PathVariable Integer idRequest) {
+		Request request = requestDao.getRequest(idRequest);
+		requestDao.waitRequest(request);
+		String state = request.getState();
+		switch(state) {
+		case "Approved":
+			return "redirect:/request/listFilterApproved";
+		case "Rejected":
+			return "redirect:/request/listFilterRejected";
+		}
+		return "redirect:/manageElderlyRequests.html";
+	}
+	
+	// Rechaza una peticion desde el casCommitee
+	@RequestMapping(value = "/rejectedRequest/{idRequest}", method = RequestMethod.POST)
+	public String rejectRequest(@PathVariable Integer idRequest) {
+		Request request = requestDao.getRequest(idRequest);
+		requestDao.rejectRequest(request);
+		String state = request.getState();
+		switch(state) {
+		case "Approved":
+			return "redirect:/request/listFilterApproved";
+		case "Waiting":
+			return "redirect:/request/listFilterWaiting";
+		}
+		return "redirect:/manageElderlyRequests.html";
+	}
+	
+	// Borra una request desde el casCommitee
+	@RequestMapping(value = "/deleteRequest/{idRequest}")
+	public String processDeleteRequest(@PathVariable int idRequest) {
+		Request request = requestDao.getRequest(idRequest);
+		String state = request.getState();
+		requestDao.deleteRequest(idRequest);
+		switch (state) {
+		case "Approved":
+			return "redirect:/request/listFilterApproved";
+		case "Waiting":
+			return "redirect:/request/listFilterWaiting";
+		case "Rejected":
+			return "redirect:/request/listFilterRejected";
+		}
+		return "redirect:/manageElderlyRequests.html";
+	}
 }

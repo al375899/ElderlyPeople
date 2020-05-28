@@ -10,6 +10,8 @@ import es.uji.ei1027.elderlypeople.model.Request;
 import es.uji.ei1027.elderlypeople.model.UserDetails;
 
 import javax.sql.DataSource;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -153,9 +155,37 @@ public class RequestDao {
 	
 	public List<Contract> getContracts(Request request){
 		try {
-			return jdbcTemplate.query("SELECT * FROM Contract WHERE serviceType = ? AND left > 0", new ContractRowMapper(), request.getServiceType());
+			return jdbcTemplate.query("SELECT * FROM Contract WHERE serviceType = ? AND available > 0", new ContractRowMapper(), request.getServiceType());
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Contract>();
+		}
+	}
+	
+	public void confirmApproveRequest(Integer idRequest, Integer idContract) {
+		Contract contract = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE idContract = ?", new ContractRowMapper(), idContract);
+		jdbcTemplate.update("UPDATE Contract SET available = ? WHERE idContract = ?", contract.getAvailable() - 1, idContract);
+		jdbcTemplate.update("UPDATE Request SET state = 'Approved', dateApprobation = ?, idContract = ? WHERE idRequest = ?", LocalDate.now(), idContract, idRequest);	
+	}
+	
+	public void waitRequest(Request request) {
+		String state = request.getState();
+		if (state.equals("Approved")) {
+			Contract contract = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE idContract = ?", new ContractRowMapper(), request.getIdContract());
+			jdbcTemplate.update("UPDATE Contract SET available = ? WHERE idContract = ?", contract.getAvailable() + 1, request.getIdContract());
+			jdbcTemplate.update("UPDATE Request SET idContract = null, dateApprobation = null, state = 'Waiting' WHERE idRequest = ?", request.getIdRequest());
+		} else if (state.equals("Rejected")) {
+			jdbcTemplate.update("UPDATE Request SET state = 'Waiting' WHERE idRequest = ?", request.getIdRequest());
+		}
+	}
+	
+	public void rejectRequest(Request request) {
+		String state = request.getState();
+		if (state.equals("Approved")) {
+			Contract contract = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE idContract = ?", new ContractRowMapper(), request.getIdContract());
+			jdbcTemplate.update("UPDATE Contract SET available = ? WHERE idContract = ?", contract.getAvailable() + 1, request.getIdContract());
+			jdbcTemplate.update("UPDATE Request SET idContract = null, dateApprobation = null, state = 'Rejected' WHERE idRequest = ?", request.getIdRequest());
+		} else if (state.equals("Waiting")) {
+			jdbcTemplate.update("UPDATE Request SET state = 'Rejected' WHERE idRequest = ?", request.getIdRequest());
 		}
 	}
 }

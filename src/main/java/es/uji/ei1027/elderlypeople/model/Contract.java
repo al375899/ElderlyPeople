@@ -9,6 +9,7 @@ public class Contract {
 	String fnCompany;
 	String serviceType;
 	Integer quantity;
+	Integer available;
 	
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	LocalDate startDate;
@@ -51,6 +52,14 @@ public class Contract {
 
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
+	}
+	
+	public Integer getAvailable() {
+		return available;
+	}
+
+	public void setAvailable(Integer available) {
+		this.available = available;
 	}
 
 	public LocalDate getStartDate() {
