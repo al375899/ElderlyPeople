@@ -10,10 +10,10 @@ public class Contract {
 	String serviceType;
 	Integer quantity;
 	Integer available;
-	
+
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	LocalDate startDate;
-	
+
 	@DateTimeFormat(pattern = "dd-MM-yyyy")
 	LocalDate endDate;
 	Integer price;
@@ -53,7 +53,7 @@ public class Contract {
 	public void setQuantity(Integer quantity) {
 		this.quantity = quantity;
 	}
-	
+
 	public Integer getAvailable() {
 		return available;
 	}
@@ -89,8 +89,8 @@ public class Contract {
 	@Override
 	public String toString() {
 		return "Contract [idContract=" + idContract + ", fnCompany=" + fnCompany + ", serviceType=" + serviceType
-				+ ", quantity=" + quantity + ", startDate=" + startDate + ", endDate=" + endDate + ", price=" + price
-				+ "]";
+				+ ", quantity=" + quantity + ", available=" + available + ", startDate=" + startDate + ", endDate="
+				+ endDate + ", price=" + price + "]";
 	}
 
 }

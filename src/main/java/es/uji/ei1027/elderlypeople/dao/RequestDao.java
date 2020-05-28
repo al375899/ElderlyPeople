@@ -163,6 +163,7 @@ public class RequestDao {
 	
 	public void confirmApproveRequest(Integer idRequest, Integer idContract) {
 		Contract contract = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE idContract = ?", new ContractRowMapper(), idContract);
+		System.out.println(contract);
 		jdbcTemplate.update("UPDATE Contract SET available = ? WHERE idContract = ?", contract.getAvailable() - 1, idContract);
 		jdbcTemplate.update("UPDATE Request SET state = 'Approved', dateApprobation = ?, idContract = ? WHERE idRequest = ?", LocalDate.now(), idContract, idRequest);	
 	}

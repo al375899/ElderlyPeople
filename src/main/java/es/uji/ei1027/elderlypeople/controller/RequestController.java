@@ -158,16 +158,16 @@ public class RequestController {
 	}
 
 	// Le pasa los contratos disponibles al casCommitee
-	@RequestMapping(value = "/approvedRequest/{idRequest}", method = RequestMethod.POST)
+	@RequestMapping(value = "/approvedRequest/{idRequest}")
 	public String appoveRequest(Model model, @PathVariable Integer idRequest) {
 		model.addAttribute("idRequest", idRequest);
 		Request request = requestDao.getRequest(idRequest);
 		model.addAttribute("contracts", requestDao.getContracts(request));
-		return "";
+		return "/request/acceptAndSelectCompany";
 	}
 	
 	// Acaba de aceptar la peticion desde el casCommitee
-	@RequestMapping(value = "/confirmApprove/{idRequest}/{idContract}", method = RequestMethod.POST)
+	@RequestMapping(value = "/confirmApprove/{idRequest}/{idContract}")
 	public String confirmApprove(@PathVariable Integer idRequest, @PathVariable Integer idContract) {
 		String state = requestDao.getRequest(idRequest).getState();
 		requestDao.confirmApproveRequest(idRequest, idContract);
@@ -182,7 +182,7 @@ public class RequestController {
 	
 	
 	// Pone en espera una peticion desde el casCommitee
-	@RequestMapping(value = "/waitRequest/{idRequest}", method = RequestMethod.POST)
+	@RequestMapping(value = "/waitRequest/{idRequest}")
 	public String waitRequest(@PathVariable Integer idRequest) {
 		Request request = requestDao.getRequest(idRequest);
 		requestDao.waitRequest(request);
@@ -197,7 +197,7 @@ public class RequestController {
 	}
 	
 	// Rechaza una peticion desde el casCommitee
-	@RequestMapping(value = "/rejectedRequest/{idRequest}", method = RequestMethod.POST)
+	@RequestMapping(value = "/rejectedRequest/{idRequest}")
 	public String rejectRequest(@PathVariable Integer idRequest) {
 		Request request = requestDao.getRequest(idRequest);
 		requestDao.rejectRequest(request);

@@ -48,6 +48,7 @@
 					         <th>Fiscal number company</th>
 					         <th>Service type</th>
 					         <th>Quantity</th>
+					         <th>Available</th>
 					         <th>Start date</th>
 					         <th>End date</th>
 					         <th>Price</th>
@@ -59,6 +60,7 @@
 					         <td class="hover" th:text="${contract.fnCompany}"></td>
 					         <td class="hover" th:text="${contract.serviceType}"></td>
 					         <td class="hover" th:text="${contract.quantity}"></td>
+					         <td class="hover" th:text="${contract.available}"></td>
 					         <td class="hover" th:text="${contract.startDate}"></td>
 					         <td class="hover" th:text="${contract.endDate}"></td>
 					         <td class="hover" th:text="${contract.price}"></td>         
@@ -85,9 +87,12 @@
 					   		<br>						
 							<a href="/company/list" class="myButton">Back</a> 		
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-					   		<a href="/contract/add" class="myButton">Add new contract</a> 
+					   		<a th:href="@{/contract/addUser/{fiscalNumber}(fiscalNumber=${fiscalNumber})}" class="myButton">Add new contract</a> 
+					   		
+					   		
 					   		<br>
 							<br>
+							
 
 					</center>
 				</td>
