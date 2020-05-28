@@ -54,7 +54,7 @@ public class RequestDao {
 			
 		
 		
-		String comando2="SELECT * FROM Request WHERE dniElderly = ? AND state = 'Approved'";
+		String comando2="SELECT * FROM Request WHERE dniElderly = ? AND (state = 'Approved' OR state = 'Waiting')";
 		List <Request> aceptadas = jdbcTemplate.query(comando2, new RequestRowMapper(), request.getDniElderly());
 		
 		for (Request solicitud : aceptadas) {
