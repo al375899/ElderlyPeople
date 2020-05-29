@@ -28,10 +28,10 @@
 
 		<tbody>
 			<tr>
-				<td class="menu"><a href="/index_casComitee.html" class="enlace">Home <img src="/home.png" height="50" width="50"> </a></td>
-				<td class="menu"><a href="/manageElderlyRequests.html" class="enlace">Manage elderly request <img src="/manage.png" height="50" width="50"></a></td>
-				<td class="menu"><a href="/manageElderlyPeople.html" class="enlace">Manage elderly people <img src="/manage.png" height="50" width="50"></a></td>
-				<td class="logout"><a href="/logout" class="enlace_logout"> <img src="/logout.png" height="50" width="50"> logout </td>
+				<td class="menu"><a href="/index_casComitee.html" class="enlace">Home <img src="/icons/home.png" height="50" width="50"> </a></td>
+				<td class="menu"><a href="/manageElderlyRequests.html" class="enlace">Manage elderly request <img src="/icons/manage.png" height="50" width="50"></a></td>
+				<td class="menu"><a href="/manageElderlyPeople.html" class="enlace">Manage elderly people <img src="/icons/manage.png" height="50" width="50"></a></td>
+				<td class="logout"><a href="/logout" class="enlace_logout"> <img src="/icons/logout.png" height="50" width="50"> logout </td>
 			</tr>
 			
 			<tr>
@@ -75,19 +75,19 @@
 
 									<td class="hover">
 										<a th:href="@{/request/updateRequest/{idRequest}(idRequest=${request.idRequest})}">
-										<img src="/edit.png" height="50" width="50">
+										<img src="/icons/edit.png" height="50" width="50">
 										</a>
 									</td>
 										
 									<td >
 										<a th:href="@{/request/approvedRequest/{idRequest}(idRequest=${request.idRequest})}">
-										<img src="/accept.png" height="50" width="50" class="hover">
+										<img src="/icons/accept.png" height="50" width="50" class="hover">
 										</a>
 									</td>
 		
 									<td >
 										<a th:href="@{/request/waitRequest/{idRequest}(idRequest=${request.idRequest})}">
-										<img src="/waiting.png" height="50" width="50" class="hover">
+										<img src="/icons/waiting.png" height="50" width="50" class="hover">
 										</a>
 									</td>
 										
