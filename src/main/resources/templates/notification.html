@@ -29,9 +29,9 @@
 		<tbody>
 			<tr>
 				<td class="menu">
-				
-					<h1> Esto es el mensaje para el usuario </h1>
-					<a href="#" class="myButton"> Volver </a>
+
+					<h1 th:text="${session.message}" th:unless="${session == null}">An unexpected error has occured </h1>
+					<a th:href="${session.reference}" class="myButton"> Back </a>
 					<p></p>
 				
 				</td>

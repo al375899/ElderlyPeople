@@ -139,22 +139,27 @@ public class RequestController {
 
 	@RequestMapping(value = "/updateRequest", method = RequestMethod.POST)
 	public String processUpdateSubmitRequestAccept(@ModelAttribute("request") Request request,
-			BindingResult bindingResult) {
+			BindingResult bindingResult, HttpSession session) {
 
 		if (bindingResult.hasErrors())
 			return "request/updateRequest";
 
 		requestDao.updateRequestUser(request);
-
+		
+		session.setAttribute("message", "Request has been updated correctly");
+		
 		switch (request.getState()) {
 		case "Approved":
-			return "redirect:/request/listFilterApproved";
+			session.setAttribute("reference", "/request/listFilterApproved");
+			break;
 		case "Waiting":
-			return "redirect:/request/listFilterWaiting";
+			session.setAttribute("reference", "/request/listFilterWaiting");
+			break;
 		case "Rejected":
-			return "redirect:/request/listFilterRejected";
+			session.setAttribute("reference", "/request/listFilterRejected");
+			break;
 		}
-		return "redirect:/manageElderlyRequests.html";
+		return "/notification";
 	}
 
 	// Le pasa los contratos disponibles al casCommitee
@@ -168,16 +173,19 @@ public class RequestController {
 	
 	// Acaba de aceptar la peticion desde el casCommitee
 	@RequestMapping(value = "/confirmApprove/{idRequest}/{idContract}")
-	public String confirmApprove(@PathVariable Integer idRequest, @PathVariable Integer idContract) {
+	public String confirmApprove(@PathVariable Integer idRequest, @PathVariable Integer idContract, HttpSession session) {
 		String state = requestDao.getRequest(idRequest).getState();
 		requestDao.confirmApproveRequest(idRequest, idContract);
+		session.setAttribute("message", "Request has been approved correctly");
 		switch(state) {
 		case "Waiting":
-			return "redirect:/request/listFilterWaiting";
+			session.setAttribute("reference", "/request/listFilterWaiting");
+			break;
 		case "Rejected":
-			return "redirect:/request/listFilterRejected";
+			session.setAttribute("reference", "/request/listFilterRejected");
+			break;
 		}
-		return "redirect:/manageElderlyRequests.html";
+		return "/notification";
 	}
 	
 	
@@ -186,46 +194,55 @@ public class RequestController {
 	public String waitRequest(@PathVariable Integer idRequest, HttpSession session) {
 		Request request = requestDao.getRequest(idRequest);
 		requestDao.waitRequest(request);
-		session.setAttribute("message", "Request has been set to wait correctly");
+		session.setAttribute("message", "Request has been waited correctly");
 		String state = request.getState();
 		switch(state) {
 		case "Approved":
 			session.setAttribute("reference", "/request/listFilterApproved");
+			break;
 		case "Rejected":
 			session.setAttribute("reference", "/request/listFilterRejected");
+			break;
 		}
 		return "/notification";
 	}
 	
 	// Rechaza una peticion desde el casCommitee
 	@RequestMapping(value = "/rejectedRequest/{idRequest}")
-	public String rejectRequest(@PathVariable Integer idRequest) {
+	public String rejectRequest(@PathVariable Integer idRequest, HttpSession session) {
 		Request request = requestDao.getRequest(idRequest);
 		requestDao.rejectRequest(request);
 		String state = request.getState();
+		session.setAttribute("message", "Request has been rejected correctly");
 		switch(state) {
 		case "Approved":
-			return "redirect:/request/listFilterApproved";
+			session.setAttribute("reference", "/request/listFilterApproved");
+			break;
 		case "Waiting":
-			return "redirect:/request/listFilterWaiting";
+			session.setAttribute("reference", "/request/listFilterWaiting");
+			break;
 		}
-		return "redirect:/manageElderlyRequests.html";
+		return "/notification";
 	}
 	
 	// Borra una request desde el casCommitee
 	@RequestMapping(value = "/deleteRequest/{idRequest}")
-	public String processDeleteRequest(@PathVariable int idRequest) {
+	public String processDeleteRequest(@PathVariable int idRequest, HttpSession session) {
 		Request request = requestDao.getRequest(idRequest);
 		String state = request.getState();
 		requestDao.deleteRequest(idRequest);
+		session.setAttribute("message", "Request has been deleted correctly");
 		switch (state) {
 		case "Approved":
-			return "redirect:/request/listFilterApproved";
+			session.setAttribute("reference", "/request/listFilterApproved");
+			break;
 		case "Waiting":
-			return "redirect:/request/listFilterWaiting";
+			session.setAttribute("reference", "/request/listFilterWaiting");
+			break;
 		case "Rejected":
-			return "redirect:/request/listFilterRejected";
+			session.setAttribute("reference", "/request/listFilterRejected");
+			break;
 		}
-		return "redirect:/manageElderlyRequests.html";
+		return "/notification";
 	}
 }
