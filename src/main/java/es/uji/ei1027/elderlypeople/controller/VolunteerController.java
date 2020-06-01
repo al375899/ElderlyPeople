@@ -96,11 +96,13 @@ public class VolunteerController {
 	}
 	
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-	public String processUpdateSubmitUser(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
+	public String processUpdateSubmitUser(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult, HttpSession session) {
 		if (bindingResult.hasErrors())
 			return "volunteer/updateUser";
 		volunteerDao.updateVolunteer(volunteer);;
-		return "redirect:/index_userVolunteer.html";
+		session.setAttribute("message", "Your profile has been updated");
+		session.setAttribute("reference","/index_userVolunteer.html" );
+		return "/notification";
 	}
 	
 	@RequestMapping(value = "/delete/{dni}")

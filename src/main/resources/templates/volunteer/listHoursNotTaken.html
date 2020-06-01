@@ -42,10 +42,8 @@
 						<br>
 						<br>
 						<h1> List of hours not taken</h1>
-						<br>
-						<br>
-							<a href="/index_userVolunteer.html" class="myButton">Back</a> 
-							<br>
+
+						
 						<table class="greenTableData">
 							<thead>	
 								<tr>
@@ -63,11 +61,6 @@
 							        <td class="hover" th:text="${hour.startHour}"></td>
 							        <td class="hover" th:text="${hour.endHour}"></td>
   
-							        <td>
-							        	<a th:href="@{/hourVolunteer/updateUser/{dniVolunteer}/{day}/{startHour}/{endHour}(dniVolunteer=${hour.dniVolunteer}, day=${hour.day}, startHour=${hour.startHour}, endHour=${hour.endHour})}">
-							        		<img src="/icons/edit.png" height="50" width="50">
-							        	</a> 
-							        </td>
 							        
 							        <td>
 							        	<a th:href="@{/hourVolunteer/deleteUser/{dniVolunteer}/{day}/{startHour}/{endHour}(dniVolunteer=${hour.dniVolunteer}, day=${hour.day}, startHour=${hour.startHour}, endHour=${hour.endHour})}">
@@ -78,8 +71,9 @@
 							</tbody>
 						</table>
 						<br>
+						<a href="/hourVolunteer/addHour" class="myButton">Add hour</a> 
 						<a href="/index_userVolunteer.html" class="myButton">Back</a> 
-					
+
 						<br>
 						<br>
 						<br>
