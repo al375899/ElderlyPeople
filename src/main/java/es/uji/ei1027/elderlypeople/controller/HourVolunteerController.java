@@ -76,27 +76,29 @@ public class HourVolunteerController {
 		return "redirect:list";
 	}
 	
-	@RequestMapping(value = "/addUser")
+	@RequestMapping(value = "/addHour")
 	public String addHourVolunteerUser(Model model) {
 		model.addAttribute("hourVolunteer", new HourVolunteer());
-		return "hourVolunteer/addUser";
+		return "hourVolunteer/addHour";
 	}
 	
-	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	@RequestMapping(value = "/addHour", method = RequestMethod.POST)
 	public String processAddSubmitUser(@ModelAttribute("hourVolunteer") HourVolunteer hourVolunteer, BindingResult bindingResult, HttpSession session) {
 		if (bindingResult.hasErrors())
-			return "hourVolunteer/addUser";
+			return "hourVolunteer/addHour";
 		try {
-		hourVolunteer.setTaken(false);
-		hourVolunteer.setDniElderly(null);
-		UserDetails user = (UserDetails) session.getAttribute("user");
-		hourVolunteer.setDniVolunteer(user.getUsername());
-		hourVolunteerDao.addHourVolunteer(hourVolunteer);
+			hourVolunteer.setTaken(false);
+			hourVolunteer.setDniElderly(null);
+			UserDetails user = (UserDetails) session.getAttribute("user");
+			hourVolunteer.setDniVolunteer(user.getUsername());
+			hourVolunteerDao.addHourVolunteer(hourVolunteer);
+			session.setAttribute("message", "Hour has been created correctly");
+			session.setAttribute("reference", "/volunteer/listHoursNotTaken");
 		} catch (DataAccessException e) { 
 		    throw new ElderlyPeopleException(  
 		         "Error en l'accés a la base de dades", "ErrorAccedintDades"); 
 		}
-		return "redirect:/volunteer/listHoursNotTaken";
+		return "/notification";
 	}
 	
 	@RequestMapping(value = "/update/{dniVolunteer}/{day}/{startHour}/{endHour}", method = RequestMethod.GET)
