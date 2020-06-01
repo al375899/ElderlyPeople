@@ -92,7 +92,7 @@ public class HourVolunteerController {
 			UserDetails user = (UserDetails) session.getAttribute("user");
 			hourVolunteer.setDniVolunteer(user.getUsername());
 			hourVolunteerDao.addHourVolunteer(hourVolunteer);
-			session.setAttribute("message", "Hour has been created correctly");
+			session.setAttribute("message", "Your hour has been created correctly");
 			session.setAttribute("reference", "/volunteer/listHoursNotTaken");
 		} catch (DataAccessException e) { 
 		    throw new ElderlyPeopleException(  
@@ -115,18 +115,20 @@ public class HourVolunteerController {
 		return "redirect:list";
 	}
 	
-	@RequestMapping(value = "/updateUser/{dniVolunteer}/{day}/{startHour}/{endHour}", method = RequestMethod.GET)
+	@RequestMapping(value = "/updateHour/{dniVolunteer}/{day}/{startHour}/{endHour}", method = RequestMethod.GET)
 	public String editHourVolunteerUser(Model model, @PathVariable String dniVolunteer, @PathVariable String day, @PathVariable LocalTime startHour, @PathVariable LocalTime endHour) {
 		model.addAttribute("hourVolunteer", hourVolunteerDao.getHourVolunteer(dniVolunteer, day, startHour, endHour));
-		return "hourVolunteer/updateUser";
+		return "hourVolunteer/updateHour";
 	}
 	
-	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-	public String processUpdateSubmit(@ModelAttribute("hourVolunteer") HourVolunteer hourVolunteer, BindingResult bindingResult) {
+	@RequestMapping(value = "/updateHour", method = RequestMethod.POST)
+	public String processUpdateSubmit(@ModelAttribute("hourVolunteer") HourVolunteer hourVolunteer, BindingResult bindingResult, HttpSession session) {
 		if (bindingResult.hasErrors())
-			return "hourVolunteer/update";
+			return "hourVolunteer/updateHour";
 		hourVolunteerDao.updateHourVolunteer(hourVolunteer);
-		return "redirect:/hourVolunteer/listHoursNotTaken";
+		session.setAttribute("message", "Your hour has been updated correctly");
+		session.setAttribute("reference", "/volunteer/listHoursNotTaken");
+		return "/notification";
 	}
 	
 	@RequestMapping(value = "/delete/{dniVolunteer}/{day}/{startHour}/{endHour}")
