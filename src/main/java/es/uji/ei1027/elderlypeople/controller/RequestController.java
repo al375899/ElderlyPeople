@@ -183,17 +183,18 @@ public class RequestController {
 	
 	// Pone en espera una peticion desde el casCommitee
 	@RequestMapping(value = "/waitRequest/{idRequest}")
-	public String waitRequest(@PathVariable Integer idRequest) {
+	public String waitRequest(@PathVariable Integer idRequest, HttpSession session) {
 		Request request = requestDao.getRequest(idRequest);
 		requestDao.waitRequest(request);
+		session.setAttribute("message", "Request has been set to wait correctly");
 		String state = request.getState();
 		switch(state) {
 		case "Approved":
-			return "redirect:/request/listFilterApproved";
+			session.setAttribute("reference", "/request/listFilterApproved");
 		case "Rejected":
-			return "redirect:/request/listFilterRejected";
+			session.setAttribute("reference", "/request/listFilterRejected");
 		}
-		return "redirect:/manageElderlyRequests.html";
+		return "/notification";
 	}
 	
 	// Rechaza una peticion desde el casCommitee
