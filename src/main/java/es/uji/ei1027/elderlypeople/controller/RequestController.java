@@ -80,17 +80,13 @@ public class RequestController {
 			return "request/addUser";
 		try {
 			requestDao.addRequestUser(request, user.getUsername());
-		} catch (DuplicateKeyException e) {
-			throw new ElderlyPeopleException("Ja existeix una solicitud amb el mateix id: " + request.getIdRequest(),
-					"CPduplicada");
-		} catch (DataAccessException e) {
-			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+			session.setAttribute("message", "Your request has been created correctly");
+			session.setAttribute("reference", "/index_ElderlyPeople.html");
 		} catch (IllegalArgumentException e) {
-			throw new ElderlyPeopleException("Already exist an accepted request with this service type",
-					"RequestDuplicada");
+			session.setAttribute("message", "Already exist an accepted or waiting request with this service type");
+			session.setAttribute("reference", "/request/addUser");
 		}
-
-		return "redirect:/index_ElderlyPeople.html";
+		return "/notification";
 	}
 
 	@RequestMapping(value = "/updateUser/{idRequest}", method = RequestMethod.GET)
@@ -100,17 +96,21 @@ public class RequestController {
 	}
 
 	@RequestMapping(value = "/updateUser", method = RequestMethod.POST)
-	public String processUpdateSubmitUser(@ModelAttribute("request") Request request, BindingResult bindingResult) {
+	public String processUpdateSubmitUser(@ModelAttribute("request") Request request, BindingResult bindingResult, HttpSession session) {
 		if (bindingResult.hasErrors())
 			return "request/updateUser";
 		requestDao.updateRequestUser(request);
-		return "redirect:listUser";
+		session.setAttribute("message", "Your request has been updated correctly");
+		session.setAttribute("reference", "/request/listUser");
+		return "/notification";
 	}
 
 	@RequestMapping(value = "/deleteUser/{idRequest}")
-	public String processDelete(@PathVariable int idRequest) {
+	public String processDelete(@PathVariable int idRequest, HttpSession session) {
 		requestDao.deleteRequest(idRequest);
-		return "redirect:/request/listUser";
+		session.setAttribute("message", "Your request has been deleted correctly");
+		session.setAttribute("reference", "/request/listUser");
+		return "/notification";
 	}
 
 	@RequestMapping(value = "/listFilterApproved")

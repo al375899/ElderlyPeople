@@ -180,19 +180,15 @@ public class HourVolunteerController {
 		
 		System.out.println("Entra en el controlador");
 		UserDetails user = (UserDetails) session.getAttribute("user");
-	
-		//if (bindingResult.hasErrors())
-		//	return "hourVolunteer/listFilterUser";
+
 		try {
-			System.out.println("Prueba el modelo");
 			hourVolunteerDao.takeHour(startHourElderly, endHourElderly, dniVolunteer, day, startHour, endHour, user.getUsername());
+			session.setAttribute("message", "Your request has been created correctly");
+			session.setAttribute("reference", "/index_ElderlyPeople.html");
 		} catch (DataAccessException e) {
 			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
-		} catch (Exception e) { // MODIFICAR CON LAS OTRAS EXCEPCIONES QUE PUEDAN OCURRIR
-			e.printStackTrace();
 		}
-		System.out.println("Sale a la página html");
-		return "hourVolunteer/requestOk";
+		return "/notification";
 		
 	}
 }

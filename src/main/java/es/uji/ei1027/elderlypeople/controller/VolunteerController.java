@@ -80,11 +80,13 @@ public class VolunteerController {
 	}
 	
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult) {
+	public String processUpdateSubmit(@ModelAttribute("volunteer") Volunteer volunteer, BindingResult bindingResult, HttpSession session) {
 		if (bindingResult.hasErrors())
 			return "volunteer/update";
-		volunteerDao.updateVolunteer(volunteer);;
-		return "redirect:list";
+		volunteerDao.updateVolunteer(volunteer);
+		session.setAttribute("message", "Volunteer has been updated correctly");
+		session.setAttribute("reference", "/volunteer/list");
+		return "/notification";
 	}
 	
 	// Saca el voluntario a partir de la sesión iniciada
@@ -104,9 +106,11 @@ public class VolunteerController {
 	}
 	
 	@RequestMapping(value = "/delete/{dni}")
-	public String processDelete(@PathVariable String dni) {
-		volunteerDao.deleteVolunteer(dni);;
-		return "redirect:../list";
+	public String processDelete(@PathVariable String dni, HttpSession session) {
+		volunteerDao.deleteVolunteer(dni);
+		session.setAttribute("message", "Volunteer has been deleted correctly");
+		session.setAttribute("reference", "/volunteer/list");
+		return "/notification";
 	}
 	
 }
