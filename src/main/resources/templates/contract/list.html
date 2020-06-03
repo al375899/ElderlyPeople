@@ -41,7 +41,11 @@
 
 						<br>
 						<h1>Contracts list</h1>
-					   <table class="greenTableData">
+					   
+					     	
+					     <div  th:if="!${#lists.isEmpty(contracts)}">
+					     	
+					     	<table class="greenTableData">
 					     <thead>
 					       <tr>
 					         <th>Id contract</th>
@@ -55,33 +59,31 @@
 					       </tr>
 					     </thead>
 					     <tbody>
-					       <tr th:each="contract: ${contracts}"> 
-					         <td class="hover" th:text="${contract.idContract}"></td> 
-					         <td class="hover" th:text="${contract.fnCompany}"></td>
-					         <td class="hover" th:text="${contract.serviceType}"></td>
-					         <td class="hover" th:text="${contract.quantity}"></td>
-					         <td class="hover" th:text="${contract.available}"></td>
-					         <td class="hover" th:text="${contract.startDate}" placeholder="dd-MM-yyyy"></td>
-					         <td class="hover" th:text="${contract.endDate}" placeholder="dd-MM-yyyy"></td>
-					         <td class="hover" th:text="${contract.price}"></td>         
-					         
-					         
-					         <td>
-					         	<a th:href="@{/contract/update/{idContract}(idContract=${contract.idContract})}">
-							    <img src="/icons/edit.png" height="50" width="50">
-							    </a>
-					         </td>
-					         
-					         
-					         <td>
-							    <a th:href="@{/contract/delete/{idContract}(idContract=${contract.idContract})}">
-							    <img src="/icons/delete.png" height="50" width="50"> </a> 
-					         </td>
-					         
-					       </tr>
-					     </tbody>
-					     	
-					   </table>
+							    <tr th:each="contract: ${contracts}"> 
+							         <td class="hover" th:text="${contract.idContract}"></td> 
+							         <td class="hover" th:text="${contract.fnCompany}"></td>
+							         <td class="hover" th:text="${contract.serviceType}"></td>
+							         <td class="hover" th:text="${contract.quantity}"></td>
+							         <td class="hover" th:text="${contract.available}"></td>
+							         <td class="hover" th:text="${contract.startDate}" placeholder="dd-MM-yyyy"></td>
+							         <td class="hover" th:text="${contract.endDate}" placeholder="dd-MM-yyyy"></td>
+							         <td class="hover" th:text="${contract.price}"></td>         
+	
+						         <td>
+						         	<a th:href="@{/contract/update/{idContract}(idContract=${contract.idContract})}">
+								    <img src="/icons/edit.png" height="50" width="50">
+								    </a>
+						         </td>
+						         
+						         
+						         <td>
+								    <a th:href="@{/contract/delete/{idContract}(idContract=${contract.idContract})}">
+								    <img src="/icons/delete.png" height="50" width="50"> </a> 
+						         </td>
+						         
+					       	</tr>
+					       	
+					       	</table>
 					   
 					   		<br>
 					   		<br>						
@@ -92,6 +94,23 @@
 					   		
 					   		<br>
 							<br>
+							</div>
+							
+							<div th:if="${#lists.isEmpty(contracts)}">
+							  Actualmente no hay ningun contracto para mostrar
+							</div>
+
+
+						     
+					     	
+
+					   
+					       
+					       
+					      
+					     </tbody>
+					     	
+					   
 							
 
 					</center>
