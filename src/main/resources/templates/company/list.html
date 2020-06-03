@@ -40,60 +40,69 @@
 					<center>
 
 						<br>
+						
+						
 						<h1> List of all companies</h1>
 						<br>
-						<form action="#" th:action="@{/company/add}" th:object="${company}" method="post">
-							<table class="greenTableData">
-							     <thead>
-							       <tr>
-							         <th>Company name</th>
-							         <th>Contact person</th>
-							         <th>Fiscal number</th>
-							         <th></th>
-							         <th></th>
-							         <th></th>
-							       </tr>
-							     </thead>
-							     <tbody>
-							       	<tr th:each="company: ${companies}"> 
-							         
-							         <td class="hover" th:text="${company.name}"></td> 
-							         
-							         <td class="hover" th:text=${company.contactPerson}></td>
-							         
-							         <td class="hover" th:text="${company.fiscalNumber}"></td>
-							         
-							         <td>
-							         	<a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
-							         		<img src="/icons/edit.png" height="50" width="50">
-							         	</a> 
-							         </td>
-							         
-							         <td>
-							         	<a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
-							         		<img src="/icons/delete.png" height="50" width="50">
-							         	</a>
-							         </td>
-							         
-							         
-							         <td>
+						
+						<div  th:if="!${#lists.isEmpty(companies)}">
+							<form action="#" th:action="@{/company/add}" th:object="${company}" method="post">
+								<table class="greenTableData">
+								     <thead>
+								       <tr>
+								         <th>Company name</th>
+								         <th>Contact person</th>
+								         <th>Fiscal number</th>
+								         <th></th>
+								         <th></th>
+								         <th></th>
+								       </tr>
+								     </thead>
+								     <tbody>
+								       	<tr th:each="company: ${companies}"> 
 								         
-								        <div class="container">
-								       	 <a class="enlace2" th:href="@{/contract/listUser/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
-										  <img src="/icons/contract.png" style="width:50px; weigth:50px">
-										  <div class="centered">Manage <br>contracts</div>
-										</div>
-							         	</a> 
-							         </td>
-							         
-							         
-							       </tr>
-							     </tbody>
-							   </table>
-							   <br>
-							   <br>
-							   <a href="/company/add" class="myButton">New company</a> 
-						</form>
+								         <td class="hover" th:text="${company.name}"></td> 
+								         
+								         <td class="hover" th:text=${company.contactPerson}></td>
+								         
+								         <td class="hover" th:text="${company.fiscalNumber}"></td>
+								         
+								         <td>
+								         	<a th:href="@{/company/update/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
+								         		<img src="/icons/edit.png" height="50" width="50">
+								         	</a> 
+								         </td>
+								         
+								         <td>
+								         	<a th:href="@{/company/delete/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
+								         		<img src="/icons/delete.png" height="50" width="50">
+								         	</a>
+								         </td>
+								         
+								         
+								         <td>
+									         
+									        <div class="container">
+									       	 <a class="enlace2" th:href="@{/contract/listUser/{fiscalNumber}(fiscalNumber=${company.fiscalNumber})}">
+											  <img src="/icons/contract.png" style="width:50px; weigth:50px">
+											  <div class="centered">Manage <br>contracts</div>
+											</div>
+								         	</a> 
+								         </td>
+								         
+								         
+								       </tr>
+								     </tbody>
+								   </table>
+								   <br>
+								   <br>
+								   <a href="/company/add" class="myButton">New company</a> 
+							</form>
+						</div>	
+							
+						<div th:if="${#lists.isEmpty(companies)}">
+							<h2> There is nothing here :( </h2>
+						</div>
 						<br>
 						<br>
 

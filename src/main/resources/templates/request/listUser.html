@@ -44,49 +44,54 @@
 						
 						<br>
 						<br>
-						<table class="greenTableData">
-							<thead>	
-								<tr>
-									<th>Service Type</th>
-									<th>State</th>
-									<th>Begin Date</th>
-									<th>End Date</th>
-									<th>Date Approbation</th>
-									<th>Comments</th>
-									<th></th>
-									<th></th>								
-								</tr>
-							</thead>
-							
-							
-							
-							
-							<tbody>
-								<tr th:each="request: ${requests}">
-									<td th:text="${request.serviceType}" class="hover"></td>
-									<td class="hover" th:text="${request.state}"></td>
-									<td class="hover" th:text="${#temporals.format(request.beginDate,'dd-MM-yyyy')}"></td>
-									<td class="hover" th:text="${#temporals.format(request.endDate,'dd-MM-yyyy')}" ></td>
-									<td class="hover" th:text="${#temporals.format(request.dateApprobation,'dd-MM-yyyy')}"></td>
-									<td class="hover" th:text="${request.comments}" ></td>
-										
-
-									<td >
-										<a th:href="@{/request/updateUser/{idRequest}(idRequest=${request.idRequest})}">
-										<img src="/icons/edit.png" height="50" width="50">
-										</a>
-			
+						<div  th:if="!${#lists.isEmpty(requests)}">
+							<table class="greenTableData">
+								<thead>	
+									<tr>
+										<th>Service Type</th>
+										<th>State</th>
+										<th>Begin Date</th>
+										<th>End Date</th>
+										<th>Date Approbation</th>
+										<th>Comments</th>
+										<th></th>
+										<th></th>								
+									</tr>
+								</thead>
+								
+								
+								
+								
+								<tbody>
+									<tr th:each="request: ${requests}">
+										<td th:text="${request.serviceType}" class="hover"></td>
+										<td class="hover" th:text="${request.state}"></td>
+										<td class="hover" th:text="${#temporals.format(request.beginDate,'dd-MM-yyyy')}"></td>
+										<td class="hover" th:text="${#temporals.format(request.endDate,'dd-MM-yyyy')}" ></td>
+										<td class="hover" th:text="${#temporals.format(request.dateApprobation,'dd-MM-yyyy')}"></td>
+										<td class="hover" th:text="${request.comments}" ></td>
+											
+	
+										<td >
+											<a th:href="@{/request/updateUser/{idRequest}(idRequest=${request.idRequest})}">
+											<img src="/icons/edit.png" height="50" width="50">
+											</a>
+				
+											</td>
+											
+										<td >
+											<a th:href="@{/request/deleteUser/{idRequest}(idRequest=${request.idRequest})}">
+											<img src="/icons/delete.png" height="50" width="50">
+											</a>
 										</td>
-										
-									<td >
-										<a th:href="@{/request/deleteUser/{idRequest}(idRequest=${request.idRequest})}">
-										<img src="/icons/delete.png" height="50" width="50">
-										</a>
-									</td>
-										
-								</tr>
-							</tbody>
-						</table>
+											
+									</tr>
+								</tbody>
+							</table>
+						</div>
+						<div th:if="${#lists.isEmpty(requests)}">
+							<h2> There is nothing here :( </h2>
+						</div>
 						<br>
 						<a href="/index_ElderlyPeople.html" class="myButton">Back</a> 
 						<br>
