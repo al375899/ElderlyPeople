@@ -5,7 +5,11 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import es.uji.ei1027.elderlypeople.model.Contract;
+import es.uji.ei1027.elderlypeople.model.Request;
+
 import javax.sql.DataSource;
+
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,8 +26,28 @@ public class ContractDao {
 
 	/* Afegeix el contract a la base de dades */
 	public void addContract(Contract contract) {
-		jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?)", contract.getIdContract(),
-				contract.getFnCompany(), contract.getServiceType(), contract.getQuantity(), contract.getStartDate(),
+		jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?)", contract.getIdContract(),
+				contract.getFnCompany(), contract.getServiceType(), contract.getQuantity(), contract.getAvailable(),  contract.getStartDate(),
+				contract.getEndDate(), contract.getPrice());
+	}
+	
+	public void addContractUser(Contract contract) {
+		if (contract.getStartDate().compareTo(contract.getEndDate()) > 0) {
+			throw new ArithmeticException("");
+		}
+		String comando = "SELECT * FROM Contract WHERE idContract = (SELECT MAX(idContract) FROM Contract)";
+		List<Contract> contracts = jdbcTemplate.query("SELECT * FROM Contract", new ContractRowMapper());
+		if (contracts.size() == 0) {
+			contract.setIdContract(1);
+		} else {
+			Contract prueba = jdbcTemplate.queryForObject(comando, new ContractRowMapper());
+			int cont = prueba.getIdContract();
+			contract.setIdContract(cont+1);
+		}
+		contract.setAvailable(contract.getQuantity());
+		
+		jdbcTemplate.update("INSERT INTO Contract VALUES(?,?,?,?,?,?,?,?)", contract.getIdContract(),
+				contract.getFnCompany(), contract.getServiceType(), contract.getQuantity(), contract.getAvailable(),  contract.getStartDate(),
 				contract.getEndDate(), contract.getPrice());
 	}
 
@@ -33,6 +57,10 @@ public class ContractDao {
 	}
 
 	public void deleteContract(Integer idContract) {
+		Contract contract = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE idContract = ?", new ContractRowMapper(), idContract);
+		if (contract.getQuantity() != contract.getAvailable()) {
+			throw new IllegalArgumentException();
+		}
 		jdbcTemplate.update("DELETE FROM Contract WHERE idContract=?", idContract);
 	}
 
@@ -70,5 +98,18 @@ public class ContractDao {
 		} catch (EmptyResultDataAccessException e) {
 			return new ArrayList<Contract>();
 		}
+	}
+	
+	public void allowCreateContract(String fnCompany) {
+		List<Contract> contracts = jdbcTemplate.query("SELECT * FROM Contract WHERE fnCompany = ?", new ContractRowMapper(), fnCompany);
+		if (contracts.size() == 0) {
+			return;
+		} else {
+			Contract contract = jdbcTemplate.queryForObject("SELECT * FROM Contract WHERE fnCompany = ? AND endDate IN (SELECT MAX(endDate) FROM Contract WHERE fnCompany = ?)", new ContractRowMapper(), fnCompany, fnCompany);
+			if (contract.getEndDate().compareTo(LocalDate.now()) >= 0) {
+				throw new IllegalArgumentException();
+			}
+		}
+		
 	}
 }
