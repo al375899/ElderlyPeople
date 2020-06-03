@@ -1,5 +1,7 @@
 package es.uji.ei1027.elderlypeople.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -39,22 +41,22 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public String processAddSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult) {
+	public String processAddSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult, HttpSession session) {
 		CompanyValidator companyValidator = new CompanyValidator();
 		companyValidator.validate(company, bindingResult);
 		if (bindingResult.hasErrors())
 			return "company/add";
 		try {
 			companyDao.addCompany(company);
+			session.setAttribute("message", "Company has been created correctly");
+			session.setAttribute("reference", "/index_casManager.html");	
 		} catch (DuplicateKeyException e) {
-			throw new ElderlyPeopleException(
-					"Ja existeix una companyia amb el mateix numero fiscal: " + company.getFiscalNumber(),
-					"CPduplicada");
+			session.setAttribute("message", "Already exists a company with this fiscal number");
+			session.setAttribute("reference", "/index_casManager.html");
 		} catch (DataAccessException e) {
 			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
 		}
-
-		return "redirect:list";
+		return "/notification";
 	}
 
 	@RequestMapping(value = "/update/{fiscalNumber}", method = RequestMethod.GET)
@@ -64,17 +66,21 @@ public class CompanyController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String processUpdateSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult) {
+	public String processUpdateSubmit(@ModelAttribute("company") Company company, BindingResult bindingResult, HttpSession session) {
 		if (bindingResult.hasErrors())
 			return "company/update";
 		companyDao.updateCompany(company);
-		return "redirect:list";
+		session.setAttribute("message", "Company has been updated correctly");
+		session.setAttribute("reference", "/company/list");
+		return "/notification";
 	}
 
 	@RequestMapping(value = "/delete/{fiscalNumber}")
-	public String processDelete(@PathVariable String fiscalNumber) {
+	public String processDelete(@PathVariable String fiscalNumber, HttpSession session) {
 		companyDao.deleteCompany(fiscalNumber);
-		return "redirect:../list";
+		session.setAttribute("message", "Company has been deleted correctly");
+		session.setAttribute("reference", "/company/list");
+		return "/notification";
 	}
 
 }

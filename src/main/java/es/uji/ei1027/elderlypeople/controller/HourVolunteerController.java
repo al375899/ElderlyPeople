@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import es.uji.ei1027.elderlypeople.dao.HourVolunteerDao;
+import es.uji.ei1027.elderlypeople.model.BadHoursException;
 import es.uji.ei1027.elderlypeople.model.HourVolunteer;
 import es.uji.ei1027.elderlypeople.model.Search;
 import es.uji.ei1027.elderlypeople.model.UserDetails;
@@ -93,6 +94,12 @@ public class HourVolunteerController {
 			session.setAttribute("reference", "/volunteer/listHoursNotTaken");
 		} catch (DataAccessException e) {
 			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+		} catch (IllegalArgumentException e) {
+			session.setAttribute("message", "This hour is already picked");
+			session.setAttribute("reference", "/volunteer/listHoursNotTaken");
+		} catch (ArithmeticException e) {
+			session.setAttribute("message", "Hours isn't correct. You must correct it");
+			session.setAttribute("reference", "/volunteer/listHoursNotTaken");
 		}
 		return "/notification";
 	}
@@ -143,15 +150,20 @@ public class HourVolunteerController {
 	}
 
 	@RequestMapping(value = "/listFilterUser", method = RequestMethod.POST)
-	public String listFilterUser(Model model, @ModelAttribute("search") Search search, BindingResult bindingResult) {
+	public String listFilterUser(Model model, @ModelAttribute("search") Search search, BindingResult bindingResult, HttpSession session) {
 		if (bindingResult.hasErrors())
 			return "/checkHourCompatibility";
 		try {
 			model.addAttribute("requestVolunteers", hourVolunteerDao.getHourVolunteersFilter(search));
+			return "hourVolunteer/listVolunteerFilter";
 		} catch (DataAccessException e) {
 			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+		} catch (ArithmeticException e) {
+			session.setAttribute("message", "Hours isn't correct. You must correct it");
+			session.setAttribute("reference", "/checkHourCompatibility");
 		}
-		return "hourVolunteer/listVolunteerFilter";
+		return "/notification";
+		
 	}
 
 	@RequestMapping(value = "/create/{startHourElderly}/{endHourElderly}/{dniVolunteer}/{day}/{startHour}/{endHour}", method = {

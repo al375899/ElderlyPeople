@@ -5,6 +5,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import es.uji.ei1027.elderlypeople.model.BadHoursException;
 import es.uji.ei1027.elderlypeople.model.HourVolunteer;
 import es.uji.ei1027.elderlypeople.model.RequestVolunteer;
 import es.uji.ei1027.elderlypeople.model.Search;
@@ -32,6 +33,9 @@ public class HourVolunteerDao {
 
 	/* Afegeix el hourvolunteer a la base de dades */
 	public void addHourVolunteer(HourVolunteer hourVolunteer) {
+		if (hourVolunteer.getStartHour().compareTo(hourVolunteer.getEndHour()) > 0) {
+			throw new ArithmeticException("");
+		}
 		jdbcTemplate.update("INSERT INTO HourVolunteer VALUES(?,?,?,?,?,?)", hourVolunteer.getDniElderly(),
 				hourVolunteer.getDniVolunteer(), hourVolunteer.getDay(), hourVolunteer.getStartHour(),
 				hourVolunteer.getEndHour(), hourVolunteer.getTaken());
@@ -78,6 +82,9 @@ public class HourVolunteerDao {
 	
 	public List<RequestVolunteer> getHourVolunteersFilter(Search search) {
 		try {
+			if (search.getStartHour().compareTo(search.getEndHour()) > 0) {
+				throw new ArithmeticException("");
+			}
 			List<RequestVolunteer> list = new ArrayList<>();
 			List<HourVolunteer> listaHoras = jdbcTemplate.query("SELECT * FROM HourVolunteer WHERE taken=false AND day=? AND startHour<=? AND endHour>=?", new HourVolunteerRowMapper(), search.getDay(), search.getStartHour(), search.getEndHour());
 			for (HourVolunteer hora : listaHoras) {

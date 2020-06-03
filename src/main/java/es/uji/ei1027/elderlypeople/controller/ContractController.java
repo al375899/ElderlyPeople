@@ -1,6 +1,8 @@
 package es.uji.ei1027.elderlypeople.controller;
 
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.DuplicateKeyException;
@@ -69,10 +71,12 @@ public class ContractController {
 	}
 
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
-	public String processUpdateSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult) {
+	public String processUpdateSubmit(@ModelAttribute("contract") Contract contract, BindingResult bindingResult, HttpSession session) {
 		if (bindingResult.hasErrors())
 			return "contract/update";
 		contractDao.updateContract(contract);
+		session.setAttribute("message", "Contract has been updated correctly");
+		session.setAttribute("reference", "");
 		return "redirect:list";
 	}
 
