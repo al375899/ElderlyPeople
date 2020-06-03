@@ -53,12 +53,12 @@
 								</tr>
 								<tr>
 									<td><label class="data_title">Begin Date: </label></td>
-									<td><input type="text" th:field="*{beginDate}" placeholder="dd-MM-yyyy" class="data"/></td>
+									<td><input type="text" th:field="*{beginDate}" placeholder="dd-MM-yyyy" class="data" required/></td>
 									<td th:if="${#fields.hasErrors('beginDate')}" th:errors="*{beginDate}"></td>
 								</tr>
 								<tr>
 									<td><label class="data_title">End Date: </label></td>
-									<td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy" / class="data"></td>
+									<td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy" / class="data" required></td>
 									<td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
 								</tr>
 								<tr>

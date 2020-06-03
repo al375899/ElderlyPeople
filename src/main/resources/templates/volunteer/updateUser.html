@@ -54,7 +54,7 @@
 						        
 						        <tr>
 									<td>
-						            	<label class="data_title">Solicitude data</label></td>
+						            	<label class="data_title">Request data</label></td>
 						            <td>
 						            	<input class="data_readonly" type="text" th:field="*{requestDate}" readonly/>
 						            </td>
@@ -82,7 +82,7 @@
 						            </td>
 						            
 						            <td>
-						            	<input class="data" type="text" th:field="*{name}" />
+						            	<input class="data" type="text" th:field="*{name}" required/>
 						            </td>
 						        </tr>
 						        
@@ -91,7 +91,7 @@
 						            	<label class="data_title">Phone</label>
 						            </td>
 						            <td>
-						            	<input class="data" type="text" th:field="*{phoneNumber}" />
+						            	<input class="data" type="text" th:field="*{phoneNumber}" required/>
 						            </td>
 						        </tr>
 						        
@@ -100,7 +100,7 @@
 						            	<label class="data_title">Genre</label>
 						            </td>
 						            <td>
-						            	<input class="data" type="text" th:field="*{gender}" />
+						            	<input class="data" type="text" th:field="*{gender}" required/>
 						            </td>
 						        </tr>
 						        
@@ -109,7 +109,7 @@
 						            	<label class="data_title">Birth date</label>
 						            </td>
 						            <td>
-						            	<input class="data" type="text" th:field="*{birthDate}"/>
+						            	<input class="data" type="text" th:field="*{birthDate}" required/>
 						            </td>
 						        </tr>
 						        

@@ -66,7 +66,7 @@
 					        </tr>
 					         <tr>
 					            <td><label class="data_title">Quantity</label></td>
-					            <td><input type="number" th:field="*{quantity}" class="data"  required/></td>
+					            <td><input type="number" th:field="*{quantity}" class="data"  required min="1"/></td>
 					        </tr>
 					         <tr>
 					            <td><label class="data_title">Start date</label></td>
@@ -78,7 +78,7 @@
 					        </tr>
 					         <tr>
 					            <td><label class="data_title">Price</label></td>
-					            <td><input type="number" th:field="*{price}" class="data" required/></td>
+					            <td><input type="number" th:field="*{price}" class="data" required min="0"/></td>
 					        </tr>
 					        
 					        
