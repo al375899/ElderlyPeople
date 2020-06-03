@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.elderlypeople.model.Contract;
+import es.uji.ei1027.elderlypeople.model.Line;
 import es.uji.ei1027.elderlypeople.model.Request;
 import es.uji.ei1027.elderlypeople.model.UserDetails;
 
@@ -87,6 +88,10 @@ public class RequestDao {
 
 	// Esborra el Request per el id
 	public void deleteRequest(Integer idRequest) {
+		List<Line> list = jdbcTemplate.query("SELECT * FROM Line WHERE idRequest = ?", new LineRowMapper(), idRequest);
+		if (list.size() > 0) {
+			throw new IllegalArgumentException();
+		}
 		jdbcTemplate.update("DELETE FROM Request WHERE idRequest=?", 
 				idRequest 
 				);

@@ -63,6 +63,40 @@ public class ContractController {
 
 		return "redirect:list";
 	}
+	
+	@RequestMapping(value = "/addUser/{fnCompany}")
+	public String addContractUser(Model model, @PathVariable String fnCompany, HttpSession session) {
+		Contract contract = new Contract();
+		contract.setFnCompany(fnCompany);
+		model.addAttribute("contract", contract);
+		try {
+			contractDao.allowCreateContract(fnCompany);
+		} catch (IllegalArgumentException e) {
+			session.setAttribute("message", "You cannot do a new contract for this company because one of the contracts is currently active");
+			session.setAttribute("reference", "/contract/listUser/" + fnCompany);
+			return "/notification";
+		}
+		return "contract/add";
+	}
+	
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	public String processAddSubmitUser(@ModelAttribute("contract") Contract contract, BindingResult bindingResult, HttpSession session) {
+		if (bindingResult.hasErrors())
+			return "contract/addUser";
+		try {
+			contractDao.addContractUser(contract);
+			session.setAttribute("message", "Contract has been created correctly");
+			session.setAttribute("reference", "/contract/listUser/" + contract.getFnCompany());
+			return "/notification";
+		} catch (DataAccessException e) {
+			throw new ElderlyPeopleException("Error en l'accés a la base de dades", "ErrorAccedintDades");
+		} catch (ArithmeticException e) {
+			session.setAttribute("message", "Hours isn't correct. You must correct it");
+			session.setAttribute("reference", "/contract/listUser/" + contract.getFnCompany());
+			return "/notification";
+		}
+		
+	}
 
 	@RequestMapping(value = "/update/{idContract}", method = RequestMethod.GET)
 	public String editContract(Model model, @PathVariable int idContract) {
@@ -76,14 +110,23 @@ public class ContractController {
 			return "contract/update";
 		contractDao.updateContract(contract);
 		session.setAttribute("message", "Contract has been updated correctly");
-		session.setAttribute("reference", "");
-		return "redirect:list";
+		session.setAttribute("reference", "/contract/listUser/" + contract.getFnCompany());
+		return "/notification";
 	}
 
 	@RequestMapping(value = "/delete/{idContract}")
-	public String processDelete(@PathVariable int idContract) {
-		contractDao.deleteContract(idContract);
-		return "redirect:../list";
+	public String processDelete(@PathVariable int idContract, HttpSession session) {
+		String fnCompany = contractDao.getContract(idContract).getFnCompany();
+		try {
+			contractDao.deleteContract(idContract);
+			session.setAttribute("message", "Contract has been deleted correctly");
+			session.setAttribute("reference", "/contract/listUser/" + fnCompany);
+			return "/notification";
+		} catch (IllegalArgumentException e) {
+			session.setAttribute("message", "This contract is currently assigned to other users and can't be deleted");
+			session.setAttribute("reference", "/contract/listUser/" + fnCompany);
+			return "/notification";
+		}
 	}
 
 }

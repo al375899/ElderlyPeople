@@ -230,8 +230,12 @@ public class RequestController {
 	public String processDeleteRequest(@PathVariable int idRequest, HttpSession session) {
 		Request request = requestDao.getRequest(idRequest);
 		String state = request.getState();
-		requestDao.deleteRequest(idRequest);
-		session.setAttribute("message", "Request has been deleted correctly");
+		try {
+			requestDao.deleteRequest(idRequest);
+			session.setAttribute("message", "Request has been deleted correctly");
+		} catch (IllegalArgumentException e) {
+			session.setAttribute("message", "This request have one or more invoices, so it cannot be deleted");
+		}
 		switch (state) {
 		case "Approved":
 			session.setAttribute("reference", "/request/listFilterApproved");
@@ -244,5 +248,6 @@ public class RequestController {
 			break;
 		}
 		return "/notification";
+		
 	}
 }
