@@ -45,44 +45,43 @@
 						    <form action="#" th:action="@{/contract/add}" th:object="${contract}" method="post"> 
 						      <table class="greenTable3">
 						        <tr>
-						            <td><label class="data_title">id</label></td>
+						            <td><label class="data_title">id contract</label></td>
 						            <td><input type="number" th:field="*{idContract}" class="data"/></td> 
 						            <td th:if="${#fields.hasErrors('idContract')}" th:errors="*{idContract}"></td>
 						        </tr>
 						        <tr>
-						            <td><label class="data_title">Empresa</label></td>
+						            <td><label class="data_title">Fiscal number company	</label></td>
 						            <td><input type="text" th:field="*{fnCompany}" class="data"/></td>
 						            <td th:if="${#fields.hasErrors('fnCompany')}" th:errors="*{fnCompany}"></td>
 						        </tr>
 						        <tr>
-						            <td> <label class="data_title" th:field="*{serviceType}">Tipus de servei:</label> </td>
+						            <td> <label class="data_title" th:field="*{serviceType}">Service type</label> </td>
 						            <td> 
 						            	
 						            	<select class="data" th:field="*{serviceType}">
 									    	<option value="Catering">Catering</option>
 									    	<option value="Cleaning">Cleaning</option>
 									    	<option value="Sanity">Sanity</option>
-									    	<option value="Others">Others</option>
 									  	</select>
 						            </td>
 						        </tr>
 						         <tr>
-						            <td><label class="data_title">Quantitat</label></td>
+						            <td><label class="data_title">Quantity</label></td>
 						            <td><input type="number" th:field="*{quantity}" class="data"/></td>
 						            <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></td>
 						        </tr>
 						         <tr>
-						            <td><label class="data_title">Data d'inici</label></td>
+						            <td><label class="data_title">Start date</label></td>
 						            <td><input type="text" th:field="*{startDate}" placeholder="dd-MM-yyyy" class="data"/></td>
 						            <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></td>
 						        </tr>
 						         <tr>
-						            <td><label class="data_title">Data de fi</label></td>
+						            <td><label class="data_title">End date</label></td>
 						            <td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy" class="data"/></td>
 						            <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
 						        </tr>
 						         <tr>
-						            <td><label class="data_title">Preu</label></td>
+						            <td><label class="data_title">Price</label></td>
 						            <td><input type="number" th:field="*{price}" class="data"/></td>
 						            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
 						        </tr>
@@ -95,7 +94,7 @@
 									    <br>
 									    <a href="/company/list" class="myButton">Back</a> 
 										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						            	<input type="submit" value="Afegeix contracte" class="myButton"/>
+						            	<input type="submit" value="Add new contract" class="myButton"/>
 						            </td>
 						        </tr>
 						      </table>
