@@ -44,15 +44,9 @@
 						    
 						    <form action="#" th:action="@{/contract/add}" th:object="${contract}" method="post"> 
 						      <table class="greenTable3">
+						       
 						        <tr>
-						            <td><label class="data_title">id contract</label></td>
-						            <td><input type="number" th:field="*{idContract}" class="data"/></td> 
-						            <td th:if="${#fields.hasErrors('idContract')}" th:errors="*{idContract}"></td>
-						        </tr>
-						        <tr>
-						            <td><label class="data_title">Fiscal number company	</label></td>
-						            <td><input type="text" th:field="*{fnCompany}" class="data"/></td>
-						            <td th:if="${#fields.hasErrors('fnCompany')}" th:errors="*{fnCompany}"></td>
+						            <td><input type="hidden" th:field="*{fnCompany}" class="data"/></td>
 						        </tr>
 						        <tr>
 						            <td> <label class="data_title" th:field="*{serviceType}">Service type</label> </td>
@@ -67,23 +61,19 @@
 						        </tr>
 						         <tr>
 						            <td><label class="data_title">Quantity</label></td>
-						            <td><input type="number" th:field="*{quantity}" class="data"/></td>
-						            <td th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}"></td>
+						            <td><input type="number" th:field="*{quantity}" class="data" required/></td>
 						        </tr>
 						         <tr>
-						            <td><label class="data_title">Start date</label></td>
-						            <td><input type="text" th:field="*{startDate}" placeholder="dd-MM-yyyy" class="data"/></td>
-						            <td th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}"></td>
+						            <td><label class="data_title">Start date</label></td> 
+						            <td><input type="text" th:field="*{startDate}" placeholder="dd-MM-yyyy" class="data" required/></td>
 						        </tr>
 						         <tr>
 						            <td><label class="data_title">End date</label></td>
-						            <td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy" class="data"/></td>
-						            <td th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}"></td>
+						            <td><input type="text" th:field="*{endDate}" placeholder="dd-MM-yyyy" class="data" required/></td>
 						        </tr>
 						         <tr>
 						            <td><label class="data_title">Price</label></td>
-						            <td><input type="number" th:field="*{price}" class="data"/></td>
-						            <td th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></td>
+						            <td><input type="number" th:field="*{price}" class="data" required/></td>
 						        </tr>
 						        
 						        

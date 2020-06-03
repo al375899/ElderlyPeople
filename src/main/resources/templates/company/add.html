@@ -46,21 +46,18 @@
 							<table class="greenTable3">
 								<tr>
 									<td><label class="data_title">Company name</label></td>
-									<td><input type="text" th:field="*{name}" class="data"/></td>
-									<td th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></td>
+									<td><input type="text" th:field="*{name}" class="data" required/></td>
 								</tr>
 					
 					
 								<tr>
 									<td><label class="data_title">Contact person</label></td>
-									<td><input type="text" th:field="*{contactPerson}" class="data"/></td>
-									<td th:if="${#fields.hasErrors('contactPerson')}" th:errors="*{contactPerson}"></td>
+									<td><input type="text" th:field="*{contactPerson}" class="data" required/></td>
 								</tr>
 								
 								<tr>
 									<td><label class="data_title">Fiscal number</label></td>
-									<td><input type="text" th:field="*{fiscalNumber}" class="data"/></td>
-									<td th:if="${#fields.hasErrors('fiscalNumber')}" th:errors="*{fiscalNumber}"></td>
+									<td><input type="text" th:field="*{fiscalNumber}" class="data" required/></td>
 								</tr>
 					
 								<tr>

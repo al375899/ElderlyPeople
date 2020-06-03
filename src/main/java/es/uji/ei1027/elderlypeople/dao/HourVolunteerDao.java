@@ -4,19 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
-
-import es.uji.ei1027.elderlypeople.model.BadHoursException;
 import es.uji.ei1027.elderlypeople.model.HourVolunteer;
 import es.uji.ei1027.elderlypeople.model.RequestVolunteer;
 import es.uji.ei1027.elderlypeople.model.Search;
 import es.uji.ei1027.elderlypeople.model.Volunteer;
-
 import javax.sql.DataSource;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.Period;
-import java.time.Year;
 import java.util.ArrayList;
 import java.util.List;
 
