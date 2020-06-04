@@ -107,8 +107,12 @@ public class RequestController {
 
 	@RequestMapping(value = "/deleteUser/{idRequest}")
 	public String processDelete(@PathVariable int idRequest, HttpSession session) {
-		requestDao.deleteRequest(idRequest);
-		session.setAttribute("message", "Your request has been deleted correctly");
+		try {
+			requestDao.deleteRequest(idRequest);
+			session.setAttribute("message", "Your request has been deleted correctly");
+		} catch (IllegalArgumentException e) {
+			session.setAttribute("message", "This request have one or more invoices, so it cannot be deleted");
+		}
 		session.setAttribute("reference", "/request/listUser");
 		return "/notification";
 	}
