@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import es.uji.ei1027.elderlypeople.model.Company;
+import es.uji.ei1027.elderlypeople.model.Contract;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
@@ -34,6 +35,10 @@ public class CompanyDao {
 	}
 
 	public void deleteCompany(String fiscalNumber) {
+		List<Contract> list = jdbcTemplate.query("SELECT * FROM contract WHERE fnCompany = ?", new ContractRowMapper(), fiscalNumber);
+		if(list.size() > 0) {
+			throw new IllegalArgumentException();
+		}
 		jdbcTemplate.update("DELETE FROM Company WHERE fiscalNumber=?", fiscalNumber);
 	}
 

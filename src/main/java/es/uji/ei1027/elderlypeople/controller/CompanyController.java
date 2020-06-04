@@ -77,8 +77,12 @@ public class CompanyController {
 
 	@RequestMapping(value = "/delete/{fiscalNumber}")
 	public String processDelete(@PathVariable String fiscalNumber, HttpSession session) {
+		try {
 		companyDao.deleteCompany(fiscalNumber);
 		session.setAttribute("message", "Company has been deleted correctly");
+		} catch (IllegalArgumentException e) {
+			session.setAttribute("message", "This company has one or more contracts in the database, so it cannot be deleted");
+		}
 		session.setAttribute("reference", "/company/list");
 		return "/notification";
 	}
