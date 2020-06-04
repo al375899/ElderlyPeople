@@ -85,7 +85,14 @@
 					       	
 					       	</table>
 					   
-					   		<br>
+					   		
+							</div>
+							
+							<div th:if="${#lists.isEmpty(contracts)}">
+							  <h2> There is nothing here :( </h2>
+							</div>
+
+							<br>
 					   		<br>						
 							<a href="/company/list" class="myButton">Back</a> 		
 							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -94,13 +101,6 @@
 					   		
 					   		<br>
 							<br>
-							</div>
-							
-							<div th:if="${#lists.isEmpty(contracts)}">
-							  <h2> There is nothing here :( </h2>
-							</div>
-
-
 						     
 					     	
 
