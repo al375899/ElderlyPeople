@@ -92,9 +92,7 @@ public class RequestDao {
 		if (list.size() > 0) {
 			throw new IllegalArgumentException();
 		}
-		jdbcTemplate.update("DELETE FROM Request WHERE idRequest=?", 
-				idRequest 
-				);
+		jdbcTemplate.update("DELETE FROM Request WHERE idRequest=?", idRequest );
 	}
 
 	// Actualitza els atributs del Request

@@ -57,16 +57,9 @@
 					            	<label class="data_title" th:field="*{serviceType}" >Service type</label> </td>
 					            <td> 
 					            	
-					            	<select th:field="*{serviceType}" class="data" >
-								    	<option value="Catering">Catering</option>
-								    	<option value="Cleaning">Cleaning</option>
-								    	<option value="Sanity">Sanity</option>
-								  	</select>
+					            	<input type="text" th:field="*{serviceType}" class="data_readonly" readonly >
+								    
 					            </td>
-					        </tr>
-					         <tr>
-					            <td><label class="data_title">Quantity</label></td>
-					            <td><input type="number" th:field="*{quantity}" class="data"  required min="1"/></td>
 					        </tr>
 					         <tr>
 					            <td><label class="data_title">Start date</label></td>
@@ -79,6 +72,10 @@
 					         <tr>
 					            <td><label class="data_title">Price</label></td>
 					            <td><input type="number" th:field="*{price}" class="data" required min="0"/></td>
+					        </tr>
+					        <tr>
+					            <td><label class="data_title">Quantity</label></td>
+					            <td><input type="number" th:field="*{quantity}" class="data"  required min="1"/></td>
 					        </tr>
 					        
 					        
